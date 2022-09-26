@@ -8,6 +8,10 @@
 							<FormTitle class="register__title" title="昵称" />
 							<u-input v-model="model.userInfo.name" placeholder="保存后不可更改" border="bottom"></u-input>
 							<FormTitle class="register__title" title="属性" />
+							<view class="d-flex flex-wrap justify-space-between">
+								<type-tag v-for="(item, index) in typeOptions" :key="index" :type="item.value"
+									:text="item.label" :active.sync="item.checked" small @click="typeClick(index)" />
+							</view>
 							<FormTitle class="register__title" title="出生年月" />
 							<u-form-item prop="userInfo.birthday" borderBottom @click="dateShow = true">
 								<u-input v-model="model.userInfo.birthday" disabled disabledColor="#ffffff"
@@ -43,6 +47,10 @@
 						</view>
 						<view v-show="stepNum === 3">
 							<FormTitle class="register__title" title="意向属性" description="多选" />
+							<view class="d-flex flex-wrap justify-space-around">
+								<type-tag v-for="(item, index) in toTypeOptions" :key="index" :type="item.value"
+									:text="item.label" :active.sync="item.checked" @click="toTypeClick(index)" />
+							</view>
 						</view>
 					</u-form>
 					<view class="mt-5">
@@ -67,11 +75,13 @@
 		hobbyOptions
 	} from '@/constants/common.js'
 	import FormTitle from '@/components/FormTitle.vue'
+	import TypeTag from '@/components/TypeTag.vue'
 	import UniDataPicker from "@/components/uni-data-picker/uni-data-picker.vue"
 	export default {
 		name: 'Register',
 		components: {
 			FormTitle,
+			TypeTag,
 			UniDataPicker
 		},
 		data() {
@@ -113,12 +123,17 @@
 				},
 				typeOptions,
 				natureOptions,
-				hobbyOptions
+				hobbyOptions,
+				toTypeOptions: typeOptions
 			}
 		},
 		methods: {
 			close() {
 				this.$emit('close')
+			},
+			typeClick(index) {
+				this.typeOptions[index].checked = !this.typeOptions[index].checked
+				console.log(this.typeOptions)
 			},
 			natureClick(name) {
 				this.natureOptions[name].checked = !this.natureOptions[name].checked
@@ -126,19 +141,22 @@
 			hobbyClick(name) {
 				this.hobbyOptions[name].checked = !this.hobbyOptions[name].checked
 			},
+			toTypeClick(name) {
+				this.toTypeOptions[name].checked = !this.toTypeOptions[name].checked
+			},
 			nextStep() {
 				if (this.stepNum < 3) {
 					this.stepNum++
 				} else {
 					// 提交注册 并 跳转首页
-					uni.setStorage({
+					uni.setStorageSync({
 						key: 'userInfo',
 						data: {
 							name: '土方十四郎',
 							id: 124234556,
 						}
 					})
-					uni.redirectTo({
+					uni.switchTab({
 						url: '/pages/home/index'
 					})
 				}

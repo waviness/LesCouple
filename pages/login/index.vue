@@ -11,9 +11,7 @@
 </template>
 
 <script>
-	import {
-		Register
-	} from './components/register.vue'
+	import Register from './components/register.vue'
 	export default {
 		name: 'Login',
 		components: {

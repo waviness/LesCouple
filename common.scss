@@ -1,3 +1,7 @@
+.full-height {
+	height: 100%;
+}
+
 .font-bold {
 	font-weight: bold;
 }
@@ -5,6 +9,18 @@
 @for $i from 10 through 30 {
 	.font-#{$i} {
 		font-size: $i + px;
+	}
+}
+
+@for $i from 2 through 6 {
+	.clamp-#{$i} {
+		text-overflow: -o-ellipsis-lastline;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: $i;
+		line-clamp: $i;
+		-webkit-box-orient: vertical;
 	}
 }
 
@@ -29,6 +45,14 @@
 		margin-left: $i * 4px;
 	}
 	
+	.mx-#{$i} {
+		margin: 0 $i * 4px;
+	}
+	
+	.my-#{$i} {
+		margin: $i * 4px 0;
+	}
+	
 	.p-#{$i} {
 		padding: $i * 4px;
 	}
@@ -48,6 +72,14 @@
 	.pl-#{$i} {
 		padding-left: $i * 4px;
 	}
+	
+	.px-#{$i} {
+		padding: 0 $i * 4px;
+	}
+	
+	.py-#{$i} {
+		padding: $i * 4px 0;
+	}
 }
 
 @each $d in left, center, right {
@@ -58,6 +90,12 @@
 
 .d-flex {
 	display: flex;
+}
+
+@for $i from 1 through 6 {
+	.flex-#{$i} {
+		flex: $i;
+	}
 }
 
 .flex-wrap {
@@ -76,3 +114,32 @@
 	}
 }
 
+@each $d in start, center, end, baseline, auto, stretch {
+	.align-self-#{$d} {
+		align-self: $d;
+	}
+}
+
+$colorList: (
+white: white,
+gray: #999,
+rank-1: #ffb34b,
+rank-2: #72dcdc,
+rank-3: #86cefa,
+rank-4: #73d1f1,
+type-1: #fc8caf,
+type-2: #f2ada4,
+type-3: #a5bdf0,
+type-4: #ca9aec
+);
+@each $key, $color in $colorList {
+	.color-#{$key} {
+		color: $color;
+	}
+	.bg-#{$key} {
+	  background-color: $color;
+	}
+	.border-#{$key}-1 {
+		border: 1px solid $color;
+	}
+}

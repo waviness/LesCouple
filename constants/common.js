@@ -74,10 +74,10 @@ export const typeOptions = [
 	},
 	{
 		value: 3,
-		label: 'H'
+		label: '铁T'
 	},
 	{
 		value: 4,
-		label: '铁T'
+		label: 'H'
 	},
 ]

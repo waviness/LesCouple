@@ -3,31 +3,50 @@
 		{
 			"path": "pages/login/index",
 			"style": {
-				"navigationBarTitleText": "登录"
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
 			"path": "pages/register/index",
 			"style": {
-				"navigationBarTitleText": "注册"
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "推荐"
+				"navigationBarTitleText": "推荐",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
 			"path": "pages/matchmaker/index",
 			"style": {
-				"navigationBarTitleText": "红娘"
+				"navigationBarTitleText": "红娘",
+				"enablePullDownRefresh": false
 			}
 		},
 		{
 			"path": "pages/my/index",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "我的",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/matchmaker/detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/detail",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false
 			}
 		}
 	],
@@ -40,7 +59,7 @@
 	"uniIdRouter": {},
 	"tabBar": {
 		"color": "#999999",
-		"selectedColor": "#69C0FF",
+		"selectedColor": "#FC8CCD",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [{

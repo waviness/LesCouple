@@ -9,17 +9,15 @@
 	export default {
 		name: "FormTitle",
 		props: {
-		  title: String,
-		  description: String,
+			title: String,
+			description: String,
 		},
 	}
 </script>
 
 <style lang="scss">
-.form-item {
-	&__desc {
+	.form-item__desc {
 		color: $uni-text-color-grey;
 		font-size: 12px;
 	}
-}
 </style>
