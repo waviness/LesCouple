@@ -1,0 +1,66 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "登录"
+			}
+		},
+		{
+			"path": "pages/register/index",
+			"style": {
+				"navigationBarTitleText": "注册"
+			}
+		},
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "推荐"
+			}
+		},
+		{
+			"path": "pages/matchmaker/index",
+			"style": {
+				"navigationBarTitleText": "红娘"
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "lescouple",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#69C0FF",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"text": "推荐",
+				"iconPath": "static/home.png",
+				"selectedIconPath": "static/home-f.png"
+			},
+			{
+				"pagePath": "pages/matchmaker/index",
+				"text": "红娘",
+				"iconPath": "static/pinglun.png",
+				"selectedIconPath": "static/pinglun-f.png"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"text": " 我的",
+				"iconPath": "static/people.png",
+				"selectedIconPath": "static/people-f.png"
+			}
+		]
+	}
+}
