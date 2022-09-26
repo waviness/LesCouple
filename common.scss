@@ -1,3 +1,7 @@
+.full-width {
+	width: 100%;
+}
+
 .full-height {
 	height: 100%;
 }
@@ -102,7 +106,7 @@
 	flex-wrap: wrap;
 }
 
-@each $d in start, center, end {
+@each $d in start, center, end, baseline {
 	.align-#{$d} {
 		align-items: $d;
 	}
@@ -120,9 +124,17 @@
 	}
 }
 
+@each $d in relative, absolute {
+	.position-#{$d} {
+		position: $d;
+	}
+}
+
 $colorList: (
 white: white,
 gray: #999,
+gray-2: #666,
+red: #f56c6c,
 rank-1: #ffb34b,
 rank-2: #72dcdc,
 rank-3: #86cefa,

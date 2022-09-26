@@ -10,17 +10,17 @@
 </template>
 
 <script>
-	import {
-		LesUser
-	} from './components/User.vue'
+	// import {
+	// 	LesUser
+	// } from './components/User.vue'
 	export default {
-		name: 'UserDetail',
+		name: 'GoodsDetail',
 		components: {
-			LesUser
+			// LesUser
 		},
 		data() {
 			return {
-				detail: uni.getStorageSync('userDetail')
+				detail: uni.getStorageSync('goodsDetail')
 			}
 		},
 	}

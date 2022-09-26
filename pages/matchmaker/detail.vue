@@ -1,12 +1,28 @@
 <template>
 	<view>
-		<u-swiper :list="bannerList" :radius="0" indicator indicatorStyle="right" circular></u-swiper>
+		<u-swiper :list="bannerList" :radius="0" indicator indicatorMode="dot" indicatorStyle="right: 20px" circular>
+		</u-swiper>
+		<view v-if="status === 'loading' || list.length" class="d-flex">
+			<u-grid :border="false" col="2">
+				<u-grid-item v-for="(item, index) in list" :key="index">
+					<GoodsItem class="mt-2" :index="index" :data="item" @click="toGoodsDetail(item)" />
+				</u-grid-item>
+			</u-grid>
+			<u-loadmore :status="status" />
+		</view>
+		<app-empty v-else :marginTop="40" />
 	</view>
 </template>
 
 <script>
+	import {
+		GoodsItem
+	} from './components/GoodsItem.vue'
 	export default {
-		name: 'MatchMaker',
+		name: 'MatchMakerDetail',
+		components: {
+			GoodsItem
+		},
 		data() {
 			return {
 				bannerList: [
@@ -14,8 +30,70 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 				],
+				page: 1,
+				pageSize: 20,
+				totalPage: 0,
+				status: 'loading',
+				list: []
 			}
-		}
+		},
+		onLoad() {
+			uni.setNavigationBarTitle({
+				title: uni.getStorageSync('makerDetail').name
+			})
+			this.getMakerList()
+		},
+		onReachBottom() {
+			if (this.page < this.totalPage) {
+				this.status = 'loading'
+				this.page++
+				this.getMakerList()
+			} else {
+				this.status = 'nomore'
+			}
+		},
+		methods: {
+			getMakerList() {
+				setTimeout(() => {
+					this.list = this.list.concat([{
+						title: '一对一匹配【标准版】',
+						saleNum: 123,
+						price: 22,
+						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+					}, {
+						title: '一对一匹配【标准版】',
+						saleNum: 123,
+						price: 22,
+						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+					}, {
+						title: '一对一匹配【高级版】',
+						saleNum: 123,
+						price: 22,
+						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+					}, {
+						title: '一对一匹配【标准版】',
+						saleNum: 123,
+						price: 22,
+						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+					}, {
+						title: '一对一匹配【标准版】',
+						saleNum: 123,
+						price: 22,
+						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+					}])
+					this.totalPage = 3
+					if (this.page > 3) {
+						this.status = 'nomore'
+					}
+				}, 500)
+			},
+			toGoodsDetail(data) {
+				uni.setStorageSync('goodsDetail', data)
+				uni.navigateTo({
+					url: '/pages/matchmaker/goods'
+				})
+			}
+		},
 	}
 </script>
 

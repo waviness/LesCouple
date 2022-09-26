@@ -17,6 +17,7 @@
 		{
 			"path": "pages/home/index",
 			"style": {
+				"navigationStyle": "custom" ,// 隐藏系统导航栏
 				"navigationBarTitleText": "推荐",
 				"enablePullDownRefresh": false
 			}
@@ -43,9 +44,30 @@
 			}
 		},
 		{
+			"path": "pages/matchmaker/goods",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/home/result",
+			"style": {
+				"navigationBarTitleText": "搜索结果",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/home/detail",
 			"style": {
-				"navigationBarTitleText": "",
+				"navigationBarTitleText": "她的主页",
 				"enablePullDownRefresh": false
 			}
 		}

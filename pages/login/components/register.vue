@@ -149,12 +149,9 @@
 					this.stepNum++
 				} else {
 					// 提交注册 并 跳转首页
-					uni.setStorageSync({
-						key: 'userInfo',
-						data: {
-							name: '土方十四郎',
-							id: 124234556,
-						}
+					uni.setStorageSync('userInfo', {
+						name: '土方十四郎',
+						id: 124234556,
 					})
 					uni.switchTab({
 						url: '/pages/home/index'

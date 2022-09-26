@@ -7,7 +7,7 @@
 		</view>
 		<view v-if="status === 'loading' || makerList.length">
 			<MakerItem v-for="(item, index) in makerList" :key="index" :index="index" :data="item"
-				@click="toMakerDetail" />
+				@click="toMakerDetail(item)" />
 			<u-loadmore :status="status" />
 		</view>
 		<app-empty v-else :marginTop="40" />
@@ -68,7 +68,6 @@
 				this.getMakerList()
 			},
 			getMakerList() {
-				console.log(this.current)
 				setTimeout(() => {
 					this.makerList = this.makerList.concat([{
 						name: '红娘小公子',
@@ -107,7 +106,8 @@
 					}
 				}, 500)
 			},
-			toMakerDetail() {
+			toMakerDetail(data) {
+				uni.setStorageSync('makerDetail', data)
 				uni.navigateTo({
 					url: '/pages/matchmaker/detail'
 				})
