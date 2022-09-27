@@ -1,8 +1,8 @@
 <template>
 	<view class="search">
 		<FormTitle class="search__title" title="爱好标签" description="多选" />
-		<view class="d-flex flex-wrap justify-space-between">
-			<view v-for="(item, index) in hobbyOptions" :key="index">
+		<view class="d-flex flex-wrap">
+			<view v-for="(item, index) in hobbyOptions" :key="index" class="mr-2 mb-2">
 				<u-tag :text="item.label" :plain="!item.checked" :name="index" @click="hobbyClick">
 				</u-tag>
 			</view>

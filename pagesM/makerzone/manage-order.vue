@@ -136,7 +136,7 @@
 			toDetail(data) {
 				uni.setStorageSync('orderDetail', data)
 				uni.navigateTo({
-					url: '/pages/order/detail'
+					url: '/pagesU/order/detail'
 				})
 			}
 		},

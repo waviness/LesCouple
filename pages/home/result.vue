@@ -147,10 +147,7 @@
 				}, 500)
 			},
 			toUserDetail(data) {
-				uni.setStorageSync({
-					key: 'userDetail',
-					data
-				})
+				uni.setStorageSync('userDetail', data)
 				uni.navigateTo({
 					url: '/pages/home/detail'
 				})

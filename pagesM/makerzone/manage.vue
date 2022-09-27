@@ -3,9 +3,9 @@
 		<maker-card :data="makerInfor" />
 		<view class="">
 			<u-cell-group>
-				<u-cell title="订单管理" url="/pages/makerzone/manage-order" isLink></u-cell>
-				<u-cell title="商品管理" url="/pages/makerzone/manage-goods" isLink></u-cell>
-				<u-cell title="修改店铺信息" url="/pages/makerzone/store" isLink></u-cell>
+				<u-cell title="订单管理" url="/pagesM/makerzone/manage-order" isLink></u-cell>
+				<u-cell title="商品管理" url="/pagesM/makerzone/manage-goods" isLink></u-cell>
+				<u-cell title="修改店铺信息" url="/pagesM/makerzone/store" isLink></u-cell>
 			</u-cell-group>
 		</view>
 	</view>

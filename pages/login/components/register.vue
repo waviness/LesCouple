@@ -8,9 +8,10 @@
 							<FormTitle class="register__title" title="昵称" />
 							<u-input v-model="model.userInfo.name" placeholder="保存后不可更改" border="bottom"></u-input>
 							<FormTitle class="register__title" title="属性" />
-							<view class="d-flex flex-wrap justify-space-between">
-								<type-tag v-for="(item, index) in typeOptions" :key="index" :type="item.value"
-									:text="item.label" :active.sync="item.checked" small @click="typeClick(index)" />
+							<view class="d-flex flex-wrap">
+								<type-tag v-for="(item, index) in typeOptions" :key="index" class="mr-5"
+									:type="item.value" :text="item.label" :active.sync="item.checked" small
+									@click="typeClick(index)" />
 							</view>
 							<FormTitle class="register__title" title="出生年月" />
 							<u-form-item prop="userInfo.birthday" borderBottom @click="dateShow = true">
@@ -31,15 +32,15 @@
 						</view>
 						<view v-show="stepNum === 2">
 							<FormTitle class="register__title" title="性格标签" description="多选" />
-							<view class="d-flex flex-wrap justify-space-between">
-								<view v-for="(item, index) in natureOptions" :key="index">
+							<view class="d-flex flex-wrap">
+								<view v-for="(item, index) in natureOptions" :key="index" class="mb-2 mr-2">
 									<u-tag :text="item.label" :plain="!item.checked" :name="index" @click="natureClick">
 									</u-tag>
 								</view>
 							</view>
 							<FormTitle class="register__title" title="爱好标签" description="多选" />
-							<view class="d-flex flex-wrap justify-space-between">
-								<view v-for="(item, index) in hobbyOptions" :key="index">
+							<view class="d-flex flex-wrap">
+								<view v-for="(item, index) in hobbyOptions" :key="index" class="mb-2 mr-2">
 									<u-tag :text="item.label" :plain="!item.checked" :name="index" @click="hobbyClick">
 									</u-tag>
 								</view>
@@ -76,13 +77,11 @@
 	} from '@/constants/common.js'
 	import FormTitle from '@/components/FormTitle.vue'
 	import TypeTag from '@/components/TypeTag.vue'
-	import UniDataPicker from "@/components/uni-data-picker/uni-data-picker.vue"
 	export default {
 		name: 'Register',
 		components: {
 			FormTitle,
 			TypeTag,
-			UniDataPicker
 		},
 		data() {
 			return {

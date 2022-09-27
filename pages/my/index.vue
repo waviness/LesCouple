@@ -9,10 +9,10 @@
 		</view>
 		<u-cell-group>
 			<u-cell icon="fingerprint" title="实名认证" url="/pages/my/auth" isLink></u-cell>
-			<u-cell icon="account" title="我的信息" url="/pages/infor/index" isLink></u-cell>
+			<u-cell icon="account" title="我的信息" url="/pagesU/infor/index" isLink></u-cell>
 			<u-cell icon="eye" title="看过" url="/pages/my/looked" isLink></u-cell>
 			<u-cell icon="heart" title="关注" url="/pages/my/follow" isLink></u-cell>
-			<u-cell icon="setting" title="设置" url="/pages/settings/index" isLink></u-cell>
+			<u-cell icon="setting" title="设置" url="/pagesU/settings/index" isLink></u-cell>
 		</u-cell-group>
 		<view class="footer">
 			<u-button type="error" text="红娘地带" shape="circle" icon="plus-people-fill" @click="toMakerZone"></u-button>
@@ -37,12 +37,12 @@
 		methods: {
 			toOrderList(type) {
 				uni.navigateTo({
-					url: '/pages/order/index?orderType=' + type
+					url: '/pagesU/order/index?orderType=' + type
 				})
 			},
 			toMakerZone() {
 				uni.navigateTo({
-					url: '/pages/makerzone/index'
+					url: '/pagesM/makerzone/index'
 				})
 			}
 		}
