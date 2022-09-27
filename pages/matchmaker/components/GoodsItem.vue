@@ -1,6 +1,6 @@
 <template>
-	<view class="goods-item bg-white d-flex u-flex-column" @click="onClick">
-		<image class="goods-item__img" :src="data.headerImg"></image>
+	<view class="goods-item bg-white" @click="onClick">
+		<image class="goods-item__img" :src="data.headerImg" mode="aspectFill"></image>
 		<view class="flex-1 font-14 clamp-2 p-2">{{ data.title }}</view>
 		<view class="d-flex justify-space-between align-baseline p-2">
 			<view class="color-red">￥{{ data.price }}</view>
@@ -23,7 +23,7 @@
 	}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.goods-item {
 		height: 200px;
 		border-radius: 10px;

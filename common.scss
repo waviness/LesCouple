@@ -1,3 +1,11 @@
+.pb-100 {
+	padding-bottom: 100px;
+}
+
+.border-radius {
+	border-radius: 50%;
+}
+
 .full-width {
 	width: 100%;
 }
@@ -14,6 +22,12 @@
 	.font-#{$i} {
 		font-size: $i + px;
 	}
+}
+
+.slh {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 @for $i from 2 through 6 {
@@ -112,7 +126,7 @@
 	}
 }
 
-@each $d in start, center, end, space-between, space-around {
+@each $d in start, center, flex-end, space-between, space-around, space-evenly {
 	.justify-#{$d} {
 		justify-content: $d;
 	}
@@ -132,6 +146,7 @@
 
 $colorList: (
 white: white,
+primary: #2979ff,
 gray: #999,
 gray-2: #666,
 red: #f56c6c,

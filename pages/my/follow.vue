@@ -1,15 +1,13 @@
 <template>
-	<view class="pb-100" :style="{paddingTop: navHeight + statusBarHeight + 'px'}">
-		<u-navbar>
-			<view slot="left">
-				<u-search placeholder="属性/年龄/城市" :showAction="false" disabled @click="toSearch"></u-search>
-			</view>
-		</u-navbar>
-		<u-swiper :list="bannerList" :radius="0" indicator indicatorMode="line" circular></u-swiper>
-		<u-tabs :list="tabOptions" lineColor="#f9ae3d" :scrollable="false" @click="tabClick">
-		</u-tabs>
+	<view class="pb-100">
+		<view class="bg-white">
+			<u-tabs :list="tabOptions" :scrollable="false" @click="tabClick">
+			</u-tabs>
+		</view>
 		<view v-if="status === 'loading' || userList.length">
-			<les-user v-for="(item, index) in userList" :key="index" :data="item" @click="toUserDetail(item)" />
+			<view class="bg-white p-3 mt-1" v-for="(item, index) in userList" :key="index" @click="toUserDetail(item)">
+				<user-item :data="item" :avatarAuth="true" />
+			</view>
 			<u-loadmore :status="status" />
 		</view>
 		<app-empty v-else :marginTop="40" />
@@ -18,28 +16,19 @@
 
 <script>
 	import {
-		LesUser
-	} from './components/User.vue'
+		UserItem
+	} from '@/components/UserItem.vue'
 	export default {
-		name: 'Home',
+		name: 'UserFollow',
 		components: {
-			LesUser
+			UserItem
 		},
 		data() {
 			return {
-				navHeight: 44,
-				statusBarHeight: 0,
-				bannerList: [
-					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
-				],
 				tabOptions: [{
-					name: '全部',
+					name: '关注',
 				}, {
-					name: '同城',
-				}, {
-					name: '已认证'
+					name: '粉丝',
 				}],
 				current: 0,
 				page: 1,
@@ -174,9 +163,57 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+					}, {
+						id: '12342356',
+						name: '小公子33',
+						height: 186,
+						year: 98,
+						level: 14,
+						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						type: 3,
+						education: '本科',
+						work: '程序员',
+						city: '北京市',
+						imgList: [
+							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						],
+					}, {
+						id: '12342356',
+						name: '小公子33',
+						height: 186,
+						year: 98,
+						level: 14,
+						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						type: 3,
+						education: '本科',
+						work: '程序员',
+						city: '北京市',
+						imgList: [
+							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						],
+					}, {
+						id: '12342356',
+						name: '小公子33',
+						height: 186,
+						year: 98,
+						level: 14,
+						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						type: 3,
+						education: '本科',
+						work: '程序员',
+						city: '北京市',
+						imgList: [
+							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						],
 					}])
-					this.totalPage = 2
-					if (this.page > 2) {
+					this.totalPage = 3
+					if (this.page > 3) {
 						this.status = 'nomore'
 					}
 				}, 500)
@@ -185,11 +222,6 @@
 				uni.setStorageSync('userDetail', data)
 				uni.navigateTo({
 					url: '/pages/home/detail'
-				})
-			},
-			toSearch() {
-				uni.navigateTo({
-					url: '/pages/home/search'
 				})
 			}
 		}

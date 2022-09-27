@@ -9,11 +9,12 @@
 		</view>
 		<view class="flex-1 d-flex u-flex-column justify-space-between full-height ml-2">
 			<view class="font-14 d-flex align-center">
-				{{ data.name }}
+				<view>{{ data.name }}</view>
 				<view v-if="!avatarAuth"
 					:class="['ml-3 font-11 color-white user-item__tag', data.isAuth ? 'bg-rank-1' : 'bg-gray']">
 					{{ data.isAuth ? '已认证' : '未认证' }}
 				</view>
+				<view v-if="lookType" class="color-gray font-12 ml-3">{{ lookType === 2 ? `${data.time}前看过她` : `${data.time}前看过你` }}</view>
 			</view>
 			<view v-if="showId" class="font-12 color-gray">ID：{{ data.id }}</view>
 			<view class="font-12 color-gray-2 d-flex align-center">
@@ -45,6 +46,10 @@
 				type: Boolean,
 				default: false
 			}, // 是否显示ID
+			lookType: {
+				type: Number,
+				default: 0
+			}, // 1看过我 2看过她
 		},
 		data() {
 			return {

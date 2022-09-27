@@ -152,6 +152,8 @@
 					uni.setStorageSync('userInfo', {
 						name: '土方十四郎',
 						id: 124234556,
+						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						isAuth: 1
 					})
 					uni.switchTab({
 						url: '/pages/home/index'

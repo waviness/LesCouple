@@ -1,10 +1,16 @@
 <template>
 	<view class="bg-white">
-		<les-user :data="detail" :avatarAuth="true" :showId="true" :autoplay="true" />
-		<view class="p-5">
-		<view class="font-18 font-bold text-center">找对象需求</view>
-		<view class="mt-2">属性：</view>
-		<view class="mt-1">年龄范围：</view>
+		<view class="py-3 text-center font-bold">{{ detail.title }}</view>
+		<u-swiper :list="imgList" :radius="0" :height="200" :autoplay="true" indicator indicatorMode="dot" circular>
+		</u-swiper>
+		<view class="p-3">
+			<view class="my-3">
+				<view class="font-14 font-bold">服务内容</view>
+			</view>
+			<u-divider></u-divider>
+			<view class="my-3">
+				<view class="font-14 font-bold">用户评价</view>
+			</view>
 		</view>
 	</view>
 </template>
@@ -20,7 +26,12 @@
 		},
 		data() {
 			return {
-				detail: uni.getStorageSync('goodsDetail')
+				detail: uni.getStorageSync('goodsDetail'),
+				imgList: [
+					'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+					'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+					'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+				]
 			}
 		},
 	}

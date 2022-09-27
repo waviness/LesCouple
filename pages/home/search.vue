@@ -57,7 +57,7 @@
 			position: fixed;
 			bottom: 0;
 			left: 0;
-			padding: 20px;
+			padding: 40px;
 			box-sizing: border-box;
 		}
 	}

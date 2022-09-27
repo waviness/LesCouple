@@ -1,13 +1,14 @@
 <template>
 	<view class="pb-100">
-		<u-swiper :list="bannerList" :radius="0" indicator indicatorMode="line" circular></u-swiper>
-		<view class="bg-white">
-			<u-tabs :list="tabOptions" lineColor="#f9ae3d" :scrollable="false" @click="tabClick">
-			</u-tabs>
-		</view>
-		<view v-if="status === 'loading' || makerList.length">
-			<MakerItem v-for="(item, index) in makerList" :key="index" :index="index" :data="item"
-				@click="toMakerDetail(item)" />
+		<u-sticky>
+			<view class="bg-white">
+				<u-tabs :list="tabOptions" :scrollable="false" @click="tabClick">
+				</u-tabs>
+			</view>
+		</u-sticky>
+		<view v-if="status === 'loading' || list.length">
+			<OrderItem v-for="(item, index) in list" :key="index" :index="index" :data="item"
+				@click="toDetail(item)" />
 			<u-loadmore :status="status" />
 		</view>
 		<app-empty v-else :marginTop="40" />
@@ -16,45 +17,48 @@
 
 <script>
 	import {
-		MakerItem
-	} from './components/MakerItem.vue'
+		OrderItem
+	} from './components/OrderItem.vue'
 	export default {
-		name: 'MatchMaker',
+		name: 'UserOrder',
 		components: {
-			MakerItem
+			OrderItem
 		},
 		data() {
 			return {
-				bannerList: [
-					'https://cdn.uviewui.com/uview/swiper/swiper3.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
-					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
-				],
 				tabOptions: [{
 					name: '全部',
 				}, {
-					name: '评分排序',
+					name: '待付款',
+                    badge: {
+                        value: 5,
+                    }
 				}, {
-					name: '匹配量'
+					name: '待牵线',
+                    badge: {
+                        value: 5,
+                    }
 				}, {
-					name: '匹配时间'
+					name: '已完成'
 				}],
 				current: 0,
 				page: 1,
 				pageSize: 20,
 				totalPage: 0,
 				status: 'loading',
-				makerList: []
+				list: []
 			}
 		},
-		onLoad() {
-			this.getMakerList()
+		onLoad(option) {
+			this.current = +option.orderType
+			console.log(option)
+			this.getList()
 		},
 		onReachBottom() {
 			if (this.page < this.totalPage) {
 				this.status = 'loading'
 				this.page++
-				this.getMakerList()
+				this.getList()
 			} else {
 				this.status = 'nomore'
 			}
@@ -64,40 +68,51 @@
 				this.current = item.index
 				this.page = 1
 				this.status = 'loading'
-				this.makerList = []
-				this.getMakerList()
+				this.list = []
+				this.getList()
 			},
-			getMakerList() {
+			getList() {
+				console.log(this.current)
 				setTimeout(() => {
-					this.makerList = this.makerList.concat([{
+					this.list = this.list.concat([{
 						name: '红娘小公子',
-						successNum: 123,
-						averageDay: 22,
+						title: '一对一匹配【标准版】',
+						date: '2022-09-27 09:49',
+						price: 22,
 						rate: 3.0,
+						status: 1, // 1待付款 2待牵线 3待评价 4已完成
 						headerImg: 'https://i.keaimeitu.com/uploads/allimg/200504/110822693.jpg'
 					}, {
 						name: '红娘小公子22',
-						successNum: 123,
-						averageDay: 22,
+						title: '一对一匹配【标准版】',
+						date: '2022-09-27 09:49',
+						price: 22,
 						rate: 5.0,
+						status: 3,
 						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
 					}, {
 						name: '红娘小公子33',
-						successNum: 123,
-						averageDay: 22,
+						title: '一对一匹配【标准版】',
+						date: '2022-09-27 09:49',
+						price: 22,
 						rate: 4.0,
+						status: 2,
 						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
 					}, {
 						name: '红娘小公子22',
-						successNum: 123,
-						averageDay: 22,
+						title: '一对一匹配【标准版】',
+						date: '2022-09-27 09:49',
+						price: 22,
 						rate: 5.0,
+						status: 4,
 						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
 					}, {
 						name: '红娘小公子33',
-						successNum: 123,
-						averageDay: 22,
+						title: '一对一匹配【标准版】',
+						date: '2022-09-27 09:49',
+						price: 22,
 						rate: 4.0,
+						status: 3,
 						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
 					}])
 					this.totalPage = 2
@@ -106,10 +121,10 @@
 					}
 				}, 500)
 			},
-			toMakerDetail(data) {
-				uni.setStorageSync('makerDetail', data)
+			toDetail(data) {
+				uni.setStorageSync('orderDetail', data)
 				uni.navigateTo({
-					url: '/pages/matchmaker/detail'
+					url: '/pages/order/detail'
 				})
 			}
 		},

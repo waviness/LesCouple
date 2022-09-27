@@ -8,13 +8,6 @@
 			}
 		},
 		{
-			"path": "pages/register/index",
-			"style": {
-				"navigationBarTitleText": "注册",
-				"enablePullDownRefresh": false
-			}
-		},
-		{
 			"path": "pages/home/index",
 			"style": {
 				"navigationStyle": "custom" ,// 隐藏系统导航栏
@@ -68,6 +61,153 @@
 			"path": "pages/home/detail",
 			"style": {
 				"navigationBarTitleText": "她的主页",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order/index",
+			"style": {
+				"navigationBarTitleText": "订单",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/order/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/auth",
+			"style": {
+				"navigationBarTitleText": "实名认证",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/infor/index",
+			"style": {
+				"navigationBarTitleText": "我的信息",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/looked",
+			"style": {
+				"navigationBarTitleText": "看过",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/my/follow",
+			"style": {
+				"navigationBarTitleText": "关注",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/index",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/infor/image-edit",
+			"style": {
+				"navigationBarTitleText": "更换头像",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/infor/edit",
+			"style": {
+				"navigationBarTitleText": "个人信息",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/infor/needs-edit",
+			"style": {
+				"navigationBarTitleText": "找对象需求",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/account",
+			"style": {
+				"navigationBarTitleText": "账号设置",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/secrets",
+			"style": {
+				"navigationBarTitleText": "隐私",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/agreement",
+			"style": {
+				"navigationBarTitleText": "用户注册协议",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/feedback",
+			"style": {
+				"navigationBarTitleText": "问题反馈",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/settings/aboutus",
+			"style": {
+				"navigationBarTitleText": "关于我们",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/makerzone/index",
+			"style": {
+				"navigationBarTitleText": "红娘地带",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/makerzone/store",
+			"style": {
+				"navigationBarTitleText": "注册店铺",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/makerzone/manage",
+			"style": {
+				"navigationBarTitleText": "店铺管理",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/makerzone/manage-order",
+			"style": {
+				"navigationBarTitleText": "订单管理",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/makerzone/manage-goods",
+			"style": {
+				"navigationBarTitleText": "商品管理",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
+			"path": "pages/makerzone/publish-goods",
+			"style": {
+				"navigationBarTitleText": "商品发布",
 				"enablePullDownRefresh": false
 			}
 		}

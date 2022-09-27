@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="pb-100">
 		<view v-if="status === 'loading' || userList.length">
 			<les-user v-for="(item, index) in userList" :key="index" :data="item" @click="toUserDetail(item)" />
 			<u-loadmore :status="status" />
