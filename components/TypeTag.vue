@@ -1,6 +1,6 @@
 <template>
 	<view
-		:class="[small ? 'type-tag--small' : 'type-tag', active ? `bg-type-${type} color-white` : `bg-white border-type-${type}-1`]"
+		:class="[small ? 'type-tag--small' : 'type-tag', active ? `bg-type-${type} border-type-${type}-1 color-white` : `bg-white border-type-${type}-1`]"
 		@click="onClick">
 		{{ text }}
 	</view>

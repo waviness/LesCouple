@@ -2,17 +2,16 @@
 	<view>
 		<u-overlay :show="show" :duration="400" :z-index="999" :opacity="0.3">
 			<u-popup :show="show" :round="10" @close="close" :overlay="false" closeable>
+				<view v-if="stepNum > 1" class="mt-4 ml-3 d-flex align-center color-gray" @click="stepNum--">
+					<u-icon name="arrow-left" size="18" color="#999999" class="mr-1"></u-icon>上一步
+				</view>
 				<view class="register">
 					<u-form labelPosition="left" :model="model" :rules="rules" ref="form1">
 						<view v-show="stepNum === 1">
 							<FormTitle class="register__title" title="昵称" />
 							<u-input v-model="model.userInfo.name" placeholder="保存后不可更改" border="bottom"></u-input>
 							<FormTitle class="register__title" title="属性" />
-							<view class="d-flex flex-wrap">
-								<type-tag v-for="(item, index) in typeOptions" :key="index" class="mr-5"
-									:type="item.value" :text="item.label" :active.sync="item.checked" small
-									@click="typeClick(index)" />
-							</view>
+							<TypeCheckBox :value="model.userInfo.type" :options="typeOptions" type="radio" small />
 							<FormTitle class="register__title" title="出生年月" />
 							<u-form-item prop="userInfo.birthday" borderBottom @click="dateShow = true">
 								<u-input v-model="model.userInfo.birthday" disabled disabledColor="#ffffff"
@@ -22,7 +21,7 @@
 							<FormTitle class="register__title" title="城市" />
 							<u-form-item prop="userInfo.city" borderBottom @click="pickerShow = true">
 								<u-input v-model="model.userInfo.city" disabled disabledColor="#ffffff"
-									placeholder="请选择城市" border="none"></u-input>
+									placeholder="请选择城市" border="none" @click="pickerShow = true"></u-input>
 								<u-icon slot="right" name="arrow-right"></u-icon>
 							</u-form-item>
 							<!-- <uni-data-picker placeholder="请选择地址" popup-title="请选择城市" collection="opendb-city-china"
@@ -32,26 +31,13 @@
 						</view>
 						<view v-show="stepNum === 2">
 							<FormTitle class="register__title" title="性格标签" description="多选" />
-							<view class="d-flex flex-wrap">
-								<view v-for="(item, index) in natureOptions" :key="index" class="mb-2 mr-2">
-									<u-tag :text="item.label" :plain="!item.checked" :name="index" @click="natureClick">
-									</u-tag>
-								</view>
-							</view>
+							<AppCheckBox :value="model.userInfo.nature" :options="natureOptions" />
 							<FormTitle class="register__title" title="爱好标签" description="多选" />
-							<view class="d-flex flex-wrap">
-								<view v-for="(item, index) in hobbyOptions" :key="index" class="mb-2 mr-2">
-									<u-tag :text="item.label" :plain="!item.checked" :name="index" @click="hobbyClick">
-									</u-tag>
-								</view>
-							</view>
+							<AppCheckBox :value="model.userInfo.hobby" :options="hobbyOptions" />
 						</view>
 						<view v-show="stepNum === 3">
 							<FormTitle class="register__title" title="意向属性" description="多选" />
-							<view class="d-flex flex-wrap justify-space-around">
-								<type-tag v-for="(item, index) in toTypeOptions" :key="index" :type="item.value"
-									:text="item.label" :active.sync="item.checked" @click="toTypeClick(index)" />
-							</view>
+							<TypeCheckBox :value="model.userInfo.toType" :options="typeOptions" around />
 						</view>
 					</u-form>
 					<view class="mt-5">
@@ -62,10 +48,11 @@
 				</view>
 			</u-popup>
 		</u-overlay>
-		<u-datetime-picker :show="dateShow" :zIndex="20000" v-model="userInfo.birthday" mode="year-month"
-			@cancel="dateShow = false" @confirm="dateShow = false"></u-datetime-picker>
+		<u-datetime-picker :show="dateShow" :zIndex="20000" :minDate="minDate" :maxDate="maxDate" v-model="dateValue"
+			mode="year-month" @cancel="dateShow = false" @confirm="onDateConfirm">
+		</u-datetime-picker>
 
-		<!-- <picker :show="pickerShow" v-model="userInfo.city" mode="region"></picker> -->
+		<picker :show="pickerShow" v-model="userInfo.city" mode="region"></picker>
 	</view>
 </template>
 
@@ -75,19 +62,27 @@
 		natureOptions,
 		hobbyOptions
 	} from '@/constants/common.js'
+	import {
+		formatYearMonth
+	} from '@/utils/common.js'
 	import FormTitle from '@/components/FormTitle.vue'
-	import TypeTag from '@/components/TypeTag.vue'
+	import AppCheckBox from '@/components/AppCheckBox.vue'
+	import TypeCheckBox from './TypeCheckBox.vue'
 	export default {
 		name: 'Register',
 		components: {
 			FormTitle,
-			TypeTag,
+			AppCheckBox,
+			TypeCheckBox
 		},
 		data() {
 			return {
 				show: true,
 				stepNum: 1,
+				minDate: Date.parse(new Date('1900-01-01')),
+				maxDate: Date.parse(new Date()),
 				dateShow: false,
+				dateValue: Number(new Date()),
 				pickerShow: false,
 				model: {
 					userInfo: {
@@ -95,7 +90,9 @@
 						birthday: '',
 						type: '',
 						city: '',
-
+						nature: [],
+						hobby: [],
+						toType: [],
 					}
 				},
 				rules: {
@@ -123,30 +120,22 @@
 				typeOptions,
 				natureOptions,
 				hobbyOptions,
-				toTypeOptions: typeOptions
 			}
 		},
 		methods: {
 			close() {
 				this.$emit('close')
 			},
-			typeClick(index) {
-				this.typeOptions[index].checked = !this.typeOptions[index].checked
-				console.log(this.typeOptions)
-			},
-			natureClick(name) {
-				this.natureOptions[name].checked = !this.natureOptions[name].checked
-			},
-			hobbyClick(name) {
-				this.hobbyOptions[name].checked = !this.hobbyOptions[name].checked
-			},
-			toTypeClick(name) {
-				this.toTypeOptions[name].checked = !this.toTypeOptions[name].checked
+			onDateConfirm(params) {
+				this.model.userInfo.birthday = formatYearMonth(params.value)
+				this.dateShow = false
 			},
 			nextStep() {
+				console.log(this.model.userInfo)
 				if (this.stepNum < 3) {
 					this.stepNum++
 				} else {
+					console.log(this.model.userInfo)
 					// 提交注册 并 跳转首页
 					uni.setStorageSync('userInfo', {
 						name: '土方十四郎',
