@@ -48,7 +48,6 @@
 				const res = this.tempOptions.filter(item => {
 					return item.checked
 				}).map(item => item.value)
-				console.log(res)
 				this.$emit('update:value', res)
 			}
 		}

@@ -11,7 +11,7 @@
 							<FormTitle class="register__title" title="昵称" />
 							<u-input v-model="model.userInfo.name" placeholder="保存后不可更改" border="bottom"></u-input>
 							<FormTitle class="register__title" title="属性" />
-							<TypeCheckBox :value="model.userInfo.type" :options="typeOptions" type="radio" small />
+							<TypeCheckBox :value.sync="model.userInfo.type" :options="typeOptions" type="radio" small />
 							<FormTitle class="register__title" title="出生年月" />
 							<u-form-item prop="userInfo.birthday" borderBottom @click="dateShow = true">
 								<u-input v-model="model.userInfo.birthday" disabled disabledColor="#ffffff"
@@ -31,13 +31,13 @@
 						</view>
 						<view v-show="stepNum === 2">
 							<FormTitle class="register__title" title="性格标签" description="多选" />
-							<AppCheckBox :value="model.userInfo.nature" :options="natureOptions" />
+							<AppCheckBox :value.sync="model.userInfo.nature" :options="natureOptions" />
 							<FormTitle class="register__title" title="爱好标签" description="多选" />
-							<AppCheckBox :value="model.userInfo.hobby" :options="hobbyOptions" />
+							<AppCheckBox :value.sync="model.userInfo.hobby" :options="hobbyOptions" />
 						</view>
 						<view v-show="stepNum === 3">
 							<FormTitle class="register__title" title="意向属性" description="多选" />
-							<TypeCheckBox :value="model.userInfo.toType" :options="typeOptions" around />
+							<TypeCheckBox :value.sync="model.userInfo.toType" :options="typeOptions" around />
 						</view>
 					</u-form>
 					<view class="mt-5">
