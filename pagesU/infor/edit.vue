@@ -310,6 +310,11 @@
 				let Y = date.getFullYear() + '-'
 				let M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-'
 				let D = date.getDate() + ' '
+				console.log(Number(M.split('-')[0]))
+				console.log(D)
+				let constellation = this.getAstro(Number(M.split('-')[0]), D)
+				console.log(constellation)
+				this.model1.userInfo.constellation = constellation
 				return Y + M + D
 			},
 			// 删除照片
@@ -358,7 +363,7 @@
 			},
 			// 星座换算
 			getAstro(m ,d) {
-				return "白羊金牛双子巨蟹狮子处女天秤天蝎射手摩羯水瓶双鱼".substr(m*2-(d<"102223444433".charAt(m-1)- -19)*2,2)
+				return "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯".substr(m*2-(d<"102223444433".charAt(m-1)- -19)*2,2) + '座';
 			}
 		},
 		onReady() {
