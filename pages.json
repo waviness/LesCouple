@@ -165,6 +165,13 @@
 					"enablePullDownRefresh": false
 				}
 			},
+			  {
+				   "path" : "settings/edition",
+				   "style" : {
+					"navigationBarTitleText" : "版本",
+					"enablePullDownRefresh" : false
+                    		}
+                	},
 			{
 				"path": "settings/aboutus",
 				"style": {
