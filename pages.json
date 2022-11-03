@@ -183,7 +183,7 @@
 				}
 			},
 			{
-				"path": "makerzone/store",
+				"path": "registerStore/store",
 				"style": {
 					"navigationBarTitleText": "注册店铺",
 					"enablePullDownRefresh": false
@@ -207,6 +207,13 @@
 				"path": "makerzone/manage-goods",
 				"style": {
 					"navigationBarTitleText": "商品管理",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
+				"path": "makerzone/manage-detail",
+				"style": {
+					"navigationBarTitleText": "商品详情",
 					"enablePullDownRefresh": false
 				}
 			},

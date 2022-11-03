@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-01 14:55:49
+ * @LastEditTime: 2022-11-03 10:53:46
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -61,14 +61,14 @@
                 <view class="order-detail_border order-detail_cancelOrder">取消订单</view>
                 <button class="btn-bottom" @click.stop="onButClick(1)">立即付款</button>
             </view>
-            <view v-if="data.status === 2">
+            <view v-if="data.status === 2" class="order-detail_margin">
                 <button class="btn-bottom" @click.stop="onButClick(2)">确认牵线</button>
             </view>
             <view v-if="data.status === 3" class="order-detail_footer_unPay">
                 <view class="order-detail_border order-detail_cancelOrder">申诉</view>
                 <button class="btn-bottom" @click.stop="onButClick(3)">立即评价</button>
             </view>
-            <view v-if="data.status === 4">
+            <view v-if="data.status === 4" class="order-detail_margin">
                 <button class="btn-bottom" @click.stop="onButClick(4)">查看评价</button>
             </view>
         </view>
@@ -180,6 +180,10 @@ export default {
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        &_margin {
+            margin-top: 16px;
         }
 
         .btn-bottom {

@@ -141,9 +141,9 @@
 				}, 500)
 			},
 			toDetail(data) {
-				uni.setStorageSync('orderDetail', data)
+				uni.setStorageSync('makerDetail', data)
 				uni.navigateTo({
-					url: '/pagesU/order/detail'
+					url: '/pagesM/makerzone/manage-detail'
 				})
 			},
 			toPublish() {
