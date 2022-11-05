@@ -171,6 +171,13 @@
 					"navigationBarTitleText": "关于我们",
 					"enablePullDownRefresh": false
 				}
+			},
+			{
+				"path": "evaluate/index",
+				"style": {
+					"navigationBarTitleText": "评价",
+					"enablePullDownRefresh": false
+				}
 			}
 		]
 	}, {

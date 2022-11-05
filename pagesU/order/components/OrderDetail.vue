@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-03 10:53:46
+ * @LastEditTime: 2022-11-05 20:59:19
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -95,7 +95,12 @@ export default {
             });
         },
         onButClick(val) {
-            console.log('val', val);
+            console.log('status', val);
+            if(val === 3) {
+                uni.navigateTo({
+                    url: '../../pagesU/evaluate/index',
+                });
+            }
         }
     }
 }
