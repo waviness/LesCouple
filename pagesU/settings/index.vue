@@ -46,7 +46,7 @@
 	.u-slot-title {
 		display: flex;
 		.u-cell-text {
-			padding-right: 10px;
+			padding-right: 20rpx;
 		}
 	}
 </style>

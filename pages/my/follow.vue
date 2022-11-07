@@ -1,3 +1,4 @@
+<!-- 我关注的 -->
 <template>
 	<view class="pb-100">
 		<view class="bg-white">

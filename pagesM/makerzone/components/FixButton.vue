@@ -15,9 +15,9 @@
 
 <style lang="scss">
 	.fix-button {
-		width: 60px;
-		height: 60px;
-		line-height: 52px;
-		font-size: 40px;
+		width: 120rpx;
+		height: 120rpx;
+		line-height: 104rpx;
+		font-size: 80rpx;
 	}
 </style>

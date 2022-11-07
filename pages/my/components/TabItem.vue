@@ -22,7 +22,7 @@
 
 <style lang="scss">
 	.tab-img {
-		width: 30px;
-		height: 32px;
+		width: 60rpx;
+		height: 64rpx;
 	}
 </style>

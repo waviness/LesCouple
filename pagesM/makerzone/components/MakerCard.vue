@@ -22,13 +22,13 @@
 		background-color: #31aefc;
 		
 		&__img {
-			width: 80px;
-			height: 80px;
+			width: 160rpx;
+			height: 160rpx;
 		}
 		
 		&__tag {
-			border-radius: 12px;
-			padding: 3px 12px;
+			border-radius: 24rpx;
+			padding: 6rpx 24rpx;
 		}
 	}
 </style>

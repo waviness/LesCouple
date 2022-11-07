@@ -9,7 +9,7 @@
                 <view class="evaluate_evaluateText">待评价</view>
             </view>
             <view class="evaluate_space evaluate_text evaluate_doneCode">
-                <image class="evaluate_img" src={{data.headerImg}} mode="aspectFill">
+                <image class="evaluate_img" :src="data.headerImg" mode="aspectFill">
                 </image>
                 <view class="evaluate_price">
                     <view style="margin-bottom: 12px;">{{ data.title }}</view>
@@ -61,16 +61,16 @@ export default {
     height: 100vh;
     overflow-y: hidden;
     background-color: #fff;
-    padding: 16px;
+    padding: 32rpx;
 
     &_info {
-        margin-bottom: 24px;
-        border-radius: 4px;
+        margin-bottom: 48rpx;
+        border-radius: 8rpx;
     }
 
     &_house {
-        height: 24px;
-        width: 24px;
+        height: 48rpx;
+        width: 48rpx;
     }
 
     &_userInfo {
@@ -84,8 +84,8 @@ export default {
     }
 
     &_bottom {
-        padding-bottom: 58px;
-        border-bottom: 1px solid rgba(237, 237, 237, 1);
+        padding-bottom: 116rpx;
+        border-bottom: 2rpx solid rgba(237, 237, 237, 1);
     }
 
     &_evaluateText {
@@ -93,22 +93,22 @@ export default {
     }
 
     &_space {
-        margin-top: 8px;
+        margin-top: 16rpx;
     }
 
     &_img {
-        width: 70px;
-        height: 74px;
+        width: 140rpx;
+        height: 148rpx;
     }
 
     &_price {
         position: absolute;
-        margin-left: 82px;
+        margin-left: 164rpx;
     }
 
     &_text {
         color: rgba(118, 118, 118, 1);
-        font-size: 12px;
+        font-size: 24rpx;
     }
 
     &_doneCode {
@@ -123,43 +123,43 @@ export default {
         float: right;
 
         img {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
+            width: 32rpx;
+            height: 32rpx;
+            margin-right: 16rpx;
         }
     }
 
     &_doneText {
-        font-size: 14px;
+        font-size: 28rpx;
     }
 
     &_star {
         display: flex;
         align-items: center;
-        margin-bottom: 24px;
+        margin-bottom: 48rpx;
     }
 
     &_goodText {
         color: #999999;
-        margin-left: 16px;
+        margin-left: 32rpx;
     }
 
     &_footer {
         display: flex;
         justify-content: center;
-        margin-top: 24px;
+        margin-top: 48rpx;
         .btn-bottom {
-            height: 48px;
-            width: 290px;
+            height: 96rpx;
+            width: 580rpx;
             color: #fff;
             background: #2295FF;
         }
     }
 
     &_border {
-        border: 1px solid rgba(233, 233, 233, 1);
-        border-radius: 4px;
-        padding: 8px;
+        border: 2rpx solid rgba(233, 233, 233, 1);
+        border-radius: 8rpx;
+        padding: 16rpx;
     }
 }
 </style>

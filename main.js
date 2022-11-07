@@ -6,6 +6,12 @@ import './api'
 import AppEmpty from '@/components/AppEmpty.vue'
 import UserItem from '@/components/UserItem.vue'
 
+// 全局挂载toast
+import {
+	toast
+} from './utils/common.js'
+Vue.prototype.$toast = toast
+
 Vue.config.productionTip = false
 
 Vue.use(uView)

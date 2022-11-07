@@ -1,9 +1,6 @@
 <template>
-	<view class="eidt-user-info">
-		<view class="eidt-user-info-header">
-			<u-button type="success" text="保存" shape="circle" size="small" @click="toResultList"></u-button>
-		</view>
-		<view class="edit-user-info-form">
+	<view class="eidt-user-info pb-100">
+		<view class="edit-user-info-form bg-white">
 			<u-form labelPosition="top" :model="model1" :rules="rules" ref="form1" labelWidth="90">
 				<u-form-item prop="userInfo.attr" label="属性" borderBottom required>
 					<u-input v-model="model1.userInfo.attr" disabled disabledColor="transparent"
@@ -57,18 +54,6 @@
 				<u-picker :show="showHeight" @cancel="showHeight = false" :columns="heightColumns"
 				@confirm="confirmHeight"
 				></u-picker>
-				<view class="bg_image" >主页照片
-					<u-upload
-						:fileList="imgList"
-						@afterRead="afterRead"
-						@delete="deletePic"
-						name="3"
-						multiple
-						:maxCount="4"
-						uploadIcon="plus"
-						:previewFullImage="true"
-					></u-upload>
-				</view>
 				<u-form-item prop="userInfo.state" label="感情状态" borderBottom>
 					<u-input v-model="model1.userInfo.state" disabled disabledColor="transparent"
 					border="none" color="#333"></u-input>
@@ -133,7 +118,21 @@
 				<u-picker :show="showChild" @cancel="showChild = false" :columns="childColumns"
 				@confirm="confirmChild"
 				></u-picker>
+				<view class="my-3">主页照片</view>
+				<u-upload
+					:fileList="imgList"
+					@afterRead="afterRead"
+					@delete="deletePic"
+					name="3"
+					multiple
+					:maxCount="4"
+					uploadIcon="plus"
+					:previewFullImage="true"
+				></u-upload>
 			</u-form>
+		</view>
+		<view class="m-8">
+			<u-button type="primary" text="保存" shape="circle" @click="toResultList"></u-button>
 		</view>
 	</view>
 </template>
@@ -375,17 +374,13 @@
 		display: flex;
 		flex-direction: column;
 		&-header {
-			right: 0px;
-			width: 80px;
-			padding: 10px;
+			right: 0;
+			width: 160rpx;
+			padding: 20rpx;
 			margin-left: auto;
 		}
 		.edit-user-info-form {
-			padding: 0px 15px;
-			.bg_image {
-				background-color: #eee;
-				padding-top: 10px;
-			}
+			padding: 0px 30rpx;
 		}
 	}
 	

@@ -21,3 +21,12 @@ export const formatYearMonth = (dateIn) => {
   }
   return myyear + '-' + mymonth
 }
+
+// toast
+export const toast = (data) => {
+	return uni.showToast({
+		title: data,
+		icon: 'none',
+		duration: 1500
+	})
+}

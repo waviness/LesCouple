@@ -52,12 +52,15 @@
 			mode="year-month" @cancel="dateShow = false" @confirm="onDateConfirm">
 		</u-datetime-picker>
 
-		<picker :show="pickerShow" v-model="userInfo.city" mode="region"></picker>
+		<u-picker :show="pickerShow" ref="uPicker" @cancel="pickerShow = false" :columns="provinceOptions" @change="changeHandler"
+		@confirm="confirmCity"></u-picker>
 	</view>
 </template>
 
 <script>
 	import {
+		provinceOptions,
+		cityOptions,
 		typeOptions,
 		natureOptions,
 		hobbyOptions
@@ -120,9 +123,32 @@
 				typeOptions,
 				natureOptions,
 				hobbyOptions,
+				provinceOptions,
+				cityOptions,
 			}
 		},
 		methods: {
+			// 改变省市联动
+			changeHandler(e) {
+				const {
+					columnIndex,
+					value,
+					values, // values为当前变化列的数组内容
+					index,
+					// 微信小程序无法将picker实例传出来，只能通过ref操作
+					picker = this.$refs.uPicker
+				} = e
+				// 当第一列值发生变化时，变化第二列(后一列)对应的选项
+				if (columnIndex === 0) {
+					// picker为选择器this实例，变化第二列对应的选项
+					picker.setColumnValues(1, this.cityOptions[index])
+				}
+			},
+			// 城市确认
+			confirmCity(e) {
+				this.pickerShow = false
+				this.model.userInfo.city = e.value
+			},
 			close() {
 				this.$emit('close')
 			},
@@ -136,7 +162,7 @@
 					this.stepNum++
 				} else {
 					console.log(this.model.userInfo)
-					// 提交注册 并 跳转首页
+					// 提交注册 并 完成登录 跳转首页
 					uni.setStorageSync('userInfo', {
 						name: '土方十四郎',
 						id: 124234556,

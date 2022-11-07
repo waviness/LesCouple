@@ -169,7 +169,7 @@ export default {
 .register-store {
 	height: 100vh;
 	background: #fff;
-	padding: 16px;
+	padding: 32rpx;
 }
 
 .store-log {
@@ -178,7 +178,7 @@ export default {
 }
 
 .store-item {
-	width: 68px;
+	width: 136rpx;
 }
 
 .store-name {
@@ -189,6 +189,6 @@ export default {
 
 .store-title {
 	color: #000;
-	margin-right: 8px;
+	margin-right: 16rpx;
 }
 </style>

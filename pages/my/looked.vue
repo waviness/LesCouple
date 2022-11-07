@@ -1,3 +1,4 @@
+<!-- 我看过的 -->
 <template>
 	<view>
 		<view class="bg-white">

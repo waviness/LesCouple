@@ -26,24 +26,24 @@
 		.editionImage {
 			position: relative;
 			.login__logo {
-				margin-top: 40px;
+				margin-top: 80rpx;
 			}
 			.logo_font {
-				font-size: 20px;
-				letter-spacing: 1px;
+				font-size: 40rpx;
+				letter-spacing: 2rpx;
 			}
 			.logo_edition {
 				color: #7d8ea8;
-				letter-spacing: 1px;
+				letter-spacing: 2rpx;
 			}
 		}
 		.editionBefore {
 			width: 80%;
-			margin-top: 100px;
+			margin-top: 200rpx;
 		}
 		.editionNew{
 			width: 80%;
-			margin-top: 15px;
+			margin-top: 30rpx;
 		}
 	}
 </style>

@@ -51,6 +51,6 @@
 
 <style lang="scss">
 	.footer {
-		margin: 32px 100px;
+		margin: 64rpx 200rpx;
 	}
 </style>

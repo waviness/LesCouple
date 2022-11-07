@@ -97,8 +97,8 @@
 
 <style lang="scss" scoped>
 	.goods {
-		width: calc(50% - 10px);
-		margin-right: 20px;
+		width: calc(50% - 20rpx);
+		margin-right: 40rpx;
 		
 		&:nth-child(2n) {
 			margin-right: 0;

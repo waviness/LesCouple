@@ -18,6 +18,6 @@
 <style lang="scss">
 	.form-item__desc {
 		color: $uni-text-color-grey;
-		font-size: 12px;
+		font-size: 24rpx;
 	}
 </style>

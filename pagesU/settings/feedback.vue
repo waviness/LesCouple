@@ -1,10 +1,10 @@
 <template>
-	<view class="feedback">
-		<view class="feedbackTextarea">
-			<u--textarea v-model="value2" placeholder="欢迎您提出宝贵的建议" count ></u--textarea>
+	<view class="full-width">
+		<view class="bg-white p-1">
+			<u-textarea v-model="keywords" placeholder="欢迎您提出宝贵的建议" border="none" height="200" :maxlength="200" count ></u-textarea>
 		</view>
-		<view class="subBtn">
-			<u-button type="success" text="提交"  size="large" @click="toSubClick"></u-button>
+		<view class="m-8">
+			<u-button text="提交" type="primary" shape="circle" @click="toSubClick"></u-button>
 		</view>
 	</view>
 </template>
@@ -14,31 +14,20 @@
 		name: 'Feedback',
 		data() {
 			return{
-				value2:''
+				keywords:''
 			}
 		},
 		methods: {
 			// 提交按钮
-			toSubClick() {}
+			toSubClick() {
+				console.log(this.keywords)
+				this.$toast('提交反馈成功')
+				this.keywords = ''
+			}
 		}
 		
 	}
 </script>
 
-<style lang="scss">
-	.feedback{
-		padding-top: 50%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center; 
-		.feedbackTextarea {
-			width: 80%;
-		}
-		.subBtn {
-			width: 50%;
-			padding-top: 40px;
-		}
-	}
-</style>
+<style lang="scss"></style>
 

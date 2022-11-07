@@ -109,23 +109,23 @@ export default {
 <style lang="scss">
 .order-detail {
     height: 100vh;
-    padding: 16px;
+    padding: 32rpx;
     overflow-y: hidden;
 
     &_info {
-        padding: 16px;
+        padding: 32rpx;
         background-color: #fff;
-        margin-bottom: 24px;
-        border-radius: 4px;
+        margin-bottom: 48rpx;
+        border-radius: 8rpx;
     }
 
     &_bottom {
-        padding-bottom: 8px;
-        border-bottom: 1px solid rgba(237, 237, 237, 1);
+        padding-bottom: 16rpx;
+        border-bottom: 2rpx solid rgba(237, 237, 237, 1);
     }
 
     &_space {
-        margin-top: 8px;
+        margin-top: 16rpx;
     }
 
     &_userInfo {
@@ -134,18 +134,18 @@ export default {
     }
 
     &__img {
-        width: 50px;
-        height: 50px;
+        width: 100rpx;
+        height: 100rpx;
     }
 
     &_price {
         position: absolute;
-        margin-left: 82px;
+        margin-left: 164rpx;
     }
 
     &_text {
         color: rgba(118, 118, 118, 1);
-        font-size: 12px;
+        font-size: 24rpx;
     }
 
     &_copyWxCode {
@@ -160,24 +160,24 @@ export default {
         cursor: pointer;
 
         img {
-            width: 16px;
-            height: 16px;
-            margin-right: 8px;
+            width: 32rpx;
+            height: 32rpx;
+            margin-right: 16rpx;
         }
     }
 
     &_copyWxText {
-        font-size: 14px;
+        font-size: 28rpx;
         color: #006FFF;
     }
 
     &_footer {
         position: fixed;
         background: #ffffff;
-        box-shadow: inset 0 1px 0 0 #ebebeb;
-        height: 84px;
+        box-shadow: inset 0 2rpx 0 0 #ebebeb;
+        height: 168rpx;
         width: 100%;
-        bottom: 0rpx;
+        bottom: 0;
         left: 0;
         display: flex;
 
@@ -188,28 +188,28 @@ export default {
         }
 
         &_margin {
-            margin-top: 16px;
+            margin-top: 32rpx;
         }
 
         .btn-bottom {
-            height: 48px;
+            height: 96rpx;
             background: rgba(255, 215, 87, 0.95);
             position: absolute;
-            right: 16px;
+            right: 32rpx;
         }
     }
 
     &_border {
-        border: 1px solid rgba(233, 233, 233, 1);
-        border-radius: 4px;
-        padding: 8px;
+        border: 2rpx solid rgba(233, 233, 233, 1);
+        border-radius: 8rpx;
+        padding: 16rpx;
     }
 
     &_cancelOrder {
-        margin-left: 16px;
+        margin-left: 32rpx;
         display: flex;
         justify-content: center;
-        min-width: 60px;
+        min-width: 120rpx;
     }
 }
 </style>

@@ -158,7 +158,7 @@
 <style lang="scss">
 	.publish-btn {
 		position: fixed;
-		bottom: 50px;
-		right: 20px;
+		bottom: 100rpx;
+		right: 40rpx;
 	}
 </style>

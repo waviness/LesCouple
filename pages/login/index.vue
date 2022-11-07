@@ -2,9 +2,12 @@
 	<view class="login text-center">
 		<image class="login__logo" src="../../static/logo.png" mode="aspectFit"></image>
 		<view class="login__desc font-bold">LaLa红娘，助力脱单</view>
-		<view class="login__btn m-8">
+		<view class="login__btn">
 			<u-button v-if="canIUseGetUserProfile" @click="getUserProfile">微信登录</u-button>
 			<u-button v-else type="primary" open-type="getUserInfo" @getuserinfo="getWxUserInfo">微信登录</u-button>
+		</view>
+		<view class="mt-3 text-underline color-primary font-14" @click="registerShow = true">
+			立即注册
 		</view>
 		<Register v-if="registerShow" @close="registerShow = false" />
 	</view>
@@ -34,7 +37,10 @@
 		},
 		methods: {
 			getUserProfile() {
-				this.registerShow = true
+				this.$toast('登录成功')
+				uni.switchTab({
+					url: '/pages/home/index'
+				})
 				// wx.getUserProfile({
 				// 	lang: 'zh_CN',
 				// 	desc: '用于完善会员资料',
@@ -96,16 +102,16 @@
 		background: $uni-color-primary;
 
 		&__logo {
-			margin-top: 80px;
+			margin-top: 160rpx;
 		}
 
 		&__desc {
 			color: #FC8CCD;
-			letter-spacing: 1px;
+			letter-spacing: 2rpx;
 		}
 
 		&__btn {
-			margin: 80px;
+			margin: 160rpx 160rpx 0 160rpx;
 		}
 	}
 </style>

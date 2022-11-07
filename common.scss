@@ -1,5 +1,5 @@
 .pb-100 {
-	padding-bottom: 100px;
+	padding-bottom: 200rpx;
 }
 
 .border-radius {
@@ -20,7 +20,7 @@
 
 @for $i from 10 through 30 {
 	.font-#{$i} {
-		font-size: $i + px;
+		font-size: $i * 2rpx;
 	}
 }
 
@@ -28,6 +28,10 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.text-underline {
+	text-decoration: underline;
 }
 
 @for $i from 2 through 6 {
@@ -44,59 +48,59 @@
 
 @for $i from 0 through 8 {
 	.m-#{$i} {
-		margin: $i * 4px;
+		margin: $i * 8rpx;
 	}
 	
 	.mt-#{$i} {
-		margin-top: $i * 4px;
+		margin-top: $i * 8rpx;
 	}
 	
 	.mr-#{$i} {
-		margin-right: $i * 4px;
+		margin-right: $i * 8rpx;
 	}
 	
 	.mb-#{$i} {
-		margin-bottom: $i * 4px;
+		margin-bottom: $i * 8rpx;
 	}
 	
 	.ml-#{$i} {
-		margin-left: $i * 4px;
+		margin-left: $i * 8rpx;
 	}
 	
 	.mx-#{$i} {
-		margin: 0 $i * 4px;
+		margin: 0 $i * 8rpx;
 	}
 	
 	.my-#{$i} {
-		margin: $i * 4px 0;
+		margin: $i * 8rpx 0;
 	}
 	
 	.p-#{$i} {
-		padding: $i * 4px;
+		padding: $i * 8rpx;
 	}
 	
 	.pt-#{$i} {
-		padding-top: $i * 4px;
+		padding-top: $i * 8rpx;
 	}
 	
 	.pr-#{$i} {
-		padding-right: $i * 4px;
+		padding-right: $i * 8rpx;
 	}
 	
 	.pb-#{$i} {
-		padding-bottom: $i * 4px;
+		padding-bottom: $i * 8rpx;
 	}
 	
 	.pl-#{$i} {
-		padding-left: $i * 4px;
+		padding-left: $i * 8rpx;
 	}
 	
 	.px-#{$i} {
-		padding: 0 $i * 4px;
+		padding: 0 $i * 8rpx;
 	}
 	
 	.py-#{$i} {
-		padding: $i * 4px 0;
+		padding: $i * 8rpx 0;
 	}
 }
 
@@ -167,6 +171,6 @@ type-4: #ca9aec
 	  background-color: $color;
 	}
 	.border-#{$key}-1 {
-		border: 1px solid $color;
+		border: 2rpx solid $color;
 	}
 }

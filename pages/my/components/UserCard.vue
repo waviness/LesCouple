@@ -27,46 +27,46 @@
 <style lang="scss">
 	.user-card {
 		width: 100%;
-		height: 180px;
+		height: 360rpx;
 		position: relative;
 		
 		&__bg {
 			width: 100%;
 			position: absolute;
-			top: -120px;
+			top: -240rpx;
 			z-index: 1;
 		}
 		
 		&__header {
 			z-index: 999;
 			position: absolute;
-			left: 10px;
-			bottom: 12px;
+			left: 20rpx;
+			bottom: 24rpx;
 			background-color: white;
 			border-radius: 50%;
-			width: 88px;
-			height: 88px;
+			width: 176rpx;
+			height: 176rpx;
 		}
 		
 		&__img {
-			width: 80px;
-			height: 80px;
+			width: 160rpx;
+			height: 160rpx;
 			border-radius: 50%;
-			margin: 4px;
+			margin: 8rpx;
 		}
 		
 		&__tag {
 			position: absolute;
-			right: -4px;
-			bottom: 2px;
-			padding: 0 8px;
-			border-radius: 10px;
+			right: -8rpx;
+			bottom: 4rpx;
+			padding: 0 16rpx;
+			border-radius: 20rpx;
 		}
 		
 		&__info {
 			position: absolute;
-			bottom: 12px;
-			right: 10px;
+			bottom: 24rpx;
+			right: 20rpx;
 			text-align: right;
 		}
 	}

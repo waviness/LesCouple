@@ -25,13 +25,13 @@
 
 <style lang="scss" scoped>
 	.goods-item {
-		height: 200px;
-		border-radius: 10px;
+		height: 400rpx;
+		border-radius: 20rpx;
 
 		&__img {
 			width: 100%;
-			height: 120px;
-			border-radius: 10px 10px 0 0;
+			height: 240rpx;
+			border-radius: 20rpx 20rpx 0 0;
 		}
 	}
 </style>

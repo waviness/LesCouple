@@ -35,18 +35,18 @@
 
 <style lang="scss">
 	.maker-item {
-		height: 80px;
+		height: 160rpx;
 
 		&__idx {
-			width: 30px;
-			height: 30px;
-			line-height: 30px;
+			width: 60rpx;
+			height: 60rpx;
+			line-height: 60rpx;
 			border-radius: 50%;
 		}
 
 		&__img {
-			width: 80px;
-			height: 80px;
+			width: 160rpx;
+			height: 160rpx;
 		}
 	}
 </style>

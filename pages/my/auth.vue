@@ -84,18 +84,18 @@
 
 <style lang="scss">
 	.certification {
-		padding: 10px;
+		padding: 20rpx;
 		.cerificationTitle {
-			font-size: 12px;
+			font-size: 24rpx;
 			color: #acb5b7;
 		}
 		.uploadImage {
-			font-size: 12px;
+			font-size: 24rpx;
 			color: #acb5b7;
-			padding: 10px 0;
+			padding: 20rpx 0;
 		}
 		.subimtBtn {
-			padding: 20px 0;
+			padding: 40rpx 0;
 		}
 	}
 </style>

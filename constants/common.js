@@ -62,6 +62,42 @@ export const hobbyOptions = [
 	},
 ]
 
+// 娱乐标签选项
+export const funOptions = [
+	{
+		value: 1,
+		label: '吃鸡'
+	},
+	{
+		value: 2,
+		label: '王者'
+	},
+	{
+		value: 3,
+		label: '英雄联盟'
+	},
+	{
+		value: 4,
+		label: 'KTV'
+	},
+	{
+		value: 5,
+		label: '棋牌'
+	},
+	{
+		value: 6,
+		label: '桌游'
+	},
+	{
+		value: 7,
+		label: '剧本杀'
+	},
+	{
+		value: 8,
+		label: '密室逃脱'
+	},
+]
+
 // 属性选项
 export const typeOptions = [
 	{
@@ -130,9 +166,13 @@ export const cityOptions = [
 export const jobOptions = [
 	['学生', '销售','工程师', '设计师', '教师', '政府工作人员', '部队工作人员', '相关单位管理者', '经商' , '其他|XX', '待业', '退休']
 ]
+// 城市
+export const sameCityOptions = [
+	['不限', '同城', '同省']
+]
 // 学历选项
 export const educationOptions = [
-	['其他', '大专','本科', '硕士及以上']
+	['其他', '大专', '本科', '硕士及以上']
 ]
 // 身高选项
 export const heightOptions = [

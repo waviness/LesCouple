@@ -47,13 +47,13 @@
 	.order-item {
 
 		&__icon {
-			width: 18px;
-			height: 18px;
+			width: 36rpx;
+			height: 36rpx;
 		}
 
 		&__img {
-			width: 70px;
-			height: 70px;
+			width: 140rpx;
+			height: 140rpx;
 		}
 	}
 </style>

@@ -20,7 +20,7 @@
 			<view class="font-12 color-gray-2 d-flex align-center">
 				<u-icon name="map-fill" color="#72dcdc" size="14"></u-icon>
 				<view class="color-gray mr-2">{{ data.city }}</view>
-				{{ data.year }}年 {{ data.height }}cm {{ data.education }} {{ data.work }}
+				{{ data.year }}年<!-- {{ data.height }}cm {{ data.education }} {{ data.work }} -->
 			</view>
 		</view>
 		<view :class="['user-item__type d-flex align-center color-white', `d-flex bg-type-${data.type}`]">
@@ -70,17 +70,17 @@
 <style lang="scss">
 	.user-item {
 		width: 100%;
-		height: 50px;
+		height: 100rpx;
 
 		&__img {
-			width: 50px;
-			height: 50px;
-			border-radius: 4px;
+			width: 100rpx;
+			height: 100rpx;
+			border-radius: 8rpx;
 		}
 
 		&__tag {
-			padding: 0 8px;
-			border-radius: 10px;
+			padding: 0 16rpx;
+			border-radius: 20rpx;
 
 			&--absolute {
 				position: absolute;
@@ -89,8 +89,8 @@
 		}
 
 		&__type {
-			border-radius: 12px;
-			padding: 2px 6px;
+			border-radius: 24rpx;
+			padding: 4rpx 12rpx;
 		}
 	}
 </style>

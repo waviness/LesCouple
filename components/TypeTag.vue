@@ -37,15 +37,15 @@
 
 <style lang="scss">
 	.type-tag {
-		width: 60px;
-		height: 60px;
-		line-height: 60px;
+		width: 120rpx;
+		height: 120rpx;
+		line-height: 120rpx;
 		border-radius: 50%;
 
 		&--small {
-			width: 40px;
-			height: 40px;
-			line-height: 40px;
+			width: 80rpx;
+			height: 80rpx;
+			line-height: 80rpx;
 			border-radius: 50%;
 		}
 	}

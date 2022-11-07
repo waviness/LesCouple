@@ -23,12 +23,12 @@
 <style lang="scss">
 	.zone-item {
 		background-color: white;
-		border-radius: 10px;
-		margin: 20px 40px;
+		border-radius: 20rpx;
+		margin: 40rpx 80rpx;
 	}
 
 	.zone-img {
-		width: 40px;
-		height: 40px;
+		width: 80rpx;
+		height: 80rpx;
 	}
 </style>
