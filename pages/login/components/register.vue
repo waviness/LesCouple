@@ -52,8 +52,8 @@
 			mode="year-month" @cancel="dateShow = false" @confirm="onDateConfirm">
 		</u-datetime-picker>
 
-		<u-picker :show="pickerShow" ref="uPicker" @cancel="pickerShow = false" :columns="provinceOptions" @change="changeHandler"
-		@confirm="confirmCity"></u-picker>
+		<u-picker :show="pickerShow" ref="uPicker" @cancel="pickerShow = false" :columns="provinceOptions"
+			@change="changeHandler" @confirm="confirmCity"></u-picker>
 	</view>
 </template>
 
