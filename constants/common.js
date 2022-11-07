@@ -168,11 +168,37 @@ export const jobOptions = [
 ]
 // 城市
 export const sameCityOptions = [
-	['不限', '同城', '同省']
+	{
+		value: 1,
+		label: '不限'
+	},
+	{
+		value: 2,
+		label: '同城'
+	},
+	{
+		value: 3,
+		label: '同省'
+	}
 ]
 // 学历选项
 export const educationOptions = [
-	['其他', '大专', '本科', '硕士及以上']
+	{
+		value: 1,
+		label: '其他'
+	},
+	{
+		value: 2,
+		label: '大专'
+	},
+	{
+		value: 3,
+		label: '本科'
+	},
+	{
+		value: 4,
+		label: '硕士及以上'
+	},
 ]
 // 身高选项
 export const heightOptions = [
