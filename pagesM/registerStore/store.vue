@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-09-28 12:55:07。
- * @LastEditTime: 2022-10-29 21:10:34
+ * @LastEditTime: 2022-11-08 15:03:28
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -10,7 +10,7 @@
 	<view class="u-page">
 		<view class="register-store">
 			<u-form labelPosition="left" :model="model" :rules="rules" ref="registerStoreForm">
-				<u-form-item label="店铺名称" prop="storeInfo.store_name" labelWidth="80px" borderBottom ref="item1">
+				<u-form-item label="店铺名称" prop="storeInfo.store_name" labelWidth="160rpx" borderBottom ref="item1">
 					<u-input placeholder="请填写店铺名称" v-model="model.storeInfo.store_name" @change="changeStoreName"
 						border="none">
 					</u-input>
@@ -19,28 +19,28 @@
 					borderBottom ref="item2">
 					<view class="store-log">
 						<u-upload :fileList="logpFileList" @afterRead="afterRead" @delete="deletePic" name="store_logo"
-							multiple :previewFullImage="true" :maxCount="1" width="100" height="100"></u-upload>
+							multiple :previewFullImage="true" :maxCount="1" width="200rpx" height="200rpx"></u-upload>
 					</view>
 					<view class="store-tips">只支持.jpg格式</view>
 				</u-form-item>
 				<u-form-item label="店铺广告" prop="storeInfo.store_ad" class="store-item store-ad" labelWidth="80px"
 					borderBottom ref="item3">
 					<u-upload :fileList="adFileList" @afterRead="afterRead" @delete="deletePic" name="store_ad" multiple
-						:previewFullImage="true" :maxCount="5" width="100" height="100"></u-upload>
+						:previewFullImage="true" :maxCount="5" width="200rpx" height="200rpx"></u-upload>
 					<view class="store-tips">最多上传5张图片，只支持.jpg格式</view>
 				</u-form-item>
-				<u-form-item label="店铺描述" prop="storeInfo.store_desc" labelWidth="80px" borderBottom ref="item4">
+				<u-form-item label="店铺描述" prop="storeInfo.store_desc" labelWidth="160rpx" borderBottom ref="item4">
 					<u-textarea placeholder="请输入描述信息,140字以内,请勿填写电话号码/微信等联系方式" v-model="model.storeInfo.store_desc"
 						count></u-textarea>
 				</u-form-item>
-				<u-form-item label="联系人" prop="storeInfo.user_name" labelWidth="80px" borderBottom ref="item5">
+				<u-form-item label="联系人" prop="storeInfo.user_name" labelWidth="160rpx" borderBottom ref="item5">
 					<u-input placeholder="请填写联系人" v-model="model.storeInfo.user_name" border="none"></u-input>
 				</u-form-item>
-				<u-form-item label="联系方式" prop="storeInfo.user_phone" labelWidth="80px" borderBottom ref="item6">
+				<u-form-item label="联系方式" prop="storeInfo.user_phone" labelWidth="160rpx" borderBottom ref="item6">
 					<u-input placeholder="请填写联系方式" v-model="model.storeInfo.user_phone" border="none"></u-input>
 				</u-form-item>
 			</u-form>
-			<u-button type="primary" text="申请注册" customStyle="margin-top: 50px" @click="submit"></u-button>
+			<u-button type="primary" text="申请注册" customStyle="margin-top: 100rpx" @click="submit"></u-button>
 		</view>
 	</view>
 </template>

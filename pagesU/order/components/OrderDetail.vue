@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-05 20:59:19
+ * @LastEditTime: 2022-11-08 14:49:00
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -12,7 +12,7 @@
             <image class="order-detail__img" :src="data.headerImg" mode="aspectFill"></image>
             <view class="order-detail_price">
                 <view>{{ data.title }}</view>
-                <view>¥{{ data.price }}</view>
+                <!-- <view>¥{{ data.price }}</view> -->
             </view>
         </view>
         <view class="order-detail_info order-detail_matchInfo">

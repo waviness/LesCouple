@@ -12,8 +12,8 @@
                 <image class="evaluate_img" :src="data.headerImg" mode="aspectFill">
                 </image>
                 <view class="evaluate_price">
-                    <view style="margin-bottom: 12px;">{{ data.title }}</view>
-                    <view>总价：¥{{ data.price }}</view>
+                    <view style="margin-bottom: 24rpx;">{{ data.title }}</view>
+                    <!-- <view>总价：¥{{ data.price }}</view> -->
                 </view>
             </view>
             <view class="evaluate_doneBox evaluate_border">
@@ -29,7 +29,7 @@
             <u-textarea placeholder="请填写您的点评，请文明留言。" count></u-textarea>
         </view>
         <view class="evaluate_footer">
-            <button class="btn-bottom" @click.stop="onButClick()">发布</button>
+            <u-button type="primary" @click.stop="onButClick()">发布</u-button>
         </view>
     </view>
 </template>
