@@ -37,6 +37,7 @@
 		},
 		methods: {
 			onClick(name) {
+				console.log(name, this.type)
 				if (this.type === 'checkbox') {
 					this.tempOptions[name].checked = !this.tempOptions[name].checked
 				} else {

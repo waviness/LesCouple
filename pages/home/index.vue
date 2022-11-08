@@ -88,6 +88,8 @@
 						education: '本科',
 						work: '程序员',
 						city: '北京市',
+						hobbys: [1, 3, 5, 6],
+						toAgeRange: [20, 30],
 						imgList: [
 							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
@@ -105,6 +107,8 @@
 						education: '本科',
 						work: '程序员',
 						city: '北京市',
+						hobbys: [1, 3, 5, 6],
+						toAgeRange: [20, 30],
 						imgList: [
 							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
@@ -121,6 +125,8 @@
 						education: '本科',
 						work: '程序员',
 						city: '北京市',
+						hobbys: [1, 3, 5, 6],
+						toAgeRange: [20, 30],
 						imgList: [
 							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
@@ -137,6 +143,8 @@
 						education: '本科',
 						work: '程序员',
 						city: '北京市',
+						hobbys: [1, 3, 5, 6],
+						toAgeRange: [20, 30],
 						imgList: [
 							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',

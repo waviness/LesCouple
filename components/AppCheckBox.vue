@@ -11,7 +11,7 @@
 	export default {
 		name: "AppCheckBox",
 		props: {
-			type: {
+			appType: {
 				type: String,
 				default: 'checkbox' // checkbox多选 radio单选
 			},
@@ -27,9 +27,12 @@
 		},
 		methods: {
 			onClick(name) {
-				if (this.type === 'checkbox') {
+				console.log('click')
+				if (this.appType === 'checkbox') {
 					this.tempOptions[name].checked = !this.tempOptions[name].checked
 				} else {
+					console.log(this.tempOptions)
+					console.log(name)
 					this.tempOptions.map((item, index) => {
 						item.checked = index === name ? true : false
 					})

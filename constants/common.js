@@ -162,10 +162,6 @@ export const cityOptions = [
 	['香港岛','香港岛','新界'],
 	['澳门','离岛']
 ]
-// 职业选项
-export const jobOptions = [
-	['学生', '销售','工程师', '设计师', '教师', '政府工作人员', '部队工作人员', '相关单位管理者', '经商' , '其他|XX', '待业', '退休']
-]
 // 城市
 export const sameCityOptions = [
 	{
@@ -200,27 +196,24 @@ export const educationOptions = [
 		label: '硕士及以上'
 	},
 ]
+
+// 职业选项
+export const jobOptions = ['学生', '销售','工程师', '设计师', '教师', '政府工作人员', '部队工作人员', '相关单位管理者', '经商', '待业', '退休', '其他']
+
 // 身高选项
-export const heightOptions = [
-	['160以下', '160-170','170-180', '180及以上']
-]
+export const heightOptions = ['160以下', '160-170','170-180', '180及以上']
+
 // 感情状态选项
-export const stateOptions = [
-	['单身', '已配对','配对中']
-]
+export const stateOptions = ['单身', '已配对','配对中']
+
 // 发长选项
-export const hairOptions = [
-	['短发', '中长','长发']
-]
+export const hairOptions = ['短发', '中长','长发']
+
 // 年收入选项
-export const incomeOptions = [
-	['无收入', '10万及以下','10万至20万', '20万至30万', '30万及以上']
-]
+export const incomeOptions = ['无收入', '10万及以下','10万至20万', '20万至30万', '30万及以上']
+
 // 星座选项
-export const constellationOptions = [
-	['白羊', '金牛','双子', '巨蟹', '狮子', '处女', '天秤', '天蝎', '射手', '摩羯', '水瓶', '双鱼']
-]
+export const constellationOptions = ['白羊座', '金牛座','双子座', '巨蟹座', '狮子座', '处女座', '天秤座', '天蝎座', '射手座', '摩羯座', '水瓶座', '双鱼座']
+
 // 出柜情况选项
-export const situationOptions = [
-	['仅朋友知晓', '家人知晓','未出柜']
-]
+export const situationOptions = ['仅朋友知晓', '家人知晓','未出柜']

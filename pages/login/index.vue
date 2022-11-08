@@ -4,7 +4,7 @@
 		<view class="login__desc font-bold">LaLa红娘，助力脱单</view>
 		<view class="login__btn">
 			<u-button v-if="canIUseGetUserProfile" @click="getUserProfile">微信登录</u-button>
-			<u-button v-else type="primary" open-type="getUserInfo" @getuserinfo="getWxUserInfo">微信登录</u-button>
+			<u-button v-else open-type="getUserInfo" @getuserinfo="getWxUserInfo">微信登录</u-button>
 		</view>
 		<view class="mt-3 text-underline color-primary font-14" @click="registerShow = true">
 			立即注册
@@ -28,9 +28,17 @@
 			}
 		},
 		onLoad() {
+			const userInfo = uni.setStorageSync('userInfo')
+			console.log(userInfo)
+			if (userInfo?.id) {
+				uni.switchTab({
+					url: '/pages/home/index'
+				})
+			}
 			if (wx.getUserProfile) {
 				this.canIUseGetUserProfile = true
 			}
+			console.log(this.canIUseGetUserProfile)
 		},
 		onShow() {
 			this.wxLogin()
@@ -81,6 +89,12 @@
 					this.$toast('登录成功')
 					const flag = 0
 					if (flag) { // 已注册
+						uni.setStorageSync('userInfo', {
+							name: '土方十四郎',
+							id: 124234556,
+							headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+							isAuth: 1
+						})
 						uni.switchTab({
 							url: '/pages/home/index'
 						})
