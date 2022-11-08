@@ -1,43 +1,44 @@
 <template>
 	<view class="pb-100">
 		<view class="bg-white p-3">
-			<u-form :model="needsModel" :rules="rules" ref="nForm" labelWidth="90">
+			<u-form ref="nForm" labelWidth="90">
 				<view class="mt-1 mb-3">
 					<FormTitle title="意向属性" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="model.objInfo.type" :options="typeOptions" />
+				<AppCheckBox :value.sync="objInfo.toType" :options="typeOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="年龄范围" />
 				</view>
 				<view class="pt-1 pb-3 d-flex align-center">
-					<view class="mr-4">{{ model.objInfo.ageValue[0] }}</view>
-					<cj-slider class="flex-1" v-model="model.objInfo.ageValue" :min="18" :max="100" :blockWidth="40" activeColor="#2979ff" />
-					<view class="ml-4">{{ model.objInfo.ageValue[1] }}</view>
+					<view class="mr-4">{{ objInfo.ageValue[0] }}</view>
+					<cj-slider class="flex-1" v-model="objInfo.ageValue" :min="18" :max="100" :blockWidth="40"
+						activeColor="#2979ff" />
+					<view class="ml-4">{{ objInfo.ageValue[1] }}</view>
 				</view>
 				<view class="mt-1 mb-3">
 					<FormTitle title="恋爱距离" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="model.objInfo.sameCity" :options="sameCityOptions" />
+				<AppCheckBox :value.sync="objInfo.sameCity" :options="sameCityOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="学历要求" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="model.objInfo.education" :options="educationOptions" />
+				<AppCheckBox :value.sync="objInfo.education" :options="educationOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="性格标签" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="model.objInfo.nature" :options="natureOptions" />
+				<AppCheckBox :value.sync="objInfo.nature" :options="natureOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="爱好标签" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="model.objInfo.hobby" :options="hobbyOptions" />
+				<AppCheckBox :value.sync="objInfo.hobby" :options="hobbyOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="娱乐标签" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="model.objInfo.fun" :options="funOptions" />
+				<AppCheckBox :value.sync="objInfo.fun" :options="funOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="其他需求" />
 				</view>
-				<u-textarea v-model="model.objInfo.other" placeholder="请输入内容" height="120"></u-textarea>
+				<u-textarea v-model="objInfo.other" placeholder="请输入内容" height="120"></u-textarea>
 			</u-form>
 		</view>
 		<view class="m-8">
@@ -73,33 +74,38 @@
 				natureOptions,
 				hobbyOptions,
 				funOptions,
-				model: {
-					objInfo: {
-						attr: '',
-						ageValue: []
-					},
+				objInfo: {
+					toType: [1],
+					ageValue: [],
+					sameCity: '',
+					education: '',
+					nature: [],
+					hobby: [],
+					fun: [1, 2],
+					other: '',
 				},
-				rules: {
-					'objInfo.attr': {
-						type: 'string',
-						required: true,
-						message: '请选择意向属性',
-						trigger: ['blur', 'change']
-					},
-				}
 			}
 		},
 		onLoad() {
-			this.$refs.nForm.setRules(this.rules)
+			// this.getDetail()
 		},
 		methods: {
+			getDetail() {
+				const res = {
+					toType: [1],
+					ageValue: [25, 40],
+					sameCity: '同城',
+					education: '本科',
+					nature: [3, 4],
+					hobby: [2],
+					fun: [1, 2],
+					other: '啊飒飒阿萨'
+				}
+				this.objInfo = Object.assign({}, res)
+				this.$forceUpdate()
+			},
 			saveInfor() {
-				console.log(this.model)
-				this.$refs.nForm.validate().then(res => {
-					uni.$u.toast('校验通过')
-				}).catch(errors => {
-					uni.$u.toast('校验失败')
-				})
+				console.log(this.objInfo)
 			}
 		}
 	}
