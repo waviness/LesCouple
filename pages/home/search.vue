@@ -1,29 +1,62 @@
 <template>
-	<view class="search">
-		<FormTitle class="d-flex my-3" title="属性" description="多选" />
-		<AppCheckBox :value.sync="searchParams.toType" :options="typeOptions" />
-		<FormTitle class="d-flex my-3" title="城市" />
-		<AppCheckBox :value.sync="searchParams.sameCity" :options="sameCityOptions" appType="radio" />
-		<FormTitle class="d-flex my-3" title="年龄" />
-		<view class="pt-1 pb-3 d-flex align-center">
-			<view class="mr-4">{{ searchParams.ageValue[0] }}</view>
-			<cj-slider class="flex-1" v-model="searchParams.ageValue" :min="18" :max="100" :blockWidth="40"
-				activeColor="#2979ff" />
-			<view class="ml-4">{{ searchParams.ageValue[1] }}</view>
+	<view class="search bg-white pt-3">
+		<!-- <u-tabs :list="tabList" @click="tabClick"></u-tabs> -->
+		<view class="py-3">
+			<u-subsection :list="tabList" :current="current" @change="tabClick"></u-subsection>
 		</view>
-		<FormTitle class="d-flex my-3" title="学历" description="多选" />
-		<AppCheckBox :value.sync="searchParams.education" :options="educationOptions" />
-		<FormTitle class="d-flex my-3" title="性格标签" description="多选" />
-		<AppCheckBox :value.sync="searchParams.nature" :options="natureOptions" />
-		<FormTitle class="d-flex my-3" title="爱好标签" description="多选" />
-		<AppCheckBox :value.sync="searchParams.hobby" :options="hobbyOptions" />
-		<FormTitle class="d-flex my-3" title="娱乐标签" description="多选" />
-		<AppCheckBox :value.sync="searchParams.fun" :options="funOptions" />
+		<!-- <view class="d-flex justify-space-between align-center" @click="() => { this.moreShow = !this.moreShow }">
+			<view>条件搜索</view>
+			<view class="d-flex align-center">
+				<text class="font-12 color-gray mr-1">{{ moreShow ? '收起' : '展开' }}</text>
+				<u-icon :name="moreShow ? 'arrow-up' : 'arrow-down'"></u-icon>
+			</view>
+		</view> -->
+		<view v-show="current === 0" class="mt-4">
+			<u-input placeholder="请输入用户ID" border="surround" v-model="userId"></u-input>
+		</view>
+		<view v-show="current === 1">
+			<FormTitle class="d-flex py-3" title="属性" description="多选" />
+			<AppCheckBox :value.sync="searchParams.toType" :options="typeOptions" />
+			<FormTitle v-if="searchType === 1" class="d-flex my-3" title="城市" />
+			<AppCheckBox v-if="searchType === 1" :value.sync="searchParams.sameCity" :options="sameCityOptions"
+				appType="radio" />
+			<FormTitle v-if="searchType === 2" class="d-flex my-3" title="省份" />
+			<view v-if="searchType === 2" class="d-flex" @click="pickerShow = true">
+				<u-input v-model="searchParams.province" border="surround" disabled disabledColor="#ffffff"
+					placeholder="请选择省份">
+					<template slot="suffix">
+						<u-icon slot="right" name="arrow-right"></u-icon>
+					</template>
+				</u-input>
+			</view>
+			<FormTitle class="d-flex my-3" title="年龄" />
+			<view class="pt-1 pb-3 d-flex align-center">
+				<view class="mr-4">{{ searchParams.ageValue[0] }}</view>
+				<cj-slider class="flex-1" v-model="searchParams.ageValue" :min="18" :max="100" :blockWidth="40"
+					activeColor="#2979ff" />
+				<view class="ml-4">{{ searchParams.ageValue[1] }}</view>
+			</view>
+			<FormTitle class="d-flex my-3" title="学历" description="多选" />
+			<AppCheckBox :value.sync="searchParams.education" :options="educationOptions" />
+			<FormTitle v-if="searchType === 2" class="d-flex my-3" title="发长" description="多选" />
+			<AppCheckBox v-if="searchType === 2" :value.sync="searchParams.hair" :options="hairOptions" />
+			<FormTitle class="d-flex my-3" title="性格标签" description="多选" />
+			<AppCheckBox :value.sync="searchParams.nature" :options="natureOptions" />
+			<FormTitle class="d-flex my-3" title="爱好标签" description="多选" />
+			<AppCheckBox :value.sync="searchParams.hobby" :options="hobbyOptions" />
+			<FormTitle class="d-flex my-3" title="娱乐标签" description="多选" />
+			<AppCheckBox :value.sync="searchParams.fun" :options="funOptions" />
+			<FormTitle class="d-flex my-3" title="认证标签" />
+			<AppCheckBox :value.sync="searchParams.auth" :options="authOptions" />
+		</view>
 		<view class="search-footer full-width d-flex justify-space-between">
 			<u-button text="重置" shape="circle" @reset="reset"></u-button>
 			<u-button custom-style="marginLeft: 12px" type="primary" text="搜索" shape="circle" @click="toResultList">
 			</u-button>
 		</view>
+
+		<u-picker :show="pickerShow" ref="uPicker" @cancel="pickerShow = false" :columns="provinceOptions"
+			@confirm="confirmProvince"></u-picker>
 	</view>
 </template>
 
@@ -35,7 +68,9 @@
 		educationOptions,
 		natureOptions,
 		hobbyOptions,
-		funOptions
+		funOptions,
+		hairOptions,
+		provinceOptions
 	} from '@/constants/common.js'
 	import FormTitle from '@/components/FormTitle.vue'
 	import AppCheckBox from '@/components/AppCheckBox.vue'
@@ -48,42 +83,88 @@
 		},
 		data() {
 			return {
+				tabList: [{
+					name: '精准搜索'
+				}, {
+					name: '条件搜索'
+				}],
+				current: 0,
+				searchType: uni.getStorageSync('searchType') || 1, // 1用户搜索 2红娘搜索
 				typeOptions,
 				sameCityOptions,
-				educationOptions,
+				educationOptions: [{
+					value: 0,
+					label: '不限'
+				}, ...educationOptions],
 				natureOptions,
 				hobbyOptions,
 				funOptions,
+				hairOptions: [{
+					value: 0,
+					label: '不限'
+				}, ...hairOptions],
+				provinceOptions: [provinceOptions[0]],
+				authOptions: [{
+					value: 0,
+					label: '不限'
+				}, {
+					value: 1,
+					label: '已认证'
+				}],
 				searchParams: {
 					toType: [],
-					sameCity: [],
+					province: '',
 					ageValue: [22, 30],
-					education: [],
+					education: [0],
+					hair: [0],
 					nature: [],
 					hobby: [],
 					fun: [],
-				}
+					auth: [0],
+				},
+				pickerShow: false,
+				// moreShow: uni.getStorageSync('searchType') === 1,
+				userId: ''
 			}
 		},
 		methods: {
+			tabClick(index) {
+				this.current = index
+			},
+			// 省份确认
+			confirmProvince(e) {
+				this.pickerShow = false
+				console.log(e.value)
+				this.searchParams.province = e.value[0]
+			},
 			reset() {
-				this.searchParams = {
-					toType: [],
-					sameCity: [],
-					ageValue: [22, 30],
-					education: [],
-					nature: [],
-					hobby: [],
-					fun: [],
+				if (this.current === 1) {
+					this.searchParams = {
+						toType: [],
+						province: '',
+						ageValue: [22, 30],
+						education: [0],
+						hair: [0],
+						nature: [],
+						hobby: [],
+						fun: [],
+						auth: [0],
+					}
+				} else {
+					this.userId = ''
 				}
 				this.$forceUpdate()
 			},
 			toResultList() {
-				console.log(this.searchParams)
-				// uni.navigateTo({
-				// 	url: '/pages/home/result'
-				// })
-			}
+				if (this.current === 1) {
+					console.log(this.searchParams)
+				} else [
+					console.log(this.userId)
+				]
+				uni.navigateTo({
+					url: '/pages/home/result'
+				})
+			},
 		}
 	}
 </script>
@@ -91,6 +172,7 @@
 <style lang="scss">
 	.search {
 		padding: 0 40rpx 280rpx 40rpx;
+		min-height: 100vh;
 
 		&-footer {
 			position: fixed;

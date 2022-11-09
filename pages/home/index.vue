@@ -81,7 +81,7 @@
 						name: '小公子',
 						isAuth: 1,
 						height: 186,
-						year: 98,
+						birthday: '1998-10-09',
 						level: 13,
 						headerImg: 'https://i.keaimeitu.com/uploads/allimg/200504/110822693.jpg',
 						type: 1,
@@ -100,7 +100,7 @@
 						name: '小公子22',
 						isAuth: 1,
 						height: 186,
-						year: 98,
+						birthday: '1998-10-09',
 						level: 15,
 						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						type: 4,
@@ -118,7 +118,7 @@
 						id: '12342356',
 						name: '小公子33',
 						height: 186,
-						year: 98,
+						birthday: '1998-10-09',
 						level: 14,
 						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						type: 4,
@@ -136,7 +136,7 @@
 						id: '12342356',
 						name: '小公子22',
 						height: 186,
-						year: 98,
+						birthday: '1998-10-09',
 						level: 15,
 						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						type: 2,
@@ -154,7 +154,7 @@
 						id: '12342356',
 						name: '小公子22',
 						height: 186,
-						year: 98,
+						birthday: '1998-10-09',
 						level: 15,
 						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						type: 2,
@@ -170,7 +170,7 @@
 						id: '12342356',
 						name: '小公子33',
 						height: 186,
-						year: 98,
+						birthday: '1998-10-09',
 						level: 14,
 						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						type: 3,
@@ -190,12 +190,12 @@
 				}, 500)
 			},
 			toUserDetail(data) {
-				uni.setStorageSync('userDetail', data)
 				uni.navigateTo({
-					url: '/pages/home/detail'
+					url: '/pages/home/detail?id=' + data.id
 				})
 			},
 			toSearch() {
+				uni.setStorageSync('searchType', 1)
 				uni.navigateTo({
 					url: '/pages/home/search'
 				})

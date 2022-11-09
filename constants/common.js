@@ -207,7 +207,16 @@ export const heightOptions = ['160以下', '160-170','170-180', '180及以上']
 export const stateOptions = ['单身', '已配对','配对中']
 
 // 发长选项
-export const hairOptions = ['短发', '中长','长发']
+export const hairOptions = [{
+	value: 1,
+	label: '短发'
+}, {
+	value: 2,
+	label: '中长'
+}, {
+	value: 3,
+	label: '长发'
+}]
 
 // 年收入选项
 export const incomeOptions = ['无收入', '10万及以下','10万至20万', '20万至30万', '30万及以上']
@@ -217,3 +226,6 @@ export const constellationOptions = ['白羊座', '金牛座','双子座', '巨�
 
 // 出柜情况选项
 export const situationOptions = ['仅朋友知晓', '家人知晓','未出柜']
+
+// 红娘微信号
+export const lesWechatCode = 'wyl8888love'

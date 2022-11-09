@@ -27,6 +27,7 @@
 	.goods-item {
 		height: 400rpx;
 		border-radius: 20rpx;
+		box-shadow: 0 1px 6px 0.5px rgba(209, 207, 207, 0.5);
 
 		&__img {
 			width: 100%;

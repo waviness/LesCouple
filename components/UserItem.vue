@@ -14,13 +14,16 @@
 					:class="['ml-3 font-11 color-white user-item__tag', data.isAuth ? 'bg-rank-1' : 'bg-gray']">
 					{{ data.isAuth ? '已认证' : '未认证' }}
 				</view>
-				<view v-if="lookType" class="color-gray font-12 ml-3">{{ lookType === 2 ? `${data.time}前看过她` : `${data.time}前看过你` }}</view>
+				<view v-if="lookType" class="color-gray font-12 ml-3">
+					{{ lookType === 2 ? `${data.time}前看过她` : `${data.time}前看过你` }}</view>
 			</view>
 			<view v-if="showId" class="font-12 color-gray">ID：{{ data.id }}</view>
 			<view class="font-12 color-gray-2 d-flex align-center">
 				<u-icon name="map-fill" color="#72dcdc" size="14"></u-icon>
 				<view class="color-gray mr-2">{{ data.city }}</view>
-				{{ data.year }}年<!-- {{ data.height }}cm {{ data.education }} {{ data.work }} -->
+				<text v-if="searchType === 1">{{ data.birthday ? data.birthday.slice(2, 4) : '' }}年</text><text
+					v-else>{{ formatDateText(data.birthday) }}</text> <text v-show="otherShow">{{ data.height }}cm
+					{{ data.education }} {{ data.work }}</text>
 			</view>
 		</view>
 		<view :class="['user-item__type d-flex align-center color-white', `d-flex bg-type-${data.type}`]">
@@ -34,6 +37,9 @@
 	import {
 		typeOptions,
 	} from '@/constants/common.js'
+	import {
+		formatDateText,
+	} from '@/utils/common.js'
 	export default {
 		name: "UserItem",
 		props: {
@@ -50,18 +56,25 @@
 				type: Number,
 				default: 0
 			}, // 1看过我 2看过她
+			otherShow: {
+				type: Boolean,
+				default: false
+			}, // 是否显示其他信息
 		},
 		data() {
 			return {
 				typeOptions,
+				searchType: uni.getStorageSync('searchType') || 1, // 1用户搜索 2红娘搜索
 			}
 		},
 		computed: {
 			typeText() {
+				console.log(this.data)
 				const target = this.typeOptions.find(item => {
 					return item.value === +this.data.type
 				})
-				return target.label
+				console.log(target)
+				return target?.label
 			}
 		}
 	}

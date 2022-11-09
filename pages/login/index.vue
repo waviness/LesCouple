@@ -28,8 +28,7 @@
 			}
 		},
 		onLoad() {
-			const userInfo = uni.setStorageSync('userInfo')
-			console.log(userInfo)
+			const userInfo = uni.getStorageSync('userInfo')
 			if (userInfo?.id) {
 				uni.switchTab({
 					url: '/pages/home/index'
@@ -38,26 +37,18 @@
 			if (wx.getUserProfile) {
 				this.canIUseGetUserProfile = true
 			}
-			console.log(this.canIUseGetUserProfile)
-		},
-		onShow() {
-			this.wxLogin()
 		},
 		methods: {
 			getUserProfile() {
-				this.$toast('登录成功')
-				uni.switchTab({
-					url: '/pages/home/index'
+				wx.getUserProfile({
+					lang: 'zh_CN',
+					desc: '用于完善会员资料',
+					success: (res) => {
+						this.getWxUserInfo({
+							detail: res
+						})
+					}
 				})
-				// wx.getUserProfile({
-				// 	lang: 'zh_CN',
-				// 	desc: '用于完善会员资料',
-				// 	success: (res) => {
-				// 		this.getWxUserInfo({
-				// 			detail: res
-				// 		})
-				// 	}
-				// })
 			},
 			wxLogin() {
 				uni.login({
@@ -85,15 +76,17 @@
 					rawData,
 					signaturel
 				}
-				this.$api.userLogin(obj).then(res => {
+				// this.$api.userLogin(obj).then(res => {
 					this.$toast('登录成功')
-					const flag = 0
+					const flag = 1
 					if (flag) { // 已注册
 						uni.setStorageSync('userInfo', {
 							name: '土方十四郎',
 							id: 124234556,
 							headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							isAuth: 1
+							isAuth: 1,
+							hasMaker: 0,
+							isMaker: 1,
 						})
 						uni.switchTab({
 							url: '/pages/home/index'
@@ -101,9 +94,9 @@
 					} else {
 						this.registerShow = true
 					}
-				}).catch(err => {
-					this.wxLogin()
-				})
+				// }).catch(err => {
+				// 	this.wxLogin()
+				// })
 			}
 		}
 	}

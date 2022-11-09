@@ -16,8 +16,12 @@
 </script>
 
 <style lang="scss">
-	.form-item__desc {
-		color: $uni-text-color-grey;
-		font-size: 24rpx;
+	.form-item {
+		color: #666;
+		
+		&__desc {
+			color: $uni-text-color-grey;
+			font-size: 24rpx;
+		}
 	}
 </style>

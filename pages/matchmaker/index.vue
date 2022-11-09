@@ -107,9 +107,8 @@
 				}, 500)
 			},
 			toMakerDetail(data) {
-				uni.setStorageSync('makerDetail', data)
 				uni.navigateTo({
-					url: '/pages/matchmaker/detail'
+					url: `/pages/matchmaker/detail?name=${data.name}`
 				})
 			}
 		},

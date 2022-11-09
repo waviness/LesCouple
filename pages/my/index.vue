@@ -1,5 +1,5 @@
 <template>
-	<view class="bg-white pb-4">
+	<view class="bg-white">
 		<user-card :data="userInfo" />
 		<view class="d-flex justify-space-around mt-4 mb-5">
 			<tab-item icon="quanbudingdan" label="全部订单" @click="toOrderList(0)" />
@@ -14,7 +14,7 @@
 			<u-cell icon="heart" title="关注" url="/pages/my/follow" isLink></u-cell>
 			<u-cell icon="setting" title="设置" url="/pagesU/settings/index" isLink></u-cell>
 		</u-cell-group>
-		<view class="footer">
+		<view class="footer pb-4" v-if="userInfo.isMaker">
 			<u-button type="error" text="红娘地带" shape="circle" icon="plus-people-fill" @click="toMakerZone"></u-button>
 		</view>
 	</view>

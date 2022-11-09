@@ -58,6 +58,13 @@
 			}
 		},
 		{
+			"path": "pages/matchmaker/judges",
+			"style": {
+				"navigationBarTitleText": "评论列表",
+				"enablePullDownRefresh": false
+			}
+		},
+		{
 			"path": "pages/matchmaker/goods",
 			"style": {
 				"navigationBarTitleText": "商品详情",

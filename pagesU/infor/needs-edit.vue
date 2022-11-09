@@ -75,13 +75,13 @@
 				hobbyOptions,
 				funOptions,
 				objInfo: {
-					toType: [1],
-					ageValue: [],
+					toType: [],
+					ageValue: [22, 30],
 					sameCity: '',
 					education: '',
 					nature: [],
 					hobby: [],
-					fun: [1, 2],
+					fun: [],
 					other: '',
 				},
 			}
