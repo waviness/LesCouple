@@ -28,13 +28,13 @@
         </view>
         <view class="order-detail_info">
             <view class="order-detail_bottom">服务内容</view>
-            <p class="order-detail_space">1. 主动牵线：推送已认证候选人，使用者选择满意候选人后，红娘将帮助牵线，最多牵线15位满意候选人，直至服务周期内匹配成功。
+            <p class="order-detail_space">1. 主动匹配：推送已认证候选人，使用者选择满意候选人后，红娘将帮助匹配，最多匹配15位满意候选人，直至服务周期内匹配成功。
             </p>
             <p>
-                2. 被动牵线：使用者将作为候选人被推送给感兴趣的其他用户。
+                2. 被动匹配：使用者将作为候选人被推送给感兴趣的其他用户。
             </p>
             <p>
-                3. 终止规则：牵线满15位候选人后，主动牵线服务自动终止；在服务周期内匹配成功后，主动/被动牵线服务自动终止。
+                3. 终止规则：匹配满15位候选人后，主动匹配服务自动终止；在服务周期内匹配成功后，主动/被动匹配服务自动终止。
             </p>
         </view>
         <view class="order-detail_info order-detail_orderInfo">
@@ -62,7 +62,7 @@
                 <button class="btn-bottom" @click.stop="onButClick(1)">立即付款</button>
             </view>
             <view v-if="data.status === 2" class="order-detail_margin">
-                <button class="btn-bottom" @click.stop="onButClick(2)">确认牵线</button>
+                <button class="btn-bottom" @click.stop="onButClick(2)">确认匹配</button>
             </view>
             <view v-if="data.status === 3" class="order-detail_footer_unPay">
                 <view class="order-detail_border order-detail_cancelOrder">申诉</view>

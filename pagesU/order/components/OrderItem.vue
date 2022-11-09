@@ -19,7 +19,7 @@
 			<view style="width: 80px">
 				<u-button v-if="data.status === 1" type="warning" size="small" text="立即支付" shape="circle"
 					@click.stop="onButClick(1)"></u-button>
-				<u-button v-else-if="data.status === 2" type="error" size="small" text="牵线" shape="circle"
+				<u-button v-else-if="data.status === 2" type="error" size="small" text="匹配" shape="circle"
 					@click.stop="onButClick(2)"></u-button>
 				<u-button v-else-if="data.status === 3" type="error" size="small" :plain="true" text="评价" shape="circle"
 					@click.stop="onButClick(3)"></u-button>
