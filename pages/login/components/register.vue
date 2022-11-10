@@ -39,7 +39,7 @@
 							<view v-if="stepNum === 3" class="pt-1 pb-3 d-flex align-center">
 								<view class="mr-4">{{ userInfo.ageValue[0] }}</view>
 								<cj-slider class="flex-1" v-model="userInfo.ageValue" :min="18" :max="100"
-									:blockWidth="40" activeColor="#2979ff" />
+									:blockWidth="40" activeColor="#2979ff" :moveHeight="88" />
 								<view class="ml-4">{{ userInfo.ageValue[1] }}</view>
 							</view>
 						</view>

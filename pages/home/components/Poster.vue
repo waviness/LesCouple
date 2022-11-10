@@ -134,43 +134,45 @@
 					ctx.setFillStyle('#000000')
 					let current = 0
 					if (this.checkedObj.child) {
-						current ++
-						ctx.fillText(`育儿计划：${this.detail.child ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
+						current++
+						ctx.fillText(`育儿计划：${this.detail.child ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
+							current)
 					}
 					if (this.checkedObj.situation) {
-						current ++
+						current++
 						ctx.fillText(`出柜情况：${this.detail.situationName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.income) {
-						current ++
+						current++
 						ctx.fillText(`年收入：${this.detail.incomeName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.house) {
-						current ++
-						ctx.fillText(`房产：${this.detail.house ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
+						current++
+						ctx.fillText(`房产：${this.detail.house ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
+							current)
 					}
 					if (this.checkedObj.pet) {
-						current ++
+						current++
 						ctx.fillText(`宠物：${this.detail.pet ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.constellation) {
-						current ++
+						current++
 						ctx.fillText(`星座：${this.detail.constellation}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.hair) {
-						current ++
+						current++
 						ctx.fillText(`发长：${this.detail.hairName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.height) {
-						current ++
+						current++
 						ctx.fillText(`身高：${this.detail.heightName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.job) {
-						current ++
+						current++
 						ctx.fillText(`职业：${this.detail.job}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.education) {
-						current ++
+						current++
 						ctx.fillText(`学历：${this.detail.educationName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					ctx.fillText(`感情状态：${this.detail.stateName}`, 16, this.canvasH - 80)
@@ -188,6 +190,7 @@
 							canvasId: 'myCanvas',
 							quality: 1,
 							complete: (res) => {
+								console.log(res)
 								this.hbUrl.push(res.tempFilePath)
 							},
 						}, this)
@@ -260,7 +263,13 @@
 			savePicture() {
 				console.log('save---', this.hbUrl)
 				uni.saveImageToPhotosAlbum({
-					filePath: this.hbUrl,
+					filePath: this.hbUrl[0],
+					success(res) {
+						console.log(res)
+					},
+					fail(err) {
+						console.error(err)
+					}
 				})
 			},
 			//分享相片
@@ -268,7 +277,7 @@
 				console.log('share---', this.hbUrl)
 				uni.share({
 					provider: 'weixin',
-					imageUrl: this.hbUrl,
+					imageUrl: this.hbUrl[0],
 					type: 2,
 					scene: 'WXSceneTimeline'
 				})
@@ -282,8 +291,4 @@
 </script>
 
 <style lang="scss">
-	.poster {
-		width: 100vw;
-		height: 100vh;
-	}
 </style>

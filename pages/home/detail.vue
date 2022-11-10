@@ -9,43 +9,45 @@
 		<view v-else class="px-4">
 			<view class="mb-3">{{ detail.hasMaker ? `红娘微信：${detail.makerWechat}` : `她的微信：${detail.wechat}` }}</view>
 			<AppTitle :title="'基本信息'" />
-			<u-checkbox-group placement="column">
+			<u-checkbox-group v-model="checkeds" placement="column">
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.education" shape="circle" :label="`学历：${detail.educationName}`"></u-checkbox>
-				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.job" shape="circle" :label="`职业：${detail.job}`"></u-checkbox>
-				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.height" shape="circle" :label="`身高：${detail.heightName}`">
+					<u-checkbox name="education" shape="circle" :label="`学历：${detail.educationName}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.hair" shape="circle" :label="`发长：${detail.hairName}`">
+					<u-checkbox name="job" shape="circle" :label="`职业：${detail.job}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.constellation" shape="circle" :label="`星座：${detail.constellation}`">
+					<u-checkbox name="height" shape="circle" :label="`身高：${detail.heightName}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.pet" shape="circle" :label="`宠物：${detail.pet ? '有' : '无'}`">
+					<u-checkbox name="hair" shape="circle" :label="`发长：${detail.hairName}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.house" shape="circle" :label="`房产：${detail.house ? '有' : '无'}`">
+					<u-checkbox name="constellation" shape="circle" :label="`星座：${detail.constellation}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.income" shape="circle" :label="`年收入：${detail.incomeName}`">
+					<u-checkbox name="pet" shape="circle" :label="`宠物：${detail.pet ? '有' : '无'}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.situation" shape="circle" :label="`出柜情况：${detail.situationName}`">
+					<u-checkbox name="house" shape="circle" :label="`房产：${detail.house ? '有' : '无'}`">
 					</u-checkbox>
 				</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.child" shape="circle" :label="`育儿计划：${detail.child ? '有' : '无'}`">
+					<u-checkbox name="income" shape="circle" :label="`年收入：${detail.incomeName}`">
+					</u-checkbox>
+				</view>
+				<view class="mt-2">
+					<u-checkbox name="situation" shape="circle" :label="`出柜情况：${detail.situationName}`">
+					</u-checkbox>
+				</view>
+				<view class="mt-2">
+					<u-checkbox name="child" shape="circle" :label="`育儿计划：${detail.child ? '有' : '无'}`">
 					</u-checkbox>
 				</view>
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">感情状态：{{ detail.stateName }}</view>
@@ -53,7 +55,7 @@
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">爱好标签：{{ detail.hobbyText }}</view>
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">娱乐标签：{{ detail.funText }}</view>
 				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.photo" shape="circle" label="照片">
+					<u-checkbox name="photo" shape="circle" label="照片">
 					</u-checkbox>
 				</view>
 			</u-checkbox-group>
@@ -86,7 +88,8 @@
 		</view>
 		<u-modal :show="modalShow" title="提示" :confirmText="confirmText" :content='modalContent'
 			@confirm="onModalConfirm"></u-modal>
-		<Poster v-if="showPoster" :show="showPoster" :detail="detail" :checkedObj="checkedObj" @close="showPoster = false" />
+		<Poster v-if="showPoster" :show="showPoster" :detail="detail" :checkedObj="checkedObj"
+			@close="showPoster = false" />
 		<u-loading-page :loading="loading"></u-loading-page>
 	</view>
 </template>
@@ -139,19 +142,9 @@
 				confirmText: '确认',
 				modalType: 1,
 				showPoster: false,
-				checkedObj: {
-					education: true,
-					job: true,
-					height: true,
-					hair: true,
-					constellation: true,
-					pet: true,
-					house: true,
-					income: true,
-					situation: true,
-					child: true,
-					photo: true,
-				}
+				checkeds: ['education', 'job', 'height', 'hair', 'constellation', 'pet', 'house', 'income', 'situation',
+					'child', 'photo'
+				]
 			}
 		},
 		onLoad(option) {
@@ -176,6 +169,12 @@
 					return item.label
 				})
 				return ['', ...list]
+			},
+			checkedObj() {
+				return this.checkeds.reduce((obj, item) => ({
+					...obj,
+					[item]: true
+				}), {})
 			}
 		},
 		methods: {
@@ -302,19 +301,6 @@
 				})
 			},
 			createPoster() {
-				this.checkedObj = {
-					education: false,
-					job: false,
-					height: false,
-					hair: false,
-					constellation: false,
-					pet: false,
-					house: false,
-					income: false,
-					situation: false,
-					child: false,
-					photo: true,
-				}
 				console.log('brfore', this.checkedObj)
 				this.showPoster = true
 			}

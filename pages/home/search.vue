@@ -33,7 +33,7 @@
 			<view class="pt-1 pb-3 d-flex align-center">
 				<view class="mr-4">{{ searchParams.ageValue[0] }}</view>
 				<cj-slider class="flex-1" v-model="searchParams.ageValue" :min="18" :max="100" :blockWidth="40"
-					activeColor="#2979ff" />
+					activeColor="#2979ff" :moveHeight="88" />
 				<view class="ml-4">{{ searchParams.ageValue[1] }}</view>
 			</view>
 			<FormTitle class="d-flex my-3" title="学历" description="多选" />
@@ -121,6 +121,7 @@
 					hobby: [],
 					fun: [],
 					auth: [0],
+					sameCity: [],
 				},
 				pickerShow: false,
 				// moreShow: uni.getStorageSync('searchType') === 1,
