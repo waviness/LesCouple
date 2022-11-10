@@ -124,6 +124,10 @@
 	flex-wrap: wrap;
 }
 
+.flex-column {
+	flex-direction: column;
+}
+
 @each $d in start, center, end, baseline {
 	.align-#{$d} {
 		align-items: $d;

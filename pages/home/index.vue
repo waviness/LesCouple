@@ -190,6 +190,7 @@
 				}, 500)
 			},
 			toUserDetail(data) {
+				uni.setStorageSync('searchType', 1)
 				uni.navigateTo({
 					url: '/pages/home/detail?id=' + data.id
 				})
