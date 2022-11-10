@@ -21,8 +21,8 @@
 			<view class="font-12 color-gray-2 d-flex align-center">
 				<u-icon name="map-fill" color="#72dcdc" size="14"></u-icon>
 				<view class="color-gray mr-2">{{ data.city }}</view>
-				<text v-if="searchType === 1">{{ data.birthday ? data.birthday.slice(2, 4) : '' }}年</text><text
-					v-else>{{ formatDateText(data.birthday) }}</text> <text v-show="otherShow">{{ data.height }}cm
+				<text v-if="!otherShow">{{ data.birthday ? data.birthday.slice(2, 4) : '' }}年</text><text
+					v-else>{{ birthdayText }}</text> <text v-show="otherShow">{{ data.height }}cm
 					{{ data.education }} {{ data.work }}</text>
 			</view>
 		</view>
@@ -64,17 +64,17 @@
 		data() {
 			return {
 				typeOptions,
-				searchType: uni.getStorageSync('searchType') || 1, // 1用户搜索 2红娘搜索
 			}
 		},
 		computed: {
 			typeText() {
-				console.log(this.data)
 				const target = this.typeOptions.find(item => {
 					return item.value === +this.data.type
 				})
-				console.log(target)
 				return target?.label
+			},
+			birthdayText() {
+				return formatDateText(this.data.birthday || '')
 			}
 		}
 	}

@@ -1,7 +1,7 @@
 <template>
 	<view class="search bg-white pt-3">
 		<!-- <u-tabs :list="tabList" @click="tabClick"></u-tabs> -->
-		<view class="py-3">
+		<view v-if="searchType === 2" class="py-3">
 			<u-subsection :list="tabList" :current="current" @change="tabClick"></u-subsection>
 		</view>
 		<!-- <view class="d-flex justify-space-between align-center" @click="() => { this.moreShow = !this.moreShow }">
@@ -11,10 +11,10 @@
 				<u-icon :name="moreShow ? 'arrow-up' : 'arrow-down'"></u-icon>
 			</view>
 		</view> -->
-		<view v-show="current === 0" class="mt-4">
+		<view v-show="current === 1" class="mt-4">
 			<u-input placeholder="请输入用户ID" border="surround" v-model="userId"></u-input>
 		</view>
-		<view v-show="current === 1">
+		<view v-show="current === 0">
 			<FormTitle class="d-flex py-3" title="属性" description="多选" />
 			<AppCheckBox :value.sync="searchParams.toType" :options="typeOptions" />
 			<FormTitle v-if="searchType === 1" class="d-flex my-3" title="城市" />
@@ -46,8 +46,8 @@
 			<AppCheckBox :value.sync="searchParams.hobby" :options="hobbyOptions" />
 			<FormTitle class="d-flex my-3" title="娱乐标签" description="多选" />
 			<AppCheckBox :value.sync="searchParams.fun" :options="funOptions" />
-			<FormTitle class="d-flex my-3" title="认证标签" />
-			<AppCheckBox :value.sync="searchParams.auth" :options="authOptions" />
+			<FormTitle v-if="searchType === 2" class="d-flex my-3" title="认证标签" />
+			<AppCheckBox v-if="searchType === 2" :value.sync="searchParams.auth" :options="authOptions" />
 		</view>
 		<view class="search-footer full-width d-flex justify-space-between">
 			<u-button text="重置" shape="circle" @reset="reset"></u-button>
@@ -84,9 +84,9 @@
 		data() {
 			return {
 				tabList: [{
-					name: '精准搜索'
-				}, {
 					name: '条件搜索'
+				}, {
+					name: '精准搜索'
 				}],
 				current: 0,
 				searchType: uni.getStorageSync('searchType') || 1, // 1用户搜索 2红娘搜索
@@ -156,7 +156,7 @@
 				this.$forceUpdate()
 			},
 			toResultList() {
-				if (this.current === 1) {
+				if (this.current === 0) {
 					console.log(this.searchParams)
 				} else [
 					console.log(this.userId)

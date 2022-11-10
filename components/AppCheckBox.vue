@@ -29,13 +29,18 @@
 			onClick(name) {
 				console.log('click')
 				if (this.appType === 'checkbox') {
-					if (name === 0) {
+					if (this.tempOptions[name].value === 0) {
 						this.tempOptions.forEach(item => {
 							item.checked = false
 						})
 						this.tempOptions[name].checked = true
 					} else {
-						this.tempOptions[0].checked = false
+						const target = this.tempOptions.find(item => {
+							return item.value === 0
+						})
+						if (target) {
+							this.tempOptions[0].checked = false
+						}
 						this.tempOptions[name].checked = !this.tempOptions[name].checked
 					}
 				} else {
@@ -44,6 +49,7 @@
 					this.tempOptions.map((item, index) => {
 						item.checked = index === name ? true : false
 					})
+					console.log(this.tempOptions)
 				}
 				this.$forceUpdate()
 				const res = this.tempOptions.filter(item => {

@@ -18,7 +18,7 @@
 		</view>
 		<view class="d-flex justify-flex-end mt-2">
 			<view style="width: 80px">
-				<u-button v-if="data.status === 2" type="error" size="small" text="牵线" shape="circle"
+				<u-button v-if="data.status === 2" type="error" size="small" text="匹配" shape="circle"
 					@click.stop="onButClick(2)"></u-button>
 				<u-button v-else-if="data.status === 4" type="error" size="small" :plain="true" text="回复" shape="circle"
 					@click.stop="onButClick(4)"></u-button>

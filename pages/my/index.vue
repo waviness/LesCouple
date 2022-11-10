@@ -4,7 +4,7 @@
 		<view class="d-flex justify-space-around mt-4 mb-5">
 			<tab-item icon="quanbudingdan" label="全部订单" @click="toOrderList(0)" />
 			<tab-item icon="daifukuan" label="待付款" @click="toOrderList(1)" />
-			<tab-item icon="daichulihetong" label="待牵线" @click="toOrderList(2)" />
+			<tab-item icon="daichulihetong" label="待匹配" @click="toOrderList(2)" />
 			<tab-item icon="yiwancheng" label="已完成" @click="toOrderList(3)" />
 		</view>
 		<u-cell-group>

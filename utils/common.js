@@ -15,14 +15,8 @@ export const formatDate = (dateIn) => {
 export const formatDateText = (dateIn) => {
   const date = new Date(dateIn)
   const myyear = date.getFullYear()
-  let mymonth = (date.getMonth() + 1).toString()
-  let myweekday = date.getDate().toString()
-  if (+mymonth < 10) {
-    mymonth = '0' + mymonth
-  }
-  if (+myweekday < 10) {
-    myweekday = '0' + myweekday
-  }
+  const mymonth = (date.getMonth() + 1).toString()
+  const myweekday = date.getDate().toString()
   return myyear + '年' + mymonth + '月' + myweekday + '日'
 }
 
@@ -50,5 +44,5 @@ export const findNameInList = (value, list) => {
 	const target = list.find(item => {
 		return item.value === value
 	})
-	return target[0].label
+	return target?.label
 }
