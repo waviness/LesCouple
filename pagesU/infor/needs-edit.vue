@@ -75,13 +75,13 @@
 				hobbyOptions,
 				funOptions,
 				objInfo: {
-					toType: [1],
-					ageValue: [],
+					toType: [],
+					ageValue: [22, 30],
 					sameCity: '',
 					education: '',
 					nature: [],
 					hobby: [],
-					fun: [1, 2],
+					fun: [],
 					other: '',
 				},
 			}
@@ -94,8 +94,8 @@
 				const res = {
 					toType: [1],
 					ageValue: [25, 40],
-					sameCity: '同城',
-					education: '本科',
+					sameCity: 2,
+					education: 3,
 					nature: [3, 4],
 					hobby: [2],
 					fun: [1, 2],
@@ -106,6 +106,7 @@
 			},
 			saveInfor() {
 				console.log(this.objInfo)
+				this.$toast('保存成功')
 			}
 		}
 	}

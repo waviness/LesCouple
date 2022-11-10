@@ -1,5 +1,5 @@
 <template>
-	<view class="certification">
+	<view class="certification bg-white">
 		<view class="cerificationTitle">信息填写</view>
 		<view class="personalInfo">
 			<u-form labelPosition="left" :model="model" :rules="rules" ref="form1">
@@ -36,7 +36,7 @@
 								uploadText="上传国徽页"
 							></u-upload>
 						 </u-row>
-						<u-row
+						<!-- <u-row
 							justify="space-around"
 							>
 							<u-upload
@@ -48,7 +48,7 @@
 								uploadText="上传手持身份证照"
 								></u-upload>
 						</u-row>
-						<view class="cerificationTitle">请确保照片中身份证信息清晰，露出手臂</view>
+						<view class="cerificationTitle">请确保照片中身份证信息清晰，露出手臂</view> -->
 				</u-form-item>
 				<view class="subimtBtn">
 					<u-button type="primary" @click="submitClick">

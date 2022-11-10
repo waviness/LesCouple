@@ -1,14 +1,23 @@
 <template>
-	<view class="pb-100">
+	<view class="bg-white pb-100">
 		<u-swiper :list="bannerList" :radius="0" indicator indicatorMode="dot" circular>
 		</u-swiper>
-		<view v-if="status === 'loading' || list.length">
+		<view v-if="list.length" class="">
 			<view class="d-flex flex-wrap p-5">
-				<GoodsItem v-for="(item, index) in list" :key="index" class="mb-3 goods" :data="item" @click="toGoodsDetail(item)" />
+				<GoodsItem v-for="(item, index) in list" :key="index" class="mb-3 goods" :data="item"
+					@click="toGoodsDetail(item)" />
 			</view>
-			<u-loadmore :status="status" />
 		</view>
 		<app-empty v-else :marginTop="40" />
+		<view class="px-3">
+			<u-divider text="分割线" :dot="true"></u-divider>
+		</view>
+		<view class="d-flex justify-space-between p-3">
+			<view>用户评价</view>
+			<view @click="toMoreJudge">更多评价（{{ judgeTotal }}）</view>
+		</view>
+		<JudgeItem :data="judgeItem" />
+		<u-loading-page :loading="loading"></u-loading-page>
 	</view>
 </template>
 
@@ -16,10 +25,14 @@
 	import {
 		GoodsItem
 	} from './components/GoodsItem.vue'
+	import {
+		JudgeItem
+	} from './components/JudgeItem.vue'
 	export default {
 		name: 'MatchMakerDetail',
 		components: {
-			GoodsItem
+			GoodsItem,
+			JudgeItem
 		},
 		data() {
 			return {
@@ -28,30 +41,22 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 				],
-				page: 1,
-				pageSize: 20,
-				totalPage: 0,
-				status: 'loading',
-				list: []
+				list: [],
+				judgeItem: {},
+				judgeTotal: 0,
+				loading: false,
 			}
 		},
-		onLoad() {
+		onLoad(option) {
 			uni.setNavigationBarTitle({
-				title: uni.getStorageSync('makerDetail').name
+				title: option.name
 			})
 			this.getMakerList()
-		},
-		onReachBottom() {
-			if (this.page < this.totalPage) {
-				this.status = 'loading'
-				this.page++
-				this.getMakerList()
-			} else {
-				this.status = 'nomore'
-			}
+			this.getJudgeList()
 		},
 		methods: {
 			getMakerList() {
+				this.loading = true
 				setTimeout(() => {
 					this.list = this.list.concat([{
 						title: '一对一匹配【标准版】',
@@ -79,16 +84,30 @@
 						price: 22,
 						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
 					}])
-					this.totalPage = 3
-					if (this.page > 3) {
-						this.status = 'nomore'
-					}
 				}, 500)
+				this.loading = false
+			},
+			getJudgeList() {
+				this.loading = true
+				this.judgeItem = {
+					name: '要慢慢',
+					time: '2022-11-09',
+					content: '非常好',
+					rate: 4.0,
+					headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				}
+				this.judgeTotal = 55
+				this.loading = false
 			},
 			toGoodsDetail(data) {
 				uni.setStorageSync('goodsDetail', data)
 				uni.navigateTo({
 					url: '/pages/matchmaker/goods'
+				})
+			},
+			toMoreJudge(data) {
+				uni.navigateTo({
+					url: '/pages/matchmaker/judges'
 				})
 			}
 		},
@@ -99,7 +118,7 @@
 	.goods {
 		width: calc(50% - 20rpx);
 		margin-right: 40rpx;
-		
+
 		&:nth-child(2n) {
 			margin-right: 0;
 		}

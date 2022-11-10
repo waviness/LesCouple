@@ -12,6 +12,14 @@ export const formatDate = (dateIn) => {
   return myyear + '-' + mymonth + '-' + myweekday
 }
 
+export const formatDateText = (dateIn) => {
+  const date = new Date(dateIn)
+  const myyear = date.getFullYear()
+  const mymonth = (date.getMonth() + 1).toString()
+  const myweekday = date.getDate().toString()
+  return myyear + '年' + mymonth + '月' + myweekday + '日'
+}
+
 export const formatYearMonth = (dateIn) => {
   const date = new Date(dateIn)
   const myyear = date.getFullYear()
@@ -29,4 +37,12 @@ export const toast = (data) => {
 		icon: 'none',
 		duration: 1500
 	})
+}
+
+// 根据value找名称
+export const findNameInList = (value, list) => {
+	const target = list.find(item => {
+		return item.value === value
+	})
+	return target?.label
 }

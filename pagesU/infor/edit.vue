@@ -3,7 +3,7 @@
 		<view class="edit-user-info-form bg-white">
 			<u-form ref="form1" labelWidth="90">
 				<u-form-item prop="userInfo.type" label="属性" borderBottom required @click="showType = true">
-					<u-input v-model="userInfo.type" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.typeName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
@@ -28,35 +28,35 @@
 						color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showJob" @cancel="showJob = false" :columns="jobColumns" @confirm="confirmJob">
+				<u-picker :show="showJob" @cancel="showJob = false" :columns="jobColumns" keyName="label" @confirm="confirmJob">
 				</u-picker>
 				<u-form-item prop="userInfo.education" label="学历" borderBottom @click="showEducation = true">
-					<u-input v-model="userInfo.education" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.educationName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
 				<u-picker :show="showEducation" @cancel="showEducation = false" :columns="educationColumns"
 					keyName="label" @confirm="confirmEducation"></u-picker>
 				<u-form-item prop="userInfo.height" label="身高" borderBottom @click="showHeight = true">
-					<u-input v-model="userInfo.height" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.heightName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showHeight" @cancel="showHeight = false" :columns="heightColumns"
+				<u-picker :show="showHeight" @cancel="showHeight = false" :columns="heightColumns" keyName="label"
 					@confirm="confirmHeight"></u-picker>
 				<u-form-item prop="userInfo.state" label="感情状态" borderBottom @click="showState = true">
-					<u-input v-model="userInfo.state" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.stateName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showState" @cancel="showState = false" :columns="stateColumns" @confirm="confirmState">
+				<u-picker :show="showState" @cancel="showState = false" :columns="stateColumns" keyName="label" @confirm="confirmState">
 				</u-picker>
 				<u-form-item prop="userInfo.hair" label="发长" borderBottom @click="showHair = true">
-					<u-input v-model="userInfo.hair" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.hairName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showHair" @cancel="showHair = false" :columns="hairColumns" @confirm="confirmHair">
+				<u-picker :show="showHair" @cancel="showHair = false" :columns="hairColumns" keyName="label" @confirm="confirmHair">
 				</u-picker>
 				<u-form-item prop="userInfo.pet" label="宠物" borderBottom @click="showPet = true">
 					<u-input v-model="userInfo.pet" disabled placeholder="请选择" disabledColor="transparent" border="none"
@@ -73,7 +73,7 @@
 				<u-picker :show="showHouse" @cancel="showHouse = false" :columns="houseColumns" @confirm="confirmHouse">
 				</u-picker>
 				<u-form-item prop="userInfo.income" label="收入" borderBottom @click="showIncome = true">
-					<u-input v-model="userInfo.income" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.incomeName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
@@ -87,7 +87,7 @@
 				<u-picker :show="showConstellation" @cancel="showConstellation = false" :columns="constellationColumns"
 					@confirm="confirmConstellation"></u-picker>
 				<u-form-item prop="userInfo.situation" label="出柜情况" borderBottom @click="showSituation = true">
-					<u-input v-model="userInfo.situation" disabled placeholder="请选择" disabledColor="transparent"
+					<u-input v-model="userInfo.situationName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
@@ -101,14 +101,15 @@
 				<u-picker :show="showChild" @cancel="showChild = false" :columns="childColumns" @confirm="confirmChild">
 				</u-picker>
 				<view class="my-3">主页照片</view>
-				<u-upload :fileList="imgList" @afterRead="afterRead" @delete="deletePic" name="3" multiple :maxCount="4"
-					uploadIcon="plus" :previewFullImage="true"></u-upload>
+				<u-upload :fileList="userInfo.imgList" @afterRead="afterRead" @delete="deletePic" name="3" multiple
+					:maxCount="4" uploadIcon="plus" :previewFullImage="true"></u-upload>
 			</u-form>
 		</view>
 		<view class="m-8">
 			<u-button type="primary" text="保存" shape="circle" @click="saveInfor"></u-button>
 		</view>
-		<u-modal :show="showOtherInput" title="填写职业" showCancelButton @cancel="showOtherInput = false" @confirm="onJobConfirm">
+		<u-modal :show="showOtherInput" title="填写职业" showCancelButton @cancel="showOtherInput = false"
+			@confirm="onJobConfirm">
 			<view class="slot-content">
 				<u-input placeholder="请输入您的职业" border="surround" v-model="jobValue" />
 			</view>
@@ -131,7 +132,8 @@
 		constellationOptions
 	} from '@/constants/common.js'
 	import {
-		formatDate
+		formatDate,
+		findNameInList
 	} from '@/utils/common.js'
 	export default {
 		name: 'PersonalInfoEdit',
@@ -173,17 +175,9 @@
 					['有', '无']
 				],
 				value1: Number(new Date()),
-				imgList: [{
-						url: 'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-					},
-					{
-						url: 'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					},
-					{
-						url: 'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}
-				],
-				userInfo: {},
+				userInfo: {
+					imgList: [],
+				},
 				jobValue: '',
 			}
 		},
@@ -193,21 +187,42 @@
 		methods: {
 			getDetail() {
 				this.userInfo = {
-					type: 'T',
+					type: 1,
 					city: ['浙江省', '杭州市'],
 					birthday: '1999-11-26',
-					job: '经商',
-					education: '本科',
-					height: '170-180',
-					state: '单身',
-					hair: '短发',
-					pet: '有',
-					house: '有',
-					income: '10w',
+					job: '其他|XXX',
+					education: 3,
+					height: 3,
+					state: 1,
+					hair: 1,
+					pet: 1,
+					house: 1,
+					income: 2,
 					constellation: '摩羯座',
-					situation: '仅朋友知道',
-					child: '有'
+					situation: 2,
+					child: 0,
+					imgList: [{
+							url: 'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						},
+						{
+							url: 'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+						},
+						{
+							url: 'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+						}
+					],
 				}
+				this.value1 = Number(new Date(this.userInfo.birthday))
+				this.userInfo.pet = this.userInfo.pet ? '有' : '无'
+				this.userInfo.house = this.userInfo.house ? '有' : '无'
+				this.userInfo.child = this.userInfo.child ? '有' : '无'
+				this.userInfo.typeName = findNameInList(this.userInfo.type, typeOptions)
+				this.userInfo.educationName = findNameInList(this.userInfo.education, educationOptions)
+				this.userInfo.heightName = findNameInList(this.userInfo.height, heightOptions)
+				this.userInfo.stateName = findNameInList(this.userInfo.state, stateOptions)
+				this.userInfo.hairName = findNameInList(this.userInfo.hair, hairOptions)
+				this.userInfo.incomeName = findNameInList(this.userInfo.income, incomeOptions)
+				this.userInfo.situationName = findNameInList(this.userInfo.situation, situationOptions)
 			},
 			// 改变省市联动
 			changeHandler(e) {
@@ -233,7 +248,8 @@
 			// 属性确认
 			confirmType(e) {
 				this.showType = false
-				this.userInfo.type = e.value[0].label
+				this.userInfo.type = e.value[0].value
+				this.userInfo.typeName = e.value[0].label
 			},
 			// 出生日期确认
 			confirmBirth({
@@ -254,7 +270,7 @@
 					this.showOtherInput = true
 				} else {
 					this.showJob = false
-					this.userInfo.job = e.value[0]
+					this.userInfo.job = e.value[0].label
 				}
 			},
 			onJobConfirm() {
@@ -265,22 +281,26 @@
 			// 学历确认
 			confirmEducation(e) {
 				this.showEducation = false
-				this.userInfo.education = e.value[0].label
+				this.userInfo.education = e.value[0].value
+				this.userInfo.educationName = e.value[0].label
 			},
 			// 身高确认
 			confirmHeight(e) {
 				this.showHeight = false
-				this.userInfo.height = e.value[0]
+				this.userInfo.height = e.value[0].value
+				this.userInfo.heightName = e.value[0].label
 			},
 			// 感情状态确认
 			confirmState(e) {
 				this.showState = false
-				this.userInfo.state = e.value[0]
+				this.userInfo.state = e.value[0].value
+				this.userInfo.stateName = e.value[0].label
 			},
 			// 发长确认
 			confirmHair(e) {
 				this.showHair = false
-				this.userInfo.hair = e.value[0]
+				this.userInfo.hair = e.value[0].value
+				this.userInfo.hairName = e.value[0].label
 			},
 			// 宠物确认
 			confirmPet(e) {
@@ -295,7 +315,8 @@
 			// 收入确认
 			confirmIncome(e) {
 				this.showIncome = false
-				this.userInfo.income = e.value[0]
+				this.userInfo.income = e.value[0].value
+				this.userInfo.incomeName = e.value[0].label
 			},
 			// 星座确认
 			confirmConstellation(e) {
@@ -305,7 +326,8 @@
 			// 出柜情况确认
 			confirmSituation(e) {
 				this.showSituation = false
-				this.userInfo.situation = e.value[0]
+				this.userInfo.situation = e.value[0].value
+				this.userInfo.situationName = e.value[0].label
 			},
 			// 育儿计划确认
 			confirmChild(e) {
@@ -314,15 +336,15 @@
 			},
 			// 删除照片
 			deletePic(event) {
-				this.imgList.splice(event.index, 1)
+				this.userInfo.imgList.splice(event.index, 1)
 			},
 			// 新增图片
 			async afterRead(event) {
 				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
 				let lists = [].concat(event.file)
-				let fileListLen = this.imgList.length
+				let fileListLen = this.userInfo.imgList.length
 				lists.map((item) => {
-					this.imgList.push({
+					this.userInfo.imgList.push({
 						...item,
 						status: 'uploading',
 						message: '上传中'
@@ -330,8 +352,8 @@
 				})
 				for (let i = 0; i < lists.length; i++) {
 					const result = await this.uploadFilePromise(lists[i].url)
-					let item = this.imgList[fileListLen]
-					this.imgList.splice(fileListLen, 1, Object.assign(item, {
+					let item = this.userInfo.imgList[fileListLen]
+					this.userInfo.imgList.splice(fileListLen, 1, Object.assign(item, {
 						status: 'success',
 						message: '',
 						url: result
@@ -375,7 +397,42 @@
 					return
 				}
 				console.log(this.userInfo)
-				console.log(this.imgList)
+				const {
+					type,
+					city,
+					birthday,
+					job,
+					education,
+					height,
+					state,
+					hair,
+					income,
+					constellation,
+					situation,
+					imgList,
+				} = this.userInfo
+				const pet = this.userInfo.pet === '有' ? 1 : 0
+				const house = this.userInfo.pet === '有' ? 1 : 0
+				const child = this.userInfo.pet === '有' ? 1 : 0
+				const params = {
+					type,
+					city,
+					birthday,
+					job,
+					education,
+					height,
+					state,
+					hair,
+					income,
+					constellation,
+					situation,
+					imgList,
+					pet,
+					house,
+					child,
+				}
+				console.log(params)
+				this.$toast('保存成功')
 			}
 		},
 	}
