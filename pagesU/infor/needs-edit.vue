@@ -5,15 +5,15 @@
 				<view class="mt-1 mb-3">
 					<FormTitle title="意向属性" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="objInfo.toType" :options="typeOptions" />
+				<AppCheckBox :value.sync="objInfo.intentAttribute" :options="typeOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="年龄范围" />
 				</view>
 				<view class="pt-1 pb-3 d-flex align-center">
-					<view class="mr-4">{{ objInfo.ageValue[0] }}</view>
-					<cj-slider class="flex-1" v-model="objInfo.ageValue" :min="18" :max="100" :blockWidth="40"
+					<view class="mr-4">{{ objInfo.ageLevel[0] }}</view>
+					<cj-slider class="flex-1" v-model="objInfo.ageLevel" :min="18" :max="100" :blockWidth="40"
 						activeColor="#2979ff" />
-					<view class="ml-4">{{ objInfo.ageValue[1] }}</view>
+					<view class="ml-4">{{ objInfo.ageLevel[1] }}</view>
 				</view>
 				<view class="mt-1 mb-3">
 					<FormTitle title="恋爱距离" description="多选" />
@@ -26,7 +26,7 @@
 				<view class="mt-1 mb-3">
 					<FormTitle title="性格标签" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="objInfo.nature" :options="natureOptions" />
+				<AppCheckBox :value.sync="objInfo.characters" :options="charactersOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="爱好标签" description="多选" />
 				</view>
@@ -34,7 +34,7 @@
 				<view class="mt-1 mb-3">
 					<FormTitle title="娱乐标签" description="多选" />
 				</view>
-				<AppCheckBox :value.sync="objInfo.fun" :options="funOptions" />
+				<AppCheckBox :value.sync="objInfo.entertainment" :options="entertainmentOptions" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="其他需求" />
 				</view>
@@ -53,9 +53,9 @@
 		typeOptions,
 		educationOptions,
 		sameCityOptions,
-		natureOptions,
+		charactersOptions,
 		hobbyOptions,
-		funOptions
+		entertainmentOptions
 	} from '@/constants/common.js'
 	import FormTitle from '@/components/FormTitle.vue'
 	import AppCheckBox from '@/components/AppCheckBox.vue'
@@ -71,17 +71,17 @@
 				typeOptions,
 				sameCityOptions,
 				educationOptions,
-				natureOptions,
+				charactersOptions,
 				hobbyOptions,
-				funOptions,
+				entertainmentOptions,
 				objInfo: {
-					toType: [],
-					ageValue: [22, 30],
+					intentAttribute: [],
+					ageLevel: [22, 30],
 					sameCity: '',
 					education: '',
-					nature: [],
+					characters: [],
 					hobby: [],
-					fun: [],
+					entertainment: [],
 					other: '',
 				},
 			}
@@ -92,13 +92,13 @@
 		methods: {
 			getDetail() {
 				const res = {
-					toType: [1],
-					ageValue: [25, 40],
+					intentAttribute: [1],
+					ageLevel: [25, 40],
 					sameCity: 2,
 					education: 3,
-					nature: [3, 4],
+					characters: [3, 4],
 					hobby: [2],
-					fun: [1, 2],
+					entertainment: [1, 2],
 					other: '啊飒飒阿萨'
 				}
 				this.objInfo = Object.assign({}, res)

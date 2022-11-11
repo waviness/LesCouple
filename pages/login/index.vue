@@ -9,7 +9,7 @@
 		<view class="mt-3 text-underline color-primary font-14" @click="registerShow = true">
 			立即注册
 		</view>
-		<Register v-if="registerShow" @close="registerShow = false" />
+		<Register v-if="registerShow" @submit="onRegister" @close="registerShow = false" />
 	</view>
 </template>
 
@@ -38,6 +38,9 @@
 				this.canIUseGetUserProfile = true
 			}
 		},
+		onShow() {
+			this.wxLogin()
+		},
 		methods: {
 			getUserProfile() {
 				wx.getUserProfile({
@@ -62,41 +65,41 @@
 					}
 				})
 			},
-			async getWxUserInfo(data) {
+			getWxUserInfo(data) {
 				const {
 					encryptedData: encryteDate,
 					iv,
 					rawData,
-					signature: signaturel
+					sigcharacters: sigcharactersl
 				} = data.detail
 				const obj = {
 					code: this.wxAuthCode,
-					encryteDate,
-					iv,
-					rawData,
-					signaturel
+					// encryteDate,
+					// iv,
+					// rawData,
+					// sigcharactersl
 				}
-				// this.$api.userLogin(obj).then(res => {
+				this.$api.userLogin(obj).then(res => {
 					this.$toast('登录成功')
-					const flag = 1
-					if (flag) { // 已注册
-						uni.setStorageSync('userInfo', {
-							name: '土方十四郎',
-							id: 124234556,
-							headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							isAuth: 1,
-							hasMaker: 0,
-							isMaker: 1,
-						})
+					if (res.data.registFlag) { // 已注册
+						uni.setStorageSync('userInfo', res.data.userInfo)
 						uni.switchTab({
 							url: '/pages/home/index'
 						})
 					} else {
 						this.registerShow = true
 					}
-				// }).catch(err => {
-				// 	this.wxLogin()
-				// })
+				}).catch(err => {
+					this.wxLogin()
+				})
+			},
+			async onRegister(info) {
+				const res = await this.$api.userRegister(info)
+				// 提交注册 并 完成登录 跳转首页
+				uni.setStorageSync('userInfo', res.userInfo)
+				uni.switchTab({
+					url: '/pages/home/index'
+				})
 			}
 		}
 	}
