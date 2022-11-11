@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: hannalai
+ * @Date: 2022-11-08 14:27:35
+ * @LastEditTime: 2022-11-11 17:42:32
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
 <template>
 	<view class="pb-100">
 		<u-sticky>
@@ -141,9 +149,10 @@
 				}, 500)
 			},
 			toDetail(data) {
-				uni.setStorageSync('makerDetail', data)
+				console.log('goodDetail', data);
+				uni.setStorageSync('goodDetail', data);
 				uni.navigateTo({
-					url: '/pagesM/makerzone/manage-detail'
+					url: '/pages/matchmaker/goods?showMatch=false'
 				})
 			},
 			toPublish() {

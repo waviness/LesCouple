@@ -1,8 +1,16 @@
+<!--
+ * @Description: 
+ * @Author: hannalai
+ * @Date: 2022-09-28 12:55:07
+ * @LastEditTime: 2022-11-09 11:16:17
+ * @LastEditors: 
+ * @Reference: 
+-->
 <template>
 	<view class="">
 		<zone-item icon="sousuokehu" label="客户匹配" @click="toSearch" />
 		<zone-item icon="shangjia" label="店铺管理" @click="toDetail('/pagesM/makerzone/manage')" />
-		<zone-item icon="zhucedianpu" label="注册店铺" @click="toDetail('/pagesM/makerzone/store')" />
+		<zone-item icon="zhucedianpu" label="注册店铺" @click="toDetail('/pagesM/registerStore/store')" />
 	</view>
 </template>
 
