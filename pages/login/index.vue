@@ -94,6 +94,15 @@
 				})
 			},
 			async onRegister(info) {
+				info.openId = 't2323232213'
+				info.wechatNumber = 'testestest'
+				info.imgId = 'testestest111'
+				info.hobby = String(info.hobby)
+				info.entertainment = String(info.entertainment)
+				info.city = String(info.city)
+				info.characters = String(info.characters)
+				info.ageLevel = String(info.ageLevel)
+				info.intentAttribute = String(info.intentAttribute)
 				const res = await this.$api.userRegister(info)
 				// 提交注册 并 完成登录 跳转首页
 				uni.setStorageSync('userInfo', res.userInfo)

@@ -19,3 +19,13 @@ export function getOwenMatchmakerInfo(params) {
 export function focusUser(params) {
   return request.post('/focusUser', params).then(res => res.data);
 }
+
+// 获取关注的人信息
+export function getConcernedUser(params) {
+  return request.get('/getConcernedUser/' + params).then(res => res.data);
+}
+
+// 获取被关注的人信息
+export function getConcernUser(params) {
+  return request.get('/getConcernUser/' + params).then(res => res.data);
+}
