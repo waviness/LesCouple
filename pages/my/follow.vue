@@ -63,8 +63,9 @@
 				this.userList = []
 				this.getList()
 			},
-			getList() {
+			async getList() {
 				console.log(this.current)
+				const res = this.current === 1 ? await this.$api.getConcernUser(232) : await this.$api.getConcernedUser(232)
 				setTimeout(() => {
 					this.userList = this.userList.concat([{
 						id: '12342356',

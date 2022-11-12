@@ -16,7 +16,7 @@
 		</view>
 		<view v-show="current === 0">
 			<FormTitle class="d-flex py-3" title="属性" description="多选" />
-			<AppCheckBox :value.sync="searchParams.toType" :options="typeOptions" />
+			<AppCheckBox :value.sync="searchParams.intentAttribute" :options="typeOptions" />
 			<FormTitle v-if="searchType === 1" class="d-flex my-3" title="城市" />
 			<AppCheckBox v-if="searchType === 1" :value.sync="searchParams.sameCity" :options="sameCityOptions"
 				appType="radio" />
@@ -31,21 +31,21 @@
 			</view>
 			<FormTitle class="d-flex my-3" title="年龄" />
 			<view class="pt-1 pb-3 d-flex align-center">
-				<view class="mr-4">{{ searchParams.ageValue[0] }}</view>
-				<cj-slider class="flex-1" v-model="searchParams.ageValue" :min="18" :max="100" :blockWidth="40"
+				<view class="mr-4">{{ searchParams.ageLevel[0] }}</view>
+				<cj-slider class="flex-1" v-model="searchParams.ageLevel" :min="18" :max="100" :blockWidth="40"
 					activeColor="#2979ff" :moveHeight="88" />
-				<view class="ml-4">{{ searchParams.ageValue[1] }}</view>
+				<view class="ml-4">{{ searchParams.ageLevel[1] }}</view>
 			</view>
 			<FormTitle class="d-flex my-3" title="学历" description="多选" />
 			<AppCheckBox :value.sync="searchParams.education" :options="educationOptions" />
 			<FormTitle v-if="searchType === 2" class="d-flex my-3" title="发长" description="多选" />
 			<AppCheckBox v-if="searchType === 2" :value.sync="searchParams.hair" :options="hairOptions" />
 			<FormTitle class="d-flex my-3" title="性格标签" description="多选" />
-			<AppCheckBox :value.sync="searchParams.nature" :options="natureOptions" />
+			<AppCheckBox :value.sync="searchParams.characters" :options="charactersOptions" />
 			<FormTitle class="d-flex my-3" title="爱好标签" description="多选" />
 			<AppCheckBox :value.sync="searchParams.hobby" :options="hobbyOptions" />
 			<FormTitle class="d-flex my-3" title="娱乐标签" description="多选" />
-			<AppCheckBox :value.sync="searchParams.fun" :options="funOptions" />
+			<AppCheckBox :value.sync="searchParams.entertainment" :options="entertainmentOptions" />
 			<FormTitle v-if="searchType === 2" class="d-flex my-3" title="认证标签" />
 			<AppCheckBox v-if="searchType === 2" :value.sync="searchParams.auth" :options="authOptions" />
 		</view>
@@ -66,9 +66,9 @@
 		typeOptions,
 		sameCityOptions,
 		educationOptions,
-		natureOptions,
+		charactersOptions,
 		hobbyOptions,
-		funOptions,
+		entertainmentOptions,
 		hairOptions,
 		provinceOptions
 	} from '@/constants/common.js'
@@ -96,9 +96,9 @@
 					value: 0,
 					label: '不限'
 				}, ...educationOptions],
-				natureOptions,
+				charactersOptions,
 				hobbyOptions,
-				funOptions,
+				entertainmentOptions,
 				hairOptions: [{
 					value: 0,
 					label: '不限'
@@ -112,14 +112,14 @@
 					label: '已认证'
 				}],
 				searchParams: {
-					toType: [],
+					intentAttribute: [],
 					province: '',
-					ageValue: [22, 30],
+					ageLevel: [22, 30],
 					education: [0],
 					hair: [0],
-					nature: [],
+					characters: [],
 					hobby: [],
-					fun: [],
+					entertainment: [],
 					auth: [0],
 					sameCity: [],
 				},
@@ -141,14 +141,14 @@
 			reset() {
 				if (this.current === 1) {
 					this.searchParams = {
-						toType: [],
+						intentAttribute: [],
 						province: '',
-						ageValue: [22, 30],
+						ageLevel: [22, 30],
 						education: [0],
 						hair: [0],
-						nature: [],
+						characters: [],
 						hobby: [],
-						fun: [],
+						entertainment: [],
 						auth: [0],
 					}
 				} else {

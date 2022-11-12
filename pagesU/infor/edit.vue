@@ -16,8 +16,8 @@
 				</u-form-item>
 				<u-picker :show="showCity" ref="uPicker" @cancel="showCity = false" :columns="proColumns"
 					@change="changeHandler" @confirm="confirmCity"></u-picker>
-				<u-form-item prop="userInfo.birthday" label="出生" borderBottom required @click="showDate = true">
-					<u-input v-model="userInfo.birthday" disabled placeholder="请选择" disabledColor="transparent"
+				<u-form-item prop="userInfo.bornTime" label="出生" borderBottom required @click="showDate = true">
+					<u-input v-model="userInfo.bornTime" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
@@ -189,7 +189,7 @@
 				this.userInfo = {
 					type: 1,
 					city: ['浙江省', '杭州市'],
-					birthday: '1999-11-26',
+					bornTime: '1999-11-26',
 					job: '其他|XXX',
 					education: 3,
 					height: 3,
@@ -212,7 +212,7 @@
 						}
 					],
 				}
-				this.value1 = Number(new Date(this.userInfo.birthday))
+				this.value1 = Number(new Date(this.userInfo.bornTime))
 				this.userInfo.pet = this.userInfo.pet ? '有' : '无'
 				this.userInfo.house = this.userInfo.house ? '有' : '无'
 				this.userInfo.child = this.userInfo.child ? '有' : '无'
@@ -256,7 +256,7 @@
 				value
 			}) {
 				this.showDate = false
-				this.userInfo.birthday = formatDate(value)
+				this.userInfo.bornTime = formatDate(value)
 				const date = new Date(value)
 				const M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
 				const D = date.getDate() + ' '
@@ -392,7 +392,7 @@
 					this.$toast('请选择城市')
 					return
 				}
-				if (!this.userInfo.birthday) {
+				if (!this.userInfo.bornTime) {
 					this.$toast('请选择出生年月日')
 					return
 				}
@@ -400,7 +400,7 @@
 				const {
 					type,
 					city,
-					birthday,
+					bornTime,
 					job,
 					education,
 					height,
@@ -417,7 +417,7 @@
 				const params = {
 					type,
 					city,
-					birthday,
+					bornTime,
 					job,
 					education,
 					height,
