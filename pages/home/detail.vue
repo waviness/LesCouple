@@ -9,51 +9,53 @@
 		<view v-else class="px-4">
 			<view class="mb-3">{{ detail.hasMaker ? `红娘微信：${detail.makerWechat}` : `她的微信：${detail.wechat}` }}</view>
 			<AppTitle :title="'基本信息'" />
-			<u-checkbox-group placement="column">
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.education" shape="circle" :label="`学历：${detail.educationName}`"></u-checkbox>
-				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.job" shape="circle" :label="`职业：${detail.job}`"></u-checkbox>
-				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.height" shape="circle" :label="`身高：${detail.heightName}`">
+			<u-checkbox-group v-model="checkeds" placement="column">
+				<view class="pt-3">
+					<u-checkbox name="education" shape="circle" size="20" labelSize="16" :label="`学历：${detail.educationName}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.hair" shape="circle" :label="`发长：${detail.hairName}`">
+				<view class="pt-3">
+					<u-checkbox name="job" shape="circle" size="20" labelSize="16" :label="`职业：${detail.job}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.constellation" shape="circle" :label="`星座：${detail.constellation}`">
+				<view class="pt-3">
+					<u-checkbox name="height" shape="circle" size="20" labelSize="16" :label="`身高：${detail.heightName}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.pet" shape="circle" :label="`宠物：${detail.pet ? '有' : '无'}`">
+				<view class="pt-3">
+					<u-checkbox name="hair" shape="circle" size="20" labelSize="16" :label="`发长：${detail.hairName}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.house" shape="circle" :label="`房产：${detail.house ? '有' : '无'}`">
+				<view class="pt-3">
+					<u-checkbox name="constellation" shape="circle" size="20" labelSize="16" :label="`星座：${detail.constellation}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.income" shape="circle" :label="`年收入：${detail.incomeName}`">
+				<view class="pt-3">
+					<u-checkbox name="pet" shape="circle" size="20" labelSize="16" :label="`宠物：${detail.pet ? '有' : '无'}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.situation" shape="circle" :label="`出柜情况：${detail.situationName}`">
+				<view class="pt-3">
+					<u-checkbox name="house" shape="circle" size="20" labelSize="16" :label="`房产：${detail.house ? '有' : '无'}`">
 					</u-checkbox>
 				</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.child" shape="circle" :label="`育儿计划：${detail.child ? '有' : '无'}`">
+				<view class="pt-3">
+					<u-checkbox name="income" shape="circle" size="20" labelSize="16" :label="`年收入：${detail.incomeName}`">
+					</u-checkbox>
+				</view>
+				<view class="pt-3">
+					<u-checkbox name="situation" shape="circle" size="20" labelSize="16" :label="`出柜情况：${detail.situationName}`">
+					</u-checkbox>
+				</view>
+				<view class="pt-3">
+					<u-checkbox name="child" shape="circle" size="20" labelSize="16" :label="`育儿计划：${detail.child ? '有' : '无'}`">
 					</u-checkbox>
 				</view>
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">感情状态：{{ detail.stateName }}</view>
-				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">性格标签：{{ detail.natureText }}</view>
+				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">性格标签：{{ detail.charactersText }}</view>
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">爱好标签：{{ detail.hobbyText }}</view>
-				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">娱乐标签：{{ detail.funText }}</view>
-				<view class="mt-2">
-					<u-checkbox v-model="checkedObj.photo" shape="circle" label="照片">
+				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">娱乐标签：{{ detail.entertainmentText }}</view>
+				<view class="pt-3">
+					<u-checkbox name="photo" shape="circle" size="20" labelSize="16" label="照片">
 					</u-checkbox>
 				</view>
 			</u-checkbox-group>
@@ -86,7 +88,8 @@
 		</view>
 		<u-modal :show="modalShow" title="提示" :confirmText="confirmText" :content='modalContent'
 			@confirm="onModalConfirm"></u-modal>
-		<Poster v-if="showPoster" :show="showPoster" :detail="detail" :checkedObj="checkedObj" @close="showPoster = false" />
+		<Poster v-if="showPoster" :show="showPoster" :detail="detail" :checkedObj="checkedObj"
+			@close="showPoster = false" />
 		<u-loading-page :loading="loading"></u-loading-page>
 	</view>
 </template>
@@ -96,14 +99,14 @@
 		typeOptions,
 		hobbyOptions,
 		lesWechatCode,
-		natureOptions,
+		charactersOptions,
 		educationOptions,
 		heightOptions,
 		hairOptions,
 		incomeOptions,
 		situationOptions,
 		stateOptions,
-		funOptions,
+		entertainmentOptions,
 		sameCityOptions,
 	} from '@/constants/common.js'
 	import {
@@ -139,19 +142,9 @@
 				confirmText: '确认',
 				modalType: 1,
 				showPoster: false,
-				checkedObj: {
-					education: true,
-					job: true,
-					height: true,
-					hair: true,
-					constellation: true,
-					pet: true,
-					house: true,
-					income: true,
-					situation: true,
-					child: true,
-					photo: true,
-				}
+				checkeds: ['education', 'job', 'height', 'hair', 'constellation', 'pet', 'house', 'income', 'situation',
+					'child', 'photo'
+				]
 			}
 		},
 		onLoad(option) {
@@ -159,8 +152,8 @@
 		},
 		computed: {
 			typeText() {
-				const target = this.detail.toType ? this.typeOptions.filter(item => {
-					return this.detail.toType?.includes(item.value)
+				const target = this.detail.intentAttribute ? this.typeOptions.filter(item => {
+					return this.detail.intentAttribute?.includes(item.value)
 				}) : ''
 				if (target.length) {
 					const result = target.map(ele => {
@@ -176,6 +169,12 @@
 					return item.label
 				})
 				return ['', ...list]
+			},
+			checkedObj() {
+				return this.checkeds.reduce((obj, item) => ({
+					...obj,
+					[item]: true
+				}), {})
 			}
 		},
 		methods: {
@@ -186,14 +185,14 @@
 						id: '12342356',
 						name: '小公子22',
 						hasMaker: 0,
-						isAuth: 1,
+						isAuth: 0,
 						height: 3,
-						birthday: '1998-10-09',
+						bornTime: '1998-10-09',
 						level: 15,
 						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						type: 4,
 						hasfollow: 1,
-						toType: [1, 4],
+						intentAttribute: [1, 4],
 						toEducation: [2, 3],
 						education: 3,
 						job: '程序员',
@@ -218,8 +217,8 @@
 						income: 3,
 						situation: 2,
 						state: 1,
-						nature: [1, 3],
-						fun: [1, 3, 5, 6],
+						characters: [1, 3],
+						entertainment: [1, 3, 5, 6],
 					}
 					this.detail.educationName = findNameInList(this.detail.education, educationOptions)
 					this.detail.hairName = findNameInList(this.detail.hair, hairOptions)
@@ -228,17 +227,17 @@
 					this.detail.situationName = findNameInList(this.detail.situation, situationOptions)
 					this.detail.stateName = findNameInList(this.detail.state, stateOptions)
 					this.detail.sameCityName = findNameInList(this.detail.sameCity, sameCityOptions)
-					this.detail.natureText = this.detail.nature.map(item => {
-						return findNameInList(item, natureOptions)
+					this.detail.charactersText = this.detail.characters.map(item => {
+						return findNameInList(item, charactersOptions)
 					})
 					this.detail.hobbyText = this.detail.hobbys.map(item => {
 						return findNameInList(item, hobbyOptions)
 					})
-					this.detail.funText = this.detail.fun.map(item => {
-						return findNameInList(item, funOptions)
+					this.detail.entertainmentText = this.detail.entertainment.map(item => {
+						return findNameInList(item, entertainmentOptions)
 					})
 					const target = this.typeOptions.filter(item => {
-						return this.detail.toType?.includes(item.value)
+						return this.detail.intentAttribute?.includes(item.value)
 					})
 					this.detail.typeText = target.length ? target.map(ele => {
 						return ele.label
@@ -302,19 +301,6 @@
 				})
 			},
 			createPoster() {
-				this.checkedObj = {
-					education: false,
-					job: false,
-					height: false,
-					hair: false,
-					constellation: false,
-					pet: false,
-					house: false,
-					income: false,
-					situation: false,
-					child: false,
-					photo: true,
-				}
 				console.log('brfore', this.checkedObj)
 				this.showPoster = true
 			}

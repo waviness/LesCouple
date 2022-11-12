@@ -1,5 +1,5 @@
 // 性格标签选项
-export const natureOptions = [{
+export const charactersOptions = [{
 		value: 1,
 		label: '温暖'
 	},
@@ -61,7 +61,7 @@ export const hobbyOptions = [{
 ]
 
 // 娱乐标签选项
-export const funOptions = [{
+export const entertainmentOptions = [{
 		value: 1,
 		label: '吃鸡'
 	},

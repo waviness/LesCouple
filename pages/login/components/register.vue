@@ -11,11 +11,10 @@
 							<FormTitle class="register__title" title="昵称" />
 							<u-input v-model="userInfo.userName" placeholder="保存后不可更改" border="bottom"></u-input>
 							<FormTitle class="register__title" title="属性" />
-							<TypeCheckBox :value.sync="userInfo.toType" :options="typeOptions" around />
 							<TypeCheckBox :value.sync="userInfo.type" :options="typeOptions" type="radio" small />
 							<FormTitle class="register__title" title="出生年月日" />
-							<u-form-item prop="userInfo.birthday" borderBottom @click="dateShow = true">
-								<u-input v-model="userInfo.birthday" disabled disabledColor="#ffffff"
+							<u-form-item prop="userInfo.bornTime" borderBottom @click="dateShow = true">
+								<u-input v-model="userInfo.bornTime" disabled disabledColor="#ffffff"
 									placeholder="请选择出生年月日" border="none"></u-input>
 								<u-icon slot="right" name="arrow-right"></u-icon>
 							</u-form-item>
@@ -28,19 +27,21 @@
 						</view>
 						<view v-show="stepNum === 2">
 							<FormTitle class="register__title" title="性格标签" description="多选" />
-							<AppCheckBox :value.sync="userInfo.nature" :options="natureOptions" />
+							<AppCheckBox :value.sync="userInfo.characters" :options="charactersOptions" />
 							<FormTitle class="register__title" title="爱好标签" description="多选" />
 							<AppCheckBox :value.sync="userInfo.hobby" :options="hobbyOptions" />
+							<FormTitle class="register__title" title="娱乐标签" description="多选" />
+							<AppCheckBox :value.sync="userInfo.entertainment" :options="entertainmentOptions" />
 						</view>
 						<view v-if="stepNum === 3">
 							<FormTitle class="register__title" title="意向属性" description="多选" />
-							<TypeCheckBox :value.sync="userInfo.toType" :options="typeOptions" around />
+							<TypeCheckBox :value.sync="userInfo.intentAttribute" :options="typeOptions" around />
 							<FormTitle class="register__title" title="意向年龄范围" />
 							<view v-if="stepNum === 3" class="pt-1 pb-3 d-flex align-center">
-								<view class="mr-4">{{ userInfo.ageValue[0] }}</view>
-								<cj-slider class="flex-1" v-model="userInfo.ageValue" :min="18" :max="100"
-									:blockWidth="40" activeColor="#2979ff" />
-								<view class="ml-4">{{ userInfo.ageValue[1] }}</view>
+								<view class="mr-4">{{ userInfo.ageLevel[0] }}</view>
+								<cj-slider class="flex-1" v-model="userInfo.ageLevel" :min="18" :max="100"
+									:blockWidth="40" activeColor="#2979ff" :moveHeight="88" />
+								<view class="ml-4">{{ userInfo.ageLevel[1] }}</view>
 							</view>
 						</view>
 					</u-form>
@@ -68,8 +69,9 @@
 		provinceOptions,
 		cityOptions,
 		typeOptions,
-		natureOptions,
-		hobbyOptions
+		charactersOptions,
+		hobbyOptions,
+		entertainmentOptions
 	} from '@/constants/common.js'
 	import {
 		formatDate
@@ -96,19 +98,21 @@
 				pickerShow: false,
 				userInfo: {
 					userName: '',
-					birthday: '',
+					bornTime: '',
 					type: '',
 					city: '',
-					nature: [],
+					characters: [],
 					hobby: [],
-					toType: [],
-					ageValue: [22, 30]
+					entertainment: [],
+					intentAttribute: [],
+					ageLevel: [22, 30]
 				},
 				typeOptions,
-				natureOptions,
+				charactersOptions,
 				hobbyOptions,
 				provinceOptions,
 				cityOptions,
+				entertainmentOptions,
 			}
 		},
 		methods: {
@@ -137,7 +141,7 @@
 				this.$emit('close')
 			},
 			onDateConfirm(params) {
-				this.userInfo.birthday = formatDate(params.value)
+				this.userInfo.bornTime = formatDate(params.value)
 				this.dateShow = false
 			},
 			nextStep() {
@@ -151,7 +155,7 @@
 						this.$toast('请选择属性')
 						return
 					}
-					if (!this.userInfo.birthday) {
+					if (!this.userInfo.bornTime) {
 						this.$toast('请选择出生年月日')
 						return
 					}
@@ -161,7 +165,7 @@
 					}
 				}
 				if (this.stepNum === 2) {
-					if (!this.userInfo.nature.length) {
+					if (!this.userInfo.characters.length) {
 						this.$toast('请至少选择一个性格标签')
 						return
 					}
@@ -169,9 +173,13 @@
 						this.$toast('请至少选择一个爱好标签')
 						return
 					}
+					if (!this.userInfo.entertainment.length) {
+						this.$toast('请至少选择一个娱乐标签')
+						return
+					}
 				}
 				if (this.stepNum === 3) {
-					if (!this.userInfo.toType.length) {
+					if (!this.userInfo.intentAttribute.length) {
 						this.$toast('请至少选择一个意向属性')
 						return
 					}
@@ -179,17 +187,9 @@
 				if (this.stepNum < 3) {
 					this.stepNum++
 				} else {
-					console.log(this.userInfo)
-					// 提交注册 并 完成登录 跳转首页
-					uni.setStorageSync('userInfo', {
-						name: '土方十四郎',
-						id: 124234556,
-						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						isAuth: 1
-					})
-					uni.switchTab({
-						url: '/pages/home/index'
-					})
+					this.userInfo.attribution = this.userInfo.type ? this.userInfo.type[0]: ''
+					delete this.userInfo.type
+					this.$emit('submit', this.userInfo)
 				}
 			}
 		}

@@ -2,13 +2,13 @@
 	<view class="poster">
 		<u-overlay :show="show" @click="close">
 			<view class="d-flex flex-column align-center my-6">
-				<canvas :style="{ width: canvasW + 'px', height: canvasH + 'px' }" canvas-id="myCanvas"
-					id="myCanvas"></canvas>
+				<canvas :style="{ width: canvasW + 'px', height: canvasH + 'px' }" canvas-id="myCanvas" id="myCanvas"
+					@click.stop></canvas>
 				<view class="d-flex justify-space-between pt-4">
 					<u-button type="error" :plain="true" size="large" shape="circle" :disable="btnDisable" text="保存到相册"
-						customStyle="width: 150px" @click="savePicture"></u-button>
+						customStyle="width: 150px" @click.stop="savePicture"></u-button>
 					<u-button type="error" :plain="true" size="large" shape="circle" :disable="btnDisable" text="分享给好友"
-						customStyle="marginLeft: 20px; width: 150px" @click="sharePicture"></u-button>
+						customStyle="marginLeft: 20px; width: 150px" @click.stop="sharePicture"></u-button>
 				</view>
 			</view>
 		</u-overlay>
@@ -58,12 +58,12 @@
 			// this.canvasH = this.SystemInfo.windowHeight - 200 //画布高度
 			let num = 0
 			Object.keys(this.checkedObj).forEach(item => {
-				if (this.checkedObj[item]) {
+				if (this.checkedObj[item] && item !== 'photo') {
 					num++
 				}
 			})
 			console.log(num)
-			this.canvasH = num < 6 ? 420 : 300 + num * 20 //画布高度
+			this.canvasH = num < 6 ? 420 : 320 + num * 20 //画布高度
 			this.startX = this.canvasW - 70
 			//获取照片的长与宽，按画布的比例进行缩放
 			if (this.checkedObj.photo) {
@@ -76,6 +76,7 @@
 			this.logoImg = '/static/logo.png'
 			this.bgImg = '/static/background.png'
 			this.locImg = '/static/location.png'
+			this.authImg = this.detail.isAuth ? '/static/auth.png' : '/static/noauth.png'
 
 			// 如果主图，logo图片，设备信息都获取成功，开始绘制海报，这里需要用setTimeout延时绘制，否则可能会出现图片不显示。
 			if ((!this.userImg || this.userImg.errMsg == 'getImageInfo:ok') &&
@@ -114,12 +115,12 @@
 					// 3、绘制用户信息
 					ctx.setFontSize(16) // setFontSize() 设置字体字号
 					ctx.setFillStyle('#000000') // setFillStyle() 设置字体颜色
-					ctx.fillText(this.detail.name, 16, 150)
+					ctx.fillText(this.detail.name, 40, 150)
+					ctx.drawImage(this.authImg, 16, 133, 20, 20)
 					const target = this.typeOptions.find(item => {
 						return item.value === +this.detail.type
 					})
 					const width = ctx.measureText(target?.label + this.detail.level).width
-					console.log(width)
 					const coordinates = this.drawArcTo(ctx, width, 12)
 					ctx.setFillStyle('#fff')
 					ctx.setFontSize(20) // setFontSize() 设置字体字号
@@ -129,54 +130,56 @@
 					ctx.setFillStyle('#999')
 					ctx.setFontSize(14)
 					ctx.fillText('ID：' + this.detail.id, 16, 178)
-					ctx.drawImage(this.locImg, 16, 187, 16, 16)
-					ctx.fillText(this.detail.city, 36, 200)
+					ctx.drawImage(this.locImg, 16, 188, 14, 14)
+					ctx.fillText(this.detail.city, 32, 200)
 					ctx.setFillStyle('#000000')
 					let current = 0
 					if (this.checkedObj.child) {
-						current ++
-						ctx.fillText(`育儿计划：${this.detail.child ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
+						current++
+						ctx.fillText(`育儿计划：${this.detail.child ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
+							current)
 					}
 					if (this.checkedObj.situation) {
-						current ++
+						current++
 						ctx.fillText(`出柜情况：${this.detail.situationName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.income) {
-						current ++
+						current++
 						ctx.fillText(`年收入：${this.detail.incomeName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.house) {
-						current ++
-						ctx.fillText(`房产：${this.detail.house ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
+						current++
+						ctx.fillText(`房产：${this.detail.house ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
+							current)
 					}
 					if (this.checkedObj.pet) {
-						current ++
+						current++
 						ctx.fillText(`宠物：${this.detail.pet ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.constellation) {
-						current ++
+						current++
 						ctx.fillText(`星座：${this.detail.constellation}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.hair) {
-						current ++
+						current++
 						ctx.fillText(`发长：${this.detail.hairName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.height) {
-						current ++
+						current++
 						ctx.fillText(`身高：${this.detail.heightName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.job) {
-						current ++
+						current++
 						ctx.fillText(`职业：${this.detail.job}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.education) {
-						current ++
+						current++
 						ctx.fillText(`学历：${this.detail.educationName}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					ctx.fillText(`感情状态：${this.detail.stateName}`, 16, this.canvasH - 80)
-					ctx.fillText(`性格标签：${this.detail.natureText}`, 16, this.canvasH - 60)
+					ctx.fillText(`性格标签：${this.detail.charactersText}`, 16, this.canvasH - 60)
 					ctx.fillText(`爱好标签：${this.detail.hobbyText}`, 16, this.canvasH - 40)
-					ctx.fillText(`娱乐标签：${this.detail.funText}`, 16, this.canvasH - 20)
+					ctx.fillText(`娱乐标签：${this.detail.entertainmentText}`, 16, this.canvasH - 20)
 					ctx.draw(true, (ret) => { // draw方法 把以上内容画到 canvas 中。
 						uni.showToast({
 							icon: 'success',
@@ -188,6 +191,7 @@
 							canvasId: 'myCanvas',
 							quality: 1,
 							complete: (res) => {
+								console.log(res)
 								this.hbUrl.push(res.tempFilePath)
 							},
 						}, this)
@@ -257,10 +261,49 @@
 			},
 
 			//保存相片到本地
-			savePicture() {
-				console.log('save---', this.hbUrl)
+			async savePicture() {
+				const settingRes = await uni.getSetting()
+				console.log(settingRes)
+				if (!settingRes[1].authSetting['scope.writePhotosAlbum']) { // 用户未授权保存相册
+					console.log('scope.writePhotosAlbum')
+					uni.authorize({
+						scope: 'scope.writePhotosAlbum',
+						success() {
+							console.log('as d----', this.hbUrl)
+							this.saveToAlbum()
+						},
+						fail() {
+							console.log('writePhotosAlbum lose')
+							uni.showModal({
+								title: '提示',
+								content: '保存到相册的权限已关闭，是否打开？',
+								success: async (res) => {
+									if (res.confirm) {
+										const openRes = await uni.openSetting()
+										if (openRes.authSetting[
+												'scope.writePhotosAlbum']) {
+											this.saveToAlbum()
+										}
+									}
+								},
+							})
+						}
+					})
+				} else { // 已授权，用户点了取消
+					this.saveToAlbum()
+				}
+			},
+			saveToAlbum() {
 				uni.saveImageToPhotosAlbum({
-					filePath: this.hbUrl,
+					filePath: this.hbUrl[0],
+					success: (res) => {
+						console.log(res)
+						this.$toast('保存成功')
+					},
+					fail(err) {
+						this.$toast('保存失败')
+						console.error(err)
+					}
 				})
 			},
 			//分享相片
@@ -268,7 +311,7 @@
 				console.log('share---', this.hbUrl)
 				uni.share({
 					provider: 'weixin',
-					imageUrl: this.hbUrl,
+					imageUrl: this.hbUrl[0],
 					type: 2,
 					scene: 'WXSceneTimeline'
 				})
@@ -282,8 +325,4 @@
 </script>
 
 <style lang="scss">
-	.poster {
-		width: 100vw;
-		height: 100vh;
-	}
 </style>
