@@ -1,3 +1,11 @@
+<!--
+ * @Description: 
+ * @Author: hannalai
+ * @Date: 2022-11-08 14:27:35
+ * @LastEditTime: 2022-11-12 20:16:29
+ * @LastEditors: Please set LastEditors
+ * @Reference: 
+-->
 <template>
 	<view class="order-item bg-white mt-2 p-3" @click="onClick">
 		<view class="d-flex justify-space-between">
@@ -19,9 +27,9 @@
 		<view class="d-flex justify-flex-end mt-2">
 			<view style="width: 80px">
 				<u-button v-if="data.status === 2" type="error" size="small" text="匹配" shape="circle"
-					@click.stop="onButClick(2)"></u-button>
+					@tap.stop="onButClick(2)"></u-button>
 				<u-button v-else-if="data.status === 4" type="error" size="small" :plain="true" text="回复" shape="circle"
-					@click.stop="onButClick(4)"></u-button>
+					@tap.stop="onButClick(4)"></u-button>
 			</view>
 		</view>
 	</view>
@@ -38,7 +46,17 @@
 				this.$emit('click')
 			},
 			onButClick(type) {
-				console.log(type)
+				console.log('订单操作', type);
+				if (type === 2) {
+					uni.navigateTo({
+						url: '/pagesU/match/index'
+					});
+				} else if (type === 4) {
+					uni.navigateTo({
+						url: '/pagesU/reply/index'
+					})
+				}
+
 			}
 		}
 	}

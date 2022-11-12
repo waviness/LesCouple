@@ -2,14 +2,14 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-11 16:20:22
+ * @LastEditTime: 2022-11-12 20:49:16
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
 <template>
     <view class="order-detail">
         <view class="order-detail_info order-detail_userInfo">
-            <image class="order-detail__img" :src="data.headerImg" mode="aspectFill"></image>
+            <image class="order-detail_img" :src="data.headerImg" mode="aspectFill"></image>
             <view class="order-detail_price">
                 <view>{{ data.title }}</view>
                 <!-- <view>¥{{ data.price }}</view> -->
@@ -59,7 +59,7 @@
         <view class="order-detail_footer">
             <view v-if="data.status === 1" class="order-detail_unPay">
                 <view class="order-detail_border order-detail_cancelOrder">取消订单</view>
-                <button class="btn-bottom" @click.stop="onButClick(1)">立即付款</button>
+                <button class="btn-bottom" @click.stop="onButClick(1)">立即支付</button>
             </view>
             <view v-if="data.status === 2" class="order-detail_margin">
                 <button class="btn-bottom" @click.stop="onButClick(2)">确认匹配</button>
@@ -104,10 +104,14 @@ export default {
                 uni.navigateTo({
                     url: '../../pagesU/match/index',
                 });
-            }else if (val === 3) {
+            } else if (val === 3) {
                 uni.navigateTo({
                     url: '../../pagesU/evaluate/index',
                 });
+            } else if (val === 4) {
+                uni.navigateTo({
+                    url: '/pages/matchmaker/judges',
+                })
             }
         }
     }
@@ -141,7 +145,7 @@ export default {
         justify-content: flex-start;
     }
 
-    &__img {
+    &_img {
         width: 100rpx;
         height: 100rpx;
     }
@@ -176,7 +180,7 @@ export default {
 
     &_copyWxText {
         font-size: 28rpx;
-        color: #006FFF;
+        color: #f56c6c;
     }
 
     &_footer {
@@ -191,9 +195,12 @@ export default {
 
         .btn-bottom {
             height: 96rpx;
-            background: rgba(255, 215, 87, 0.95);
+            color: #ffffff;
+            background: #f9ae3d;
             position: absolute;
             right: 32rpx;
+            display: flex;
+            align-items: center;
         }
     }
 

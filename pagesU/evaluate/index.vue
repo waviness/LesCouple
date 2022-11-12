@@ -26,10 +26,10 @@
             <view class="evaluate_goodText">非常好</view>
         </view>
         <view class="evaluate_orderInfo">
-            <u-textarea placeholder="请填写您的点评，请文明留言。" count></u-textarea>
+            <u-textarea placeholder="请填写您的点评，请文明留言。" v-model="replyValue" count maxlength="100" @input="onInput()"></u-textarea>
         </view>
         <view class="evaluate_footer">
-            <u-button type="primary" @click.stop="onButClick()">发布</u-button>
+            <u-button type="primary" @click.stop="onButClick()" :disabled="disabled">发布</u-button>
         </view>
     </view>
 </template>
@@ -43,9 +43,14 @@ export default {
             data: uni.getStorageSync('orderDetail'),
             count: 5,
             activeColorvalue: 5,
+            disabled: true,
+            replyValue: ''
         }
     },
     methods: {
+        onInput(val) {
+            this.disabled = val === ''; 
+        },
         onChangeStar(val) {
             console.log('star val', val);
         },
@@ -153,6 +158,8 @@ export default {
             width: 580rpx;
             color: #fff;
             background: #2295FF;
+            display: flex;
+            align-items: center;
         }
     }
 

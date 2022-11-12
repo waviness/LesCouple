@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-11 17:01:41
+ * @LastEditTime: 2022-11-12 21:01:48
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -16,7 +16,7 @@
         <view class="manage-detail_info">
             <view class="manage-detail_price manage-detail_bottom">
                 <span class="manage-detail_text">销量：{{ data.saleNum }}</span>
-                <span>¥{{ data.price }}</span>
+                <!-- <span>¥{{ data.price }}</span> -->
             </view>
             <view>服务内容</view>
             <p class="manage-detail_space">1. 主动匹配：推送已认证候选人，使用者选择满意候选人后，红娘将帮助匹配，最多匹配15位满意候选人，直至服务周期内匹配成功。
@@ -153,9 +153,12 @@ export default {
 
         .btn-bottom {
             height: 96rpx;
-            background: rgba(255, 215, 87, 0.95);
+            color: #ffffff;
+            background: #f9ae3d;
             position: absolute;
             right: 32rpx;
+            display: flex;
+            align-items: center;
         }
     }
 

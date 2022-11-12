@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-11 17:38:23
+ * @LastEditTime: 2022-11-12 17:35:48
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -15,7 +15,7 @@
         </view>
         <view class="good-detail_info">
             <view class="good-detail_price good-detail_bottom">
-                <span class="good-detail_text">牵线数量：{{ data.saleNum || 0 }}</span>
+                <span class="good-detail_text">匹配数量：{{ data.saleNum || 0 }}</span>
                 <!-- <span>¥{{ data.price }}</span> -->
             </view>
             <view>服务内容</view>
@@ -153,9 +153,12 @@ export default {
 
         .btn-bottom {
             height: 96rpx;
-            background: rgba(255, 215, 87, 0.95);
+            color: #ffffff;
+            background: #f9ae3d;
             position: absolute;
             right: 32rpx;
+            display: flex;
+            align-items: center;
         }
     }
 

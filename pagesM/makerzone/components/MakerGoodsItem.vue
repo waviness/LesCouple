@@ -14,13 +14,13 @@
 		</view>
 		<view class="d-flex justify-flex-end mt-2">
 			<view v-if="data.status === 3" style="width: 80px" class="mr-3">
-				<u-button size="small" text="修改" shape="circle" @click.stop="onButClick(3)"></u-button>
+				<u-button size="small" text="修改" shape="circle" @tap.stop="onButClick('modify')"></u-button>
 			</view>
 			<view style="width: 80px">
 				<u-button v-if="data.status === 3" type="primary" size="small" :plain="true" text="下架" shape="circle"
-					@click.stop="onButClick(3)"></u-button>
+					@tap.stop="onButClick('undercarriage')"></u-button>
 				<u-button v-else-if="data.status === 4" type="error" size="small" :plain="true" text="删除" shape="circle"
-					@click.stop="onButClick(4)"></u-button>
+					@tap.stop="onButClick('delete')"></u-button>
 			</view>
 		</view>
 	</view>
@@ -37,7 +37,16 @@
 				this.$emit('click')
 			},
 			onButClick(type) {
-				console.log(type)
+				console.log('商品操作', type);
+				if (type === 'modify') {
+					uni.navigateTo({
+						url: '/pagesM/makerzone/publish-goods'
+					})
+				} else if (type === 'delete') {
+					this.$toast('删除成功');
+				} else if (type === 'undercarriage') {
+					this.$toast('下架成功');
+				}
 			}
 		}
 	}

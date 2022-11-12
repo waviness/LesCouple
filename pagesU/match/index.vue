@@ -2,7 +2,7 @@
  * @Description: 确认匹配
  * @Author: hannalai
  * @Date: 2022-11-09 11:35:39
- * @LastEditTime: 2022-11-11 17:46:14
+ * @LastEditTime: 2022-11-12 20:43:20
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -28,7 +28,7 @@
                 </view>
             </view>
         </view>
-        <u-button type="primary" class="match-button">绑定</u-button>
+        <u-button type="primary" class="match-button" @click.stop="onButClick()" :disabled="disabled">绑定</u-button>
     </view>
 </template>
 
@@ -40,6 +40,7 @@ export default {
             searchValue: '',
             makerInfo: {},
             show: false,
+            disabled: true,
             detail: uni.getStorageSync('goodDetail')
         }
     },
@@ -55,9 +56,14 @@ export default {
                     time: '2022-09-27',
                     headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
                 }
+                this.disabled = false;
             } else {
                 this.show = false;
+                this.disabled = true;
             }
+        },
+        onButClick() {
+            
         }
     }
 }

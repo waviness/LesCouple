@@ -208,6 +208,13 @@
 					"navigationBarTitleText": "确认匹配",
 					"enablePullDownRefresh": false
 				}
+			},
+			{
+				"path": "reply/index",
+				"style": {
+					"navigationBarTitleText": "回复评价",
+					"enablePullDownRefresh": false
+				}
 			}
 		]
 	}, {
