@@ -100,9 +100,10 @@
 				this.loading = false
 			},
 			toGoodsDetail(data) {
-				uni.setStorageSync('goodsDetail', data)
+				// console.log('goodsDetail--用户角度', JSON.parse(JSON.stringify(data)));
+				uni.setStorageSync('goodDetail', JSON.parse(JSON.stringify(data)))
 				uni.navigateTo({
-					url: '/pages/matchmaker/goods'
+					url: '/pages/matchmaker/goods?showMatch=true'
 				})
 			},
 			toMoreJudge(data) {

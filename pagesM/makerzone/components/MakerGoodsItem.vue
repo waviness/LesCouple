@@ -9,7 +9,7 @@
 					<view v-if=" data.status === 2" class="font-14 color-red ml-3">审核未通过</view>
 					<view v-if=" data.status === 4" class="font-14 color-gray ml-3">已下架</view>
 				</view>
-				<view class="font-14 color-gray mt-1">总价：￥{{ data.price }}</view>
+				<!-- <view class="font-14 color-gray mt-1">总价：￥{{ data.price }}</view> -->
 			</view>
 		</view>
 		<view class="d-flex justify-flex-end mt-2">

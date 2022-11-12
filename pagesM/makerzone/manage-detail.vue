@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-03 17:12:40
+ * @LastEditTime: 2022-11-11 17:01:41
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -15,7 +15,7 @@
         </view>
         <view class="manage-detail_info">
             <view class="manage-detail_price manage-detail_bottom">
-                <span class="manage-detail_text">销量：111</span>
+                <span class="manage-detail_text">销量：{{ data.saleNum }}</span>
                 <span>¥{{ data.price }}</span>
             </view>
             <view>服务内容</view>
@@ -28,22 +28,7 @@
                 3. 终止规则：匹配满15位候选人后，主动匹配服务自动终止；在服务周期内匹配成功后，主动/被动匹配服务自动终止。
             </p>
         </view>
-        <view class="manage-detail_footer">
-            <view v-if="data.status === 1" class="manage-detail_footer_unPay">
-                <view class="manage-detail_border manage-detail_cancelOrder">取消订单</view>
-                <button class="btn-bottom" @click.stop="onButClick(1)">立即付款</button>
-            </view>
-            <view v-if="data.status === 2" class="manage-detail_margin">
-                <button class="btn-bottom" @click.stop="onButClick(2)">确认匹配</button>
-            </view>
-            <view v-if="data.status === 3" class="manage-detail_footer_unPay">
-                <view class="manage-detail_border manage-detail_cancelOrder">申诉</view>
-                <button class="btn-bottom" @click.stop="onButClick(3)">立即评价</button>
-            </view>
-            <view v-if="data.status === 4" class="manage-detail_margin">
-                <button class="btn-bottom" @click.stop="onButClick(4)">查看评价</button>
-            </view>
-        </view>
+        
     </view>
 </template>
 

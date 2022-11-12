@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-10-29 21:35:59
- * @LastEditTime: 2022-11-08 14:49:00
+ * @LastEditTime: 2022-11-11 16:20:22
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -19,7 +19,7 @@
             <view class="order-detail_bottom">红娘：{{ data.name }}</view>
             <view v-if="data.status === 1" class="order-detail_space" style="color: pink">支付后可查看微信号码</view>
             <view v-if="data.status !== 1" class="order-detail_space order-detail_text order-detail_copyWxCode">
-                <span>联系微信：wyl8888love</span>
+                <span>联系微信：lesWechatCode</span>
                 <view class="order-detail_copyWxBox order-detail_border">
                     <img src="../../../static/weixin-logo.png">
                     <span class="order-detail_copyWxText" @click="onCopyWxCode">复制微信</span>
@@ -57,14 +57,14 @@
             </view>
         </view>
         <view class="order-detail_footer">
-            <view v-if="data.status === 1" class="order-detail_footer_unPay">
+            <view v-if="data.status === 1" class="order-detail_unPay">
                 <view class="order-detail_border order-detail_cancelOrder">取消订单</view>
                 <button class="btn-bottom" @click.stop="onButClick(1)">立即付款</button>
             </view>
             <view v-if="data.status === 2" class="order-detail_margin">
                 <button class="btn-bottom" @click.stop="onButClick(2)">确认匹配</button>
             </view>
-            <view v-if="data.status === 3" class="order-detail_footer_unPay">
+            <view v-if="data.status === 3" class="order-detail_unPay">
                 <view class="order-detail_border order-detail_cancelOrder">申诉</view>
                 <button class="btn-bottom" @click.stop="onButClick(3)">立即评价</button>
             </view>
@@ -76,10 +76,14 @@
 </template>
 
 <script>
+import {
+		lesWechatCode
+	} from '@/constants/common.js'
 export default {
     name: "OrderDetail",
     props: {
         data: Object,
+        lesWechatCode
     },
     methods: {
         onCopyWxCode() {
@@ -96,7 +100,11 @@ export default {
         },
         onButClick(val) {
             console.log('status', val);
-            if(val === 3) {
+            if (val === 2) {
+                uni.navigateTo({
+                    url: '../../pagesU/match/index',
+                });
+            }else if (val === 3) {
                 uni.navigateTo({
                     url: '../../pagesU/evaluate/index',
                 });
@@ -181,22 +189,22 @@ export default {
         left: 0;
         display: flex;
 
-        &_unPay {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        &_margin {
-            margin-top: 32rpx;
-        }
-
         .btn-bottom {
             height: 96rpx;
             background: rgba(255, 215, 87, 0.95);
             position: absolute;
             right: 32rpx;
         }
+    }
+
+    &_unPay {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &_margin {
+        margin-top: 32rpx;
     }
 
     &_border {
