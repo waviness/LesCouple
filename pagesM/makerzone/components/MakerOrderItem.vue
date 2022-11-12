@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-11-08 14:27:35
- * @LastEditTime: 2022-11-12 20:16:29
+ * @LastEditTime: 2022-11-12 21:33:05
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -18,7 +18,7 @@
 			<view class="flex-1 ml-2">
 				<view class="d-flex align-center font-14">
 					<view class="slh">{{ data.title }}</view>
-					<view class="ml-3">￥{{ data.price }}</view>
+					<!-- <view class="ml-3">￥{{ data.price }}</view> -->
 				</view>
 				<view class="font-12 color-gray mt-3">买家：{{ data.buyer }}</view>
 				<view class="font-12 color-gray mt-1">ID：{{ data.id }}</view>

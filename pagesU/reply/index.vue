@@ -2,7 +2,7 @@
  * @Description: 
  * @Author: hannalai
  * @Date: 2022-11-12 16:50:32
- * @LastEditTime: 2022-11-12 20:41:36
+ * @LastEditTime: 2022-11-12 21:28:38
  * @LastEditors: Please set LastEditors
  * @Reference: 
 -->
@@ -31,7 +31,8 @@
             <view class="reply-evaluate_date_text">{{ data.date }}</view>
         </view>
         <view class="reply-evaluate_reply">
-            <u-textarea placeholder='回复：{{ data.name }}' count v-model="replyValue" @input="onInput()" maxlength="100"></u-textarea>
+            <!-- <u-textarea placeholder="回复：{{ data.name || '' }}" count v-model="replyValue" @input="onInput()" maxlength="100"></u-textarea> -->
+            <u-textarea placeholder="回复：" count v-model="replyValue" @input="onInput()" maxlength="100"></u-textarea>
         </view>
         <u-button type="primary" class="match-button" @click.stop="onButClick()" :disabled="disabled">发送</u-button>
     </view>
