@@ -182,23 +182,20 @@ export const cityOptions = [
 ]
 // 城市
 export const sameCityOptions = [{
-		value: 1,
+		value: 0,
 		label: '不限'
 	},
 	{
-		value: 2,
+		value: 1,
 		label: '同城'
 	},
 	{
-		value: 3,
+		value: 2,
 		label: '同省'
 	}
 ]
 // 学历选项
-export const educationOptions = [{
-		value: 1,
-		label: '其他'
-	},
+export const educationOptions = [
 	{
 		value: 2,
 		label: '大专'

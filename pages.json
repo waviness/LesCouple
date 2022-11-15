@@ -145,6 +145,13 @@
 				}
 			},
 			{
+				"path": "infor/show-edit",
+				"style": {
+					"navigationBarTitleText": "公开展示项",
+					"enablePullDownRefresh": false
+				}
+			},
+			{
 				"path": "settings/account",
 				"style": {
 					"navigationBarTitleText": "账号设置",

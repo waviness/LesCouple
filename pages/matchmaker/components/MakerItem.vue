@@ -8,13 +8,13 @@
 		<view class="flex-1 d-flex u-flex-column justify-space-between full-height">
 			<view class="font-14 clamp-2">{{ data.name }}</view>
 			<view>
-				<view class="font-12 color-gray">成功数：{{ data.successNum }}对</view>
-				<view class="font-12 color-gray mt-1">平均匹配天数：{{ data.averageDay }}天</view>
+				<view class="font-12 color-gray">成功数：{{ data.orderCount }}对</view>
+				<view class="font-12 color-gray mt-1">平均匹配天数：{{ data.passCount }}天</view>
 			</view>
 		</view>
 		<view class="d-flex u-flex-column justify-start">
-			<u-rate v-model="data.rate" activeColor="#f9ae3d" :gutter="2" readonly></u-rate>
-			<view class="font-15 text-center mt-2">{{ data.rate.toFixed(1) }}</view>
+			<u-rate v-model="data.grade" activeColor="#f9ae3d" :gutter="2" readonly></u-rate>
+			<view class="font-15 text-center mt-2">{{ data.grade.toFixed(1) }}</view>
 		</view>
 	</view>
 </template>

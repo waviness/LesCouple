@@ -6,9 +6,9 @@
 			</view>
 		</u-navbar>
 		<u-swiper :list="bannerList" :radius="0" indicator indicatorMode="line" circular></u-swiper>
-		<u-tabs :list="tabOptions" lineColor="#f9ae3d" :scrollable="false" @click="tabClick">
-		</u-tabs>
-		<view v-if="status === 'loading' || userList.length">
+		<!-- <u-tabs :list="tabOptions" lineColor="#f9ae3d" :scrollable="false" @click="tabClick">
+		</u-tabs> -->
+		<view v-if="status === 'loading' || userList.length" class="mt-2">
 			<les-user v-for="(item, index) in userList" :key="index" :data="item" @click="toUserDetail(item)" />
 			<u-loadmore :status="status" />
 		</view>

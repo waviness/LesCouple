@@ -44,68 +44,78 @@
 			}
 		},
 		methods: {
-			getJudgeList() {
-				setTimeout(() => {
-					this.judgeList = this.judgeList.concat([{
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						name: '要慢慢',
-						time: '2022-11-09',
-						content: '非常好',
-						rate: 4.0,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}])
-					this.totalPage = 3
-					if (this.page > 3) {
-						this.status = 'nomore'
+			async getJudgeList() {
+				const res = await this.$api.getEvaluationList({
+					pageNo: this.page,
+					pageSize: this.pageSize,
+					data: {
+						userId: uni.getStorageSync('userInfo').userId,
 					}
-				}, 500)
+				})
+				this.judgeList = res.evaluationInfo
+				this.totalPage = 1
+				this.status = 'nomore'
+				// setTimeout(() => {
+				// 	this.judgeList = this.judgeList.concat([{
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		name: '要慢慢',
+				// 		time: '2022-11-09',
+				// 		content: '非常好',
+				// 		rate: 4.0,
+				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}])
+				// 	this.totalPage = 3
+				// 	if (this.page > 3) {
+				// 		this.status = 'nomore'
+				// 	}
+				// }, 500)
 			},
 		}
 	}

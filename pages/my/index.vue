@@ -3,13 +3,13 @@
 		<user-card :data="userInfo" />
 		<view class="d-flex justify-space-around mt-4 mb-5">
 			<tab-item icon="quanbudingdan" label="全部订单" @click="toOrderList(0)" />
-			<tab-item icon="daifukuan" label="待付款" @click="toOrderList(1)" />
+			<!-- <tab-item icon="daifukuan" label="待付款" @click="toOrderList(1)" /> -->
 			<tab-item icon="daichulihetong" label="待匹配" @click="toOrderList(2)" />
 			<tab-item icon="yiwancheng" label="已完成" @click="toOrderList(3)" />
 		</view>
 		<u-cell-group>
-			<u-cell icon="fingerprint" title="实名认证" url="/pages/my/auth" isLink></u-cell>
 			<u-cell icon="account" title="我的信息" url="/pagesU/infor/index" isLink></u-cell>
+			<u-cell icon="fingerprint" title="实名认证" url="/pages/my/auth" isLink></u-cell>
 			<u-cell icon="eye" title="看过" url="/pages/my/looked" isLink></u-cell>
 			<u-cell icon="heart" title="关注" url="/pages/my/follow" isLink></u-cell>
 			<u-cell icon="setting" title="设置" url="/pagesU/settings/index" isLink></u-cell>

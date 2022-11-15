@@ -67,13 +67,18 @@
 				this.makerList = []
 				this.getMakerList()
 			},
-			getMakerList() {
-				const res = this.$api.getMatchmakerList({
+			async getMakerList() {
+				const res = await this.$api.getMatchmakerList({
 					pageNo: this.page,
 					pageSize: this.pageSize,
-					queryType: 1
+					data: {
+						userId: uni.getStorageSync('userInfo').userId,
+						queryType: 'TIME'
+					}
 				})
-				this.makerList = res.data
+				this.makerList = res.matchmakerInfo
+				this.totalPage = 1
+				this.status = 'nomore'
 				// setTimeout(() => {
 				// 	this.makerList = this.makerList.concat([{
 				// 		name: '红娘小公子',

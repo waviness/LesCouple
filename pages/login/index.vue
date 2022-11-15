@@ -29,7 +29,7 @@
 		},
 		onLoad() {
 			const userInfo = uni.getStorageSync('userInfo')
-			if (userInfo?.id) {
+			if (userInfo?.userId) {
 				uni.switchTab({
 					url: '/pages/home/index'
 				})
@@ -79,24 +79,32 @@
 					// rawData,
 					// sigcharactersl
 				}
-				this.$api.userLogin(obj).then(res => {
+				// this.$api.userLogin(obj).then(res => {
 					this.$toast('登录成功')
-					if (res.data.registFlag) { // 已注册
-						uni.setStorageSync('userInfo', res.data.userInfo)
+					uni.setStorageSync('userInfo', {
+						name: '土方十四郎',
+						userId: 232,
+						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						isAuth: 1,
+						hasMaker: 0,
+						isMaker: 1,
+					})
+					// if (res.data.registFlag) { // 已注册
+					// 	uni.setStorageSync('userInfo', res.data.userInfo)
 						uni.switchTab({
 							url: '/pages/home/index'
 						})
-					} else {
-						this.registerShow = true
-					}
-				}).catch(err => {
-					this.wxLogin()
-				})
+				// 	} else {
+				// 		this.registerShow = true
+				// 	}
+				// }).catch(err => {
+				// 	this.wxLogin()
+				// })
 			},
 			async onRegister(info) {
-				info.openId = 't2323232213'
-				info.wechatNumber = 'testestest'
-				info.imgId = 'testestest111'
+				info.openId = 't23232322131111'
+				info.wechatNumber = 'testestest111'
+				// info.imgId = 'testestest111'
 				info.hobby = String(info.hobby)
 				info.entertainment = String(info.entertainment)
 				info.city = String(info.city)
@@ -105,7 +113,7 @@
 				info.intentAttribute = String(info.intentAttribute)
 				const res = await this.$api.userRegister(info)
 				// 提交注册 并 完成登录 跳转首页
-				uni.setStorageSync('userInfo', res.userInfo)
+				uni.setStorageSync('userInfo', res.data)
 				uni.switchTab({
 					url: '/pages/home/index'
 				})

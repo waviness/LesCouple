@@ -70,15 +70,18 @@
 			return {
 				typeOptions,
 				sameCityOptions,
-				educationOptions,
+				educationOptions: [{
+					value: 0,
+					label: '不限'
+				}, ...educationOptions],
 				charactersOptions,
 				hobbyOptions,
 				entertainmentOptions,
 				objInfo: {
 					intentAttribute: [],
 					ageLevel: [22, 30],
-					sameCity: '',
-					education: '',
+					sameCity: [],
+					education: [],
 					characters: [],
 					hobby: [],
 					entertainment: [],

@@ -28,11 +28,11 @@
 			return {
 				tabOptions: [{
 					name: '全部',
-				}, {
-					name: '待付款',
-                    badge: {
-                        value: 5,
-                    }
+				// }, {
+				// 	name: '待付款',
+    //                 badge: {
+    //                     value: 5,
+    //                 }
 				}, {
 					name: '待匹配',
                     badge: {
@@ -80,7 +80,7 @@
 						date: '2022-09-27 09:49',
 						price: 22,
 						rate: 3.0,
-						status: 1, // 1待付款 2待匹配 3待评价 4已完成
+						status: 2, // 1待付款 2待匹配 3待评价 4已完成
 						headerImg: 'https://i.keaimeitu.com/uploads/allimg/200504/110822693.jpg'
 					}, {
 						name: '红娘小公子22',

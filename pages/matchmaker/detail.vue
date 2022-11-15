@@ -1,7 +1,10 @@
 <template>
-	<view class="bg-white pb-100">
+	<view class="pb-100">
 		<u-swiper :list="bannerList" :radius="0" indicator indicatorMode="dot" circular>
 		</u-swiper>
+		<view class="p-4 bg-white font-14 color-gray-2">
+			店铺描述：{{ desc }}
+		</view>
 		<view v-if="list.length" class="">
 			<view class="d-flex flex-wrap p-5">
 				<GoodsItem v-for="(item, index) in list" :key="index" class="mb-3 goods" :data="item"
@@ -12,11 +15,13 @@
 		<view class="px-3">
 			<u-divider text="分割线" :dot="true"></u-divider>
 		</view>
-		<view class="d-flex justify-space-between p-3">
-			<view>用户评价</view>
-			<view @click="toMoreJudge">更多评价（{{ judgeTotal }}）</view>
+		<view class="judge">
+			<view class="d-flex justify-space-between p-3">
+				<view>用户评价</view>
+				<view @click="toMoreJudge">更多评价（{{ judgeTotal }}）</view>
+			</view>
+			<JudgeItem :data="judgeItem" />
 		</view>
-		<JudgeItem :data="judgeItem" />
 		<u-loading-page :loading="loading"></u-loading-page>
 	</view>
 </template>
@@ -41,6 +46,7 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper2.png',
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 				],
+				desc: '这是一段描述',
 				list: [],
 				judgeItem: {},
 				judgeTotal: 0,
@@ -123,5 +129,13 @@
 		&:nth-child(2n) {
 			margin-right: 0;
 		}
+	}
+
+	.judge {
+		width: 100%;
+		position: fixed;
+		bottom: 0;
+		background-color: #fff;
+		padding-bottom: 40rpx;
 	}
 </style>

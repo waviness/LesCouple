@@ -2,7 +2,6 @@ const baseUrl = 'https://www.lescouple.top:9090';
 
 function http(url, params, type, header) {
 	return new Promise((resolve, reject) => {
-		let role = uni.getStorageSync('role')
 		uni
 			.request({
 				url: baseUrl + url,
