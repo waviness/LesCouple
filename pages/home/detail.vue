@@ -1,60 +1,104 @@
 <template>
 	<view class="bg-white pb-100">
 		<les-user :data="detail" :avatarAuth="true" :showId="true" :autoplay="true" :otherShow="true" />
-		<view v-if="searchType === 1" class="mt-4 mx-4 d-flex">
-			<view v-for="(item, idx) in detail.hobbys" :key="idx" class="mr-4">
+		<view v-if="searchType === 1" class="mt-4 mx-4">
+			<!-- <view v-for="(item, idx) in detail.hobby" :key="idx" class="mr-4">
 				<u-tag :text="hobbyList[item]" :type="tagTypes[idx]"></u-tag>
+			</view> -->
+			<AppTitle :title="'基本信息'" />
+			<view v-if="detail.showEducation && detail.education" class="mt-2 color-gray-2 font-15">
+				学历：{{ detail.educationName }}</view>
+			<view v-if="detail.showJob && detail.job" class="mt-1 color-gray-2 font-15">职业：{{ detail.job }}</view>
+			<view v-if="detail.showHeight && detail.height" class="mt-1 color-gray-2 font-15">身高：{{ detail.heightName }}
 			</view>
+			<view v-if="detail.showHair && detail.hair" class="mt-1 color-gray-2 font-15">发长：{{ detail.hairName }}
+			</view>
+			<view v-if="detail.showConstellation && detail.constellation" class="mt-1 color-gray-2 font-15">
+				星座：{{ detail.constellation }}</view>
+			<view v-if="detail.showPet && (detail.pet === 1 || detail.pet === 0)" class="mt-1 color-gray-2 font-15">宠物：{{ detail.pet === 1 ? '有' : detail.pet === 0 ? '无' : '' }}
+			</view>
+			<view v-if="detail.showSituation && detail.situation" class="mt-1 color-gray-2 font-15">
+				出柜情况：{{ detail.situationName }}</view>
+			<view v-if="detail.showChild && (detail.child === 1 || detail.child === 0)" class="mt-1 color-gray-2 font-15">
+				育儿计划：{{ detail.child === 1 ? '有' : detail.child === 0 ? '无' : '' }}</view>
+			<view v-if="detail.showState && detail.state" class="mt-1 color-gray-2 font-15">感情状态：{{ detail.stateName }}
+			</view>
+			<view v-if="detail.showCharacters && detail.characters" class="mt-1 color-gray-2 font-15">
+				性格标签：{{ detail.charactersText }}</view>
+			<view v-if="detail.showHobby && detail.hobby" class="mt-1 color-gray-2 font-15">爱好标签：{{ detail.hobbyText }}
+			</view>
+			<view v-if="detail.showEntertainment && detail.entertainment" class="mt-1 color-gray-2 font-15">
+				娱乐标签：{{ detail.entertainmentText }}</view>
 		</view>
 		<view v-else class="px-4">
 			<view class="mb-3">{{ detail.hasMaker ? `红娘微信：${detail.makerWechat}` : `她的微信：${detail.wechat}` }}</view>
 			<AppTitle :title="'基本信息'" />
 			<u-checkbox-group v-model="checkeds" placement="column">
-				<view class="pt-3">
-					<u-checkbox name="education" shape="circle" size="20" labelSize="16" :label="`学历：${detail.educationName}`">
+				<view v-if="detail.education" class="pt-3">
+					<u-checkbox name="education" shape="circle" size="20" labelSize="16"
+						:label="`学历：${detail.educationName}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
+				<view v-if="detail.job" class="pt-3">
 					<u-checkbox name="job" shape="circle" size="20" labelSize="16" :label="`职业：${detail.job}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="height" shape="circle" size="20" labelSize="16" :label="`身高：${detail.heightName}`">
+				<view v-if="detail.height" class="pt-3">
+					<u-checkbox name="height" shape="circle" size="20" labelSize="16"
+						:label="`身高：${detail.heightName}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
+				<view v-if="detail.hair" class="pt-3">
 					<u-checkbox name="hair" shape="circle" size="20" labelSize="16" :label="`发长：${detail.hairName}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="constellation" shape="circle" size="20" labelSize="16" :label="`星座：${detail.constellation}`">
+				<view v-if="detail.constellation" class="pt-3">
+					<u-checkbox name="constellation" shape="circle" size="20" labelSize="16"
+						:label="`星座：${detail.constellation}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="pet" shape="circle" size="20" labelSize="16" :label="`宠物：${detail.pet ? '有' : '无'}`">
+				<view v-if="detail.pet === 0 || detail.pet === 1" class="pt-3">
+					<u-checkbox name="pet" shape="circle" size="20" labelSize="16"
+						:label="`宠物：${detail.pet === 1 ? '有' : detail.pet === 0 ? '无' : ''}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="house" shape="circle" size="20" labelSize="16" :label="`房产：${detail.house ? '有' : '无'}`">
+				<view class="d-flex mt-2 ml-6 color-gray-2 font-16">房产：{{ detail.house === 1 ? '有' : detail.house === 0 ? '无' : '' }}</view>
+				<view class="d-flex mt-1 ml-6 color-gray-2 font-16">年收入：{{ detail.incomeName }}</view>
+				<view v-if="detail.situation" class="pt-3">
+					<u-checkbox name="situation" shape="circle" size="20" labelSize="16"
+						:label="`出柜情况：${detail.situationName}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="income" shape="circle" size="20" labelSize="16" :label="`年收入：${detail.incomeName}`">
+				<view v-if="detail.child === 0 || detail.child === 1" class="pt-3">
+					<u-checkbox name="child" shape="circle" size="20" labelSize="16"
+						:label="`育儿计划：${detail.child === 1 ? '有' : detail.child === 0 ? '无' : ''}`">
 					</u-checkbox>
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="situation" shape="circle" size="20" labelSize="16" :label="`出柜情况：${detail.situationName}`">
+				<view v-if="detail.state" class="pt-3 d-flex align-center">
+					<u-checkbox name="state" shape="circle" size="20" labelSize="16" disabled>
 					</u-checkbox>
+					感情状态：{{ detail.stateName }}
 				</view>
-				<view class="pt-3">
-					<u-checkbox name="child" shape="circle" size="20" labelSize="16" :label="`育儿计划：${detail.child ? '有' : '无'}`">
+				<view v-if="detail.characters.length" class="pt-3 d-flex align-center">
+					<u-checkbox name="characters" shape="circle" size="20" labelSize="16" disabled>
 					</u-checkbox>
+					性格标签：{{ detail.charactersText }}
 				</view>
-				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">感情状态：{{ detail.stateName }}</view>
+				<view v-if="detail.hobby.length" class="pt-3 d-flex align-center">
+					<u-checkbox name="hobby" shape="circle" size="20" labelSize="16" disabled>
+					</u-checkbox>
+					爱好标签：{{ detail.hobbyText }}
+				</view>
+				<view v-if="detail.entertainment.length" class="pt-3 d-flex align-center">
+					<u-checkbox name="entertainment" shape="circle" size="20" labelSize="16" disabled>
+					</u-checkbox>
+					娱乐标签：{{ detail.entertainmentText }}
+				</view>
+				<!-- <view class="d-flex mt-1 ml-6 color-gray-2 font-15">感情状态：{{ detail.stateName }}</view>
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">性格标签：{{ detail.charactersText }}</view>
 				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">爱好标签：{{ detail.hobbyText }}</view>
-				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">娱乐标签：{{ detail.entertainmentText }}</view>
-				<view class="pt-3">
+				<view class="d-flex mt-1 ml-6 color-gray-2 font-15">娱乐标签：{{ detail.entertainmentText }}</view> -->
+				<view v-if="detail.imgList.length" class="pt-3">
 					<u-checkbox name="photo" shape="circle" size="20" labelSize="16" label="照片">
 					</u-checkbox>
 				</view>
@@ -63,11 +107,11 @@
 		<view class="p-4">
 			<!-- <view class="font-18 font-bold text-center">找对象需求</view> -->
 			<AppTitle title="找对象需求" />
-			<view class="mt-2 color-gray-2 font-15">属性：{{ detail.typeText }}</view>
-			<view class="mt-1 color-gray-2 font-15">年龄范围：{{ detail.toAgeRange[0] }} ~ {{ detail.toAgeRange[1] }}</view>
-			<view class="mt-1 color-gray-2 font-15">恋爱距离：{{ detail.sameCityName }}</view>
-			<view class="mt-1 color-gray-2 font-15">学历要求：{{ detail.toEducationText }}</view>
-			<view class="mt-1 color-gray-2 font-15">其他要求：{{ detail.other }}</view>
+			<view v-if="detail.intentAttribute.length" class="mt-2 color-gray-2 font-15">属性：{{ detail.typeText }}</view>
+			<view v-if="detail.toAgeRange.length" class="mt-1 color-gray-2 font-15">年龄范围：{{ detail.toAgeRange[0] }} ~ {{ detail.toAgeRange[1] }}</view>
+			<view v-if="detail.sameCity" class="mt-1 color-gray-2 font-15">恋爱距离：{{ detail.sameCityName }}</view>
+			<view v-if="detail.toEducation.length" class="mt-1 color-gray-2 font-15">学历要求：{{ detail.toEducationText }}</view>
+			<view v-if="detail.other" class="mt-1 color-gray-2 font-15">其他要求：{{ detail.other }}</view>
 		</view>
 		<view class="mx-3">
 			<u-line></u-line>
@@ -142,8 +186,8 @@
 				confirmText: '确认',
 				modalType: 1,
 				showPoster: false,
-				checkeds: ['education', 'job', 'height', 'hair', 'constellation', 'pet', 'house', 'income', 'situation',
-					'child', 'photo'
+				checkeds: ['education', 'job', 'height', 'hair', 'constellation', 'pet', 'situation',
+					'child', 'photo', 'state', 'characters', 'hobby', 'entertainment'
 				]
 			}
 		},
@@ -199,7 +243,7 @@
 						city: '北京市',
 						hair: 2,
 						constellation: '摩羯座',
-						hobbys: [1, 3, 5, 6],
+						hobby: [1, 3, 5, 6],
 						toAgeRange: [20, 30],
 						other: '不抽烟，不喝酒',
 						sameCity: 1,
@@ -212,15 +256,30 @@
 						makerWechat: 'SGHCCC',
 						wechat: 'asdffz',
 						pet: 1,
-						child: 0,
+						child: '',
 						house: 1,
 						income: 3,
 						situation: 2,
 						state: 1,
 						characters: [1, 3],
 						entertainment: [1, 3, 5, 6],
+						showEducation: true,
+						showJob: true,
+						showHeight: true,
+						showHair: true,
+						showConstellation: true,
+						showPet: true,
+						showSituation: true,
+						showChild: true,
+						showState: true,
+						showCharacters: true,
+						showHobby: true,
+						showEntertainment: true,
+						showPhoto: true,
+						showOnIndex: true,
 					}
-					this.detail.educationName = findNameInList(this.detail.education, educationOptions)
+					this.detail.educationName = this.detail.education ? findNameInList(this.detail.education,
+						educationOptions) : ''
 					this.detail.hairName = findNameInList(this.detail.hair, hairOptions)
 					this.detail.heightName = findNameInList(this.detail.height, heightOptions)
 					this.detail.incomeName = findNameInList(this.detail.income, incomeOptions)
@@ -230,7 +289,7 @@
 					this.detail.charactersText = this.detail.characters.map(item => {
 						return findNameInList(item, charactersOptions)
 					})
-					this.detail.hobbyText = this.detail.hobbys.map(item => {
+					this.detail.hobbyText = this.detail.hobby.map(item => {
 						return findNameInList(item, hobbyOptions)
 					})
 					this.detail.entertainmentText = this.detail.entertainment.map(item => {

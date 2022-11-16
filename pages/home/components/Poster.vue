@@ -57,8 +57,9 @@
 			this.canvasW = this.SystemInfo.windowWidth - 30 // 画布宽度
 			// this.canvasH = this.SystemInfo.windowHeight - 200 //画布高度
 			let num = 0
+			const nots = ['photo', 'income', 'house']
 			Object.keys(this.checkedObj).forEach(item => {
-				if (this.checkedObj[item] && item !== 'photo') {
+				if (this.checkedObj[item] && !nots.includes(item)) {
 					num++
 				}
 			})
@@ -136,25 +137,25 @@
 					let current = 0
 					if (this.checkedObj.child) {
 						current++
-						ctx.fillText(`育儿计划：${this.detail.child ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
+						ctx.fillText(`育儿计划：${this.detail.child === 1 ? '有' : this.detail.child === 0 ? '无' : ''}`, 16, this.canvasH - 80 - 20 *
 							current)
 					}
 					if (this.checkedObj.situation) {
 						current++
 						ctx.fillText(`出柜情况：${this.detail.situationName}`, 16, this.canvasH - 80 - 20 * current)
 					}
-					if (this.checkedObj.income) {
-						current++
-						ctx.fillText(`年收入：${this.detail.incomeName}`, 16, this.canvasH - 80 - 20 * current)
-					}
-					if (this.checkedObj.house) {
-						current++
-						ctx.fillText(`房产：${this.detail.house ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
-							current)
-					}
+					// if (this.checkedObj.income) {
+					// 	current++
+					// 	ctx.fillText(`年收入：${this.detail.incomeName}`, 16, this.canvasH - 80 - 20 * current)
+					// }
+					// if (this.checkedObj.house) {
+					// 	current++
+					// 	ctx.fillText(`房产：${this.detail.house ? '有' : '无'}`, 16, this.canvasH - 80 - 20 *
+					// 		current)
+					// }
 					if (this.checkedObj.pet) {
 						current++
-						ctx.fillText(`宠物：${this.detail.pet ? '有' : '无'}`, 16, this.canvasH - 80 - 20 * current)
+						ctx.fillText(`宠物：${this.detail.pet === 1 ? '有' : this.detail.pet === 0 ? '无' : ''}`, 16, this.canvasH - 80 - 20 * current)
 					}
 					if (this.checkedObj.constellation) {
 						current++
@@ -269,7 +270,6 @@
 					uni.authorize({
 						scope: 'scope.writePhotosAlbum',
 						success() {
-							console.log('as d----', this.hbUrl)
 							this.saveToAlbum()
 						},
 						fail() {
@@ -308,7 +308,6 @@
 			},
 			//分享相片
 			sharePicture() {
-				console.log('share---', this.hbUrl)
 				uni.share({
 					provider: 'weixin',
 					imageUrl: this.hbUrl[0],

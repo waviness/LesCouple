@@ -1,7 +1,7 @@
 <template>
 	<view class="bg-white mb-2 p-3" @click="onClick">
 		<user-item :data="data" :avatarAuth="avatarAuth" :showId="showId" />
-		<view class="mt-3">
+		<view v-if="(isMaker || data.showPhoto) && data.imgList.length" class="mt-3">
 			<u-swiper :list="data.imgList" :radius="0" :height="200" :autoplay="autoplay" indicator indicatorMode="dot"
 				circular></u-swiper>
 		</view>
@@ -25,6 +25,11 @@
 				type: Boolean,
 				default: false
 			}, // 照片是否自动轮播
+		},
+		data() {
+			return {
+				isMaker: uni.getStorageSync('userInfo').isMaker
+			}
 		},
 		methods: {
 			onClick() {

@@ -6,9 +6,9 @@
 			<u-button v-if="canIUseGetUserProfile" @click="getUserProfile">微信登录</u-button>
 			<u-button v-else open-type="getUserInfo" @getuserinfo="getWxUserInfo">微信登录</u-button>
 		</view>
-		<view class="mt-3 text-underline color-primary font-14" @click="registerShow = true">
+		<!-- <view class="mt-3 text-underline color-primary font-14" @click="registerShow = true">
 			立即注册
-		</view>
+		</view> -->
 		<Register v-if="registerShow" @submit="onRegister" @close="registerShow = false" />
 	</view>
 </template>
@@ -94,9 +94,9 @@
 						uni.switchTab({
 							url: '/pages/home/index'
 						})
-				// 	} else {
-				// 		this.registerShow = true
-				// 	}
+					// } else {
+					// 	this.registerShow = true
+					// }
 				// }).catch(err => {
 				// 	this.wxLogin()
 				// })

@@ -213,9 +213,9 @@
 					],
 				}
 				this.value1 = Number(new Date(this.userInfo.bornTime))
-				this.userInfo.pet = this.userInfo.pet ? '有' : '无'
-				this.userInfo.house = this.userInfo.house ? '有' : '无'
-				this.userInfo.child = this.userInfo.child ? '有' : '无'
+				this.userInfo.pet = this.userInfo.pet === 1 ? '有' : this.userInfo.pet === 0 ? '无' : ''
+				this.userInfo.house = this.userInfo.house === 1 ? '有' : this.userInfo.house === 0 ? '无' : ''
+				this.userInfo.child = this.userInfo.child === 1 ? '有' : this.userInfo.child === 0 ? '无' : ''
 				this.userInfo.typeName = findNameInList(this.userInfo.type, typeOptions)
 				this.userInfo.educationName = findNameInList(this.userInfo.education, educationOptions)
 				this.userInfo.heightName = findNameInList(this.userInfo.height, heightOptions)
@@ -411,9 +411,9 @@
 					situation,
 					imgList,
 				} = this.userInfo
-				const pet = this.userInfo.pet === '有' ? 1 : 0
-				const house = this.userInfo.pet === '有' ? 1 : 0
-				const child = this.userInfo.pet === '有' ? 1 : 0
+				const pet = this.userInfo.pet === '有' ? 1 : this.userInfo.pet === '无' ? 0 : ''
+				const house = this.userInfo.house === '有' ? 1 : this.userInfo.house === '无' ? 0 : ''
+				const child = this.userInfo.child === '有' ? 1 : this.userInfo.child === '无' ? 0 : ''
 				const params = {
 					type,
 					city,

@@ -41,8 +41,12 @@ export const toast = (data) => {
 
 // 根据value找名称
 export const findNameInList = (value, list) => {
-	const target = list.find(item => {
-		return item.value === value
-	})
-	return target?.label
+	if (value === 0) {
+		return '不限'
+	} else {
+		const target = list.find(item => {
+			return item.value === value
+		})
+		return target?.label
+	}
 }

@@ -16,9 +16,9 @@
 					<view class="ml-4">{{ objInfo.ageLevel[1] }}</view>
 				</view>
 				<view class="mt-1 mb-3">
-					<FormTitle title="恋爱距离" description="多选" />
+					<FormTitle title="恋爱距离" />
 				</view>
-				<AppCheckBox :value.sync="objInfo.sameCity" :options="sameCityOptions" />
+				<AppCheckBox :value.sync="objInfo.sameCity" :options="sameCityOptions" appType="radio" />
 				<view class="mt-1 mb-3">
 					<FormTitle title="学历要求" description="多选" />
 				</view>

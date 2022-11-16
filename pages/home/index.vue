@@ -95,6 +95,7 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+						showPhoto: true,
 					}, {
 						id: '12342356',
 						name: '小公子22',
@@ -114,6 +115,7 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+						showPhoto: true,
 					}, {
 						id: '12342356',
 						name: '小公子33',
@@ -132,6 +134,7 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+						showPhoto: true,
 					}, {
 						id: '12342356',
 						name: '小公子22',
@@ -150,6 +153,7 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+						showPhoto: true,
 					}, {
 						id: '12342356',
 						name: '小公子22',
@@ -166,6 +170,7 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+						showPhoto: true,
 					}, {
 						id: '12342356',
 						name: '小公子33',
@@ -182,6 +187,7 @@
 							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
 						],
+						showPhoto: true,
 					}])
 					this.totalPage = 2
 					if (this.page > 2) {

@@ -1,5 +1,5 @@
 <template>
-	<view class="maker-item bg-white d-flex mb-2 p-3" @click="onClick">
+	<view class="maker-item bg-white d-flex mt-2 p-3" @click="onClick">
 		<view
 			:class="['maker-item__idx text-center color-white align-self-center', index % 4 === 1 ? 'bg-rank-1' : index % 4 === 2 ? 'bg-rank-2' : index % 4 === 3 ? 'bg-rank-3' : 'bg-rank-4']">
 			{{ index + 1 }}

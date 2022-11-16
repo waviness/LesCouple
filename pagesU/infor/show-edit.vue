@@ -1,73 +1,80 @@
 <template>
-	<view class="eidt-user-info pb-100">
-		<view class="edit-user-info-form bg-white">
+	<view class="pb-100">
+		<view class="bg-white">
 			<u-cell-group>
 				<u-cell title="学历">
 					<view slot="value">
-						<u-switch v-model="userInfo.showEducation"></u-switch>
+						<u-switch v-model="userShowObj.showEducation"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="职业">
 					<view slot="value">
-						<u-switch v-model="userInfo.showJob"></u-switch>
+						<u-switch v-model="userShowObj.showJob"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="身高">
 					<view slot="value">
-						<u-switch v-model="userInfo.showHeight"></u-switch>
+						<u-switch v-model="userShowObj.showHeight"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="发长">
 					<view slot="value">
-						<u-switch v-model="userInfo.showHair"></u-switch>
+						<u-switch v-model="userShowObj.showHair"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="星座">
 					<view slot="value">
-						<u-switch v-model="userInfo.showConstellation"></u-switch>
+						<u-switch v-model="userShowObj.showConstellation"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="宠物">
 					<view slot="value">
-						<u-switch v-model="userInfo.showPet"></u-switch>
+						<u-switch v-model="userShowObj.showPet"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="出柜情况">
 					<view slot="value">
-						<u-switch v-model="userInfo.showSituation"></u-switch>
+						<u-switch v-model="userShowObj.showSituation"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="育儿计划">
 					<view slot="value">
-						<u-switch v-model="userInfo.showChild"></u-switch>
+						<u-switch v-model="userShowObj.showChild"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="感情状态">
 					<view slot="value">
-						<u-switch v-model="userInfo.showState"></u-switch>
+						<u-switch v-model="userShowObj.showState"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="性格标签">
 					<view slot="value">
-						<u-switch v-model="userInfo.showCharacters"></u-switch>
+						<u-switch v-model="userShowObj.showCharacters"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="爱好标签">
 					<view slot="value">
-						<u-switch v-model="userInfo.showHobby"></u-switch>
+						<u-switch v-model="userShowObj.showHobby"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="娱乐标签">
 					<view slot="value">
-						<u-switch v-model="userInfo.showEntertainment"></u-switch>
+						<u-switch v-model="userShowObj.showEntertainment"></u-switch>
 					</view>
 				</u-cell>
 				<u-cell title="照片">
 					<view slot="value">
-						<u-switch v-model="userInfo.showPhoto"></u-switch>
+						<u-switch v-model="userShowObj.showPhoto"></u-switch>
 					</view>
 				</u-cell>
 			</u-cell-group>
+		</view>
+		<view class="mt-2 bg-white">
+			<u-cell title="愿意上主页推荐">
+				<view slot="value">
+					<u-switch v-model="userShowObj.showOnIndex"></u-switch>
+				</view>
+			</u-cell>
 		</view>
 		<view class="m-8">
 			<u-button type="primary" text="保存" shape="circle" @click="save"></u-button>
@@ -84,7 +91,7 @@
 		name: 'PersonalShowEdit',
 		data() {
 			return {
-				userInfo: {
+				userShowObj: {
 					showEducation: true,
 					showJob: true,
 					showHeight: true,
@@ -98,6 +105,7 @@
 					showHobby: true,
 					showEntertainment: true,
 					showPhoto: true,
+					showOnIndex: true,
 				},
 			}
 		},
@@ -106,7 +114,7 @@
 		},
 		methods: {
 			getDetail() {
-				this.userInfo = {
+				this.userShowObj = {
 					showEducation: true,
 					showJob: true,
 					showHeight: true,
@@ -120,11 +128,12 @@
 					showHobby: true,
 					showEntertainment: true,
 					showPhoto: true,
+					showOnIndex: true,
 				}
 			},
 			// 提交按钮
 			save() {
-				console.log(this.userInfo)
+				console.log(this.userShowObj)
 				const {
 					showEducation,
 					showJob,
@@ -139,36 +148,13 @@
 					showHobby,
 					showEntertainment,
 					showPhoto,
-				} = this.userInfo
-				const params = {
-					showEducation,
-					showJob,
-					showHeight,
-					showHair,
-					showConstellation,
-					showPet,
-					showSituation,
-					showChild,
-					showState,
-					showCharacters,
-					showHobby,
-					showEntertainment,
-					showPhoto,
-				}
-				console.log(params)
+					showOnIndex
+				} = this.userShowObj
+				uni.setStorageSync('userShowObj', this.userShowObj)
 				this.$toast('保存成功')
 			}
 		},
 	}
 </script>
 
-<style lang="scss">
-	.eidt-user-info {
-		display: flex;
-		flex-direction: column;
-
-		.edit-user-info-form {
-			padding: 0px 30rpx;
-		}
-	}
-</style>
+<style lang="scss"></style>
