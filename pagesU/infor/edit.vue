@@ -28,7 +28,8 @@
 						color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showJob" @cancel="showJob = false" :columns="jobColumns" keyName="label" @confirm="confirmJob">
+				<u-picker :show="showJob" @cancel="showJob = false" :columns="jobColumns" keyName="label"
+					@confirm="confirmJob">
 				</u-picker>
 				<u-form-item prop="userInfo.education" label="学历" borderBottom @click="showEducation = true">
 					<u-input v-model="userInfo.educationName" disabled placeholder="请选择" disabledColor="transparent"
@@ -49,14 +50,16 @@
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showState" @cancel="showState = false" :columns="stateColumns" keyName="label" @confirm="confirmState">
+				<u-picker :show="showState" @cancel="showState = false" :columns="stateColumns" keyName="label"
+					@confirm="confirmState">
 				</u-picker>
 				<u-form-item prop="userInfo.hair" label="发长" borderBottom @click="showHair = true">
 					<u-input v-model="userInfo.hairName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showHair" @cancel="showHair = false" :columns="hairColumns" keyName="label" @confirm="confirmHair">
+				<u-picker :show="showHair" @cancel="showHair = false" :columns="hairColumns" keyName="label"
+					@confirm="confirmHair">
 				</u-picker>
 				<u-form-item prop="userInfo.pet" label="宠物" borderBottom @click="showPet = true">
 					<u-input v-model="userInfo.pet" disabled placeholder="请选择" disabledColor="transparent" border="none"
@@ -65,12 +68,12 @@
 				</u-form-item>
 				<u-picker :show="showPet" @cancel="showPet = false" :columns="petColumns" @confirm="confirmPet">
 				</u-picker>
-				<u-form-item prop="userInfo.house" label="房产" borderBottom @click="showHouse = true">
-					<u-input v-model="userInfo.house" disabled placeholder="请选择" disabledColor="transparent"
+				<u-form-item prop="userInfo.housing" label="房产" borderBottom @click="showHouse = true">
+					<u-input v-model="userInfo.housing" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showHouse" @cancel="showHouse = false" :columns="houseColumns" @confirm="confirmHouse">
+				<u-picker :show="showHouse" @cancel="showHouse = false" :columns="housingColumns" @confirm="confirmHouse">
 				</u-picker>
 				<u-form-item prop="userInfo.income" label="收入" borderBottom @click="showIncome = true">
 					<u-input v-model="userInfo.incomeName" disabled placeholder="请选择" disabledColor="transparent"
@@ -168,7 +171,7 @@
 				petColumns: [
 					['有', '无']
 				],
-				houseColumns: [
+				housingColumns: [
 					['有', '无']
 				],
 				childColumns: [
@@ -185,19 +188,18 @@
 			this.getDetail()
 		},
 		methods: {
-			getDetail() {
+			async getDetail() {
+				const res = await this.$api.getMyUserInfo({
+					userId: uni.getStorageSync('userInfo').userId,
+				})
+				this.userInfo = res
 				this.userInfo = {
 					type: 1,
-					city: ['浙江省', '杭州市'],
-					bornTime: '1999-11-26',
 					job: '其他|XXX',
 					education: 3,
-					height: 3,
 					state: 1,
 					hair: 1,
 					pet: 1,
-					house: 1,
-					income: 2,
 					constellation: '摩羯座',
 					situation: 2,
 					child: 0,
@@ -214,7 +216,7 @@
 				}
 				this.value1 = Number(new Date(this.userInfo.bornTime))
 				this.userInfo.pet = this.userInfo.pet === 1 ? '有' : this.userInfo.pet === 0 ? '无' : ''
-				this.userInfo.house = this.userInfo.house === 1 ? '有' : this.userInfo.house === 0 ? '无' : ''
+				this.userInfo.housing = this.userInfo.housing === 1 ? '有' : this.userInfo.housing === 0 ? '无' : ''
 				this.userInfo.child = this.userInfo.child === 1 ? '有' : this.userInfo.child === 0 ? '无' : ''
 				this.userInfo.typeName = findNameInList(this.userInfo.type, typeOptions)
 				this.userInfo.educationName = findNameInList(this.userInfo.education, educationOptions)
@@ -310,7 +312,7 @@
 			// 房产确认
 			confirmHouse(e) {
 				this.showHouse = false
-				this.userInfo.house = e.value[0]
+				this.userInfo.housing = e.value[0]
 			},
 			// 收入确认
 			confirmIncome(e) {
@@ -412,7 +414,7 @@
 					imgList,
 				} = this.userInfo
 				const pet = this.userInfo.pet === '有' ? 1 : this.userInfo.pet === '无' ? 0 : ''
-				const house = this.userInfo.house === '有' ? 1 : this.userInfo.house === '无' ? 0 : ''
+				const housing = this.userInfo.housing === '有' ? 1 : this.userInfo.housing === '无' ? 0 : ''
 				const child = this.userInfo.child === '有' ? 1 : this.userInfo.child === '无' ? 0 : ''
 				const params = {
 					type,
@@ -428,7 +430,7 @@
 					situation,
 					imgList,
 					pet,
-					house,
+					housing,
 					child,
 				}
 				console.log(params)

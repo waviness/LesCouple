@@ -12,9 +12,6 @@
 			</view>
 		</view>
 		<app-empty v-else :marginTop="40" />
-		<view class="px-3">
-			<u-divider text="分割线" :dot="true"></u-divider>
-		</view>
 		<view class="judge">
 			<view class="d-flex justify-space-between p-3">
 				<view>用户评价</view>
@@ -27,12 +24,8 @@
 </template>
 
 <script>
-	import {
-		GoodsItem
-	} from './components/GoodsItem.vue'
-	import {
-		JudgeItem
-	} from './components/JudgeItem.vue'
+	import GoodsItem from './components/GoodsItem.vue'
+	import JudgeItem from './components/JudgeItem.vue'
 	export default {
 		name: 'MatchMakerDetail',
 		components: {
@@ -47,6 +40,10 @@
 					'https://cdn.uviewui.com/uview/swiper/swiper1.png',
 				],
 				desc: '这是一段描述',
+				page: 1,
+				pageSize: 20,
+				totalPage: 0,
+				status: 'loading',
 				list: [],
 				judgeItem: {},
 				judgeTotal: 0,
@@ -57,44 +54,66 @@
 			uni.setNavigationBarTitle({
 				title: option.name
 			})
-			this.getMakerList()
-			this.getJudgeList()
+			this.getGoodsList()
+			this.getJudgeInfo()
+		},
+		onReachBottom() {
+			if (this.page < this.totalPage) {
+				this.status = 'loading'
+				this.page++
+				this.getGoodsList()
+			} else {
+				this.status = 'nomore'
+			}
 		},
 		methods: {
-			getMakerList() {
-				this.loading = true
-				setTimeout(() => {
-					this.list = this.list.concat([{
-						title: '一对一匹配【标准版】',
-						saleNum: 123,
-						price: 22,
-						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						title: '一对一匹配【标准版】',
-						saleNum: 123,
-						price: 22,
-						headerImg: 'https://img2.baidu.com/it/u=390829681,3002818272&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						title: '一对一匹配【高级版】',
-						saleNum: 123,
-						price: 22,
-						headerImg: 'https://img2.baidu.com/it/u=390829681,3002818272&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						title: '一对一匹配【标准版】',
-						saleNum: 123,
-						price: 22,
-						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}, {
-						title: '一对一匹配【标准版】',
-						saleNum: 123,
-						price: 22,
-						headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-					}])
-				}, 500)
-				this.loading = false
+			async getGoodsList() {
+				const res = await this.$api.getProductList({
+					pageNo: this.page,
+					pageSize: this.pageSize,
+					data: {
+						userId: uni.getStorageSync('userInfo').userId,
+					}
+				})
+				this.makerList = res.productInfo
+				this.totalPage = 1
+				this.status = 'nomore'
+				// setTimeout(() => {
+				// 	this.list = this.list.concat([{
+				// 		title: '一对一匹配【标准版】',
+				// 		saleNum: 123,
+				// 		price: 22,
+				// 		headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		title: '一对一匹配【标准版】',
+				// 		saleNum: 123,
+				// 		price: 22,
+				// 		headerImg: 'https://img2.baidu.com/it/u=390829681,3002818272&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		title: '一对一匹配【高级版】',
+				// 		saleNum: 123,
+				// 		price: 22,
+				// 		headerImg: 'https://img2.baidu.com/it/u=390829681,3002818272&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		title: '一对一匹配【标准版】',
+				// 		saleNum: 123,
+				// 		price: 22,
+				// 		headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}, {
+				// 		title: '一对一匹配【标准版】',
+				// 		saleNum: 123,
+				// 		price: 22,
+				// 		headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 	}])
+				// }, 500)
+				// this.loading = false
 			},
-			getJudgeList() {
+			async getJudgeInfo() {
 				this.loading = true
+				const res = await this.$api.getPettyEvaluation({
+					userId: uni.getStorageSync('userInfo').userId
+				})
+				this.judgeItem = res.evaluation
 				this.judgeItem = {
 					name: '要慢慢',
 					time: '2022-11-09',
@@ -102,7 +121,7 @@
 					rate: 4.0,
 					headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
 				}
-				this.judgeTotal = 55
+				this.judgeTotal = res.count
 				this.loading = false
 			},
 			toGoodsDetail(data) {

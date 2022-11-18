@@ -90,11 +90,14 @@
 			}
 		},
 		onLoad() {
-			// this.getDetail()
+			this.getDetail()
 		},
 		methods: {
-			getDetail() {
-				const res = {
+			async getDetail() {
+				const res = await this.$api.getUserIntention({
+					userId: uni.getStorageSync('userInfo').userId,
+				})
+				const res2 = {
 					intentAttribute: [1],
 					ageLevel: [25, 40],
 					sameCity: 2,
@@ -104,7 +107,7 @@
 					entertainment: [1, 2],
 					other: '啊飒飒阿萨'
 				}
-				this.objInfo = Object.assign({}, res)
+				this.objInfo = Object.assign({}, res2)
 				this.$forceUpdate()
 			},
 			saveInfor() {
