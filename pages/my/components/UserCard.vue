@@ -1,6 +1,6 @@
 <template>
 	<view class="user-card">
-		<image class="user-card__bg" src="../../../static/background.png" />
+		<image class="user-card__bg" src="../../../static/images/background.png" />
 		<view class="user-card__header">
 			<image class="user-card__img" :src="data.headerImg" />
 			<view

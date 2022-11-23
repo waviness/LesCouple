@@ -13,6 +13,7 @@
 </script>
 
 <style lang="scss">
+@import './static/iconfont/iconfont.css';
 @import 'common.scss';
 
 page {

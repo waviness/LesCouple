@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<image class="develope" src="../../static/icon-404.png" mode="aspectFit"></image>
+		<image class="develope" src="../../static/images/icon-404.png" mode="aspectFit"></image>
 		<view class="develope-text">正在努力开发中…</view>
 		<!-- <u-cell-group>
 			<u-cell title="我的UID" value="132456"></u-cell>

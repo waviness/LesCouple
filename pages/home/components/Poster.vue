@@ -74,10 +74,10 @@
 			}
 
 			//logo的信息
-			this.logoImg = '/static/logo.png'
-			this.bgImg = '/static/background.png'
-			this.locImg = '/static/location.png'
-			this.authImg = this.detail.isAuth ? '/static/auth.png' : '/static/noauth.png'
+			this.logoImg = '/static/images/logo.png'
+			this.bgImg = '/static/images/background.png'
+			this.locImg = '/static/images/location.png'
+			this.authImg = this.detail.isAuth ? '/static/images/auth.png' : '/static/images/noauth.png'
 
 			// 如果主图，logo图片，设备信息都获取成功，开始绘制海报，这里需要用setTimeout延时绘制，否则可能会出现图片不显示。
 			if ((!this.userImg || this.userImg.errMsg == 'getImageInfo:ok') &&

@@ -1,6 +1,6 @@
 <template>
 	<view class="d-flex u-flex-column align-center" @click="onClick">
-		<image class="tab-img" :src="`../../../static/${icon}.png`" />
+		<image class="tab-img" :src="`../../../static/images/${icon}.png`" />
 		<view class="font-14 mt-1">{{ label }}</view>
 	</view>
 </template>

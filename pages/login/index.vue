@@ -1,6 +1,6 @@
 <template>
 	<view class="login text-center">
-		<image class="login__logo" src="../../static/logo.png" mode="aspectFit"></image>
+		<image class="login__logo" src="../../static/images/logo.png" mode="aspectFit"></image>
 		<view class="login__desc font-bold">LaLa红娘，助力脱单</view>
 		<view class="login__btn">
 			<u-button v-if="canIUseGetUserProfile" @click="getUserProfile">微信登录</u-button>

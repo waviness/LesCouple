@@ -21,7 +21,7 @@
             <view v-if="data.status !== 1" class="order-detail_space order-detail_text order-detail_copyWxCode">
                 <span>联系微信：lesWechatCode</span>
                 <view class="order-detail_copyWxBox order-detail_border">
-                    <img src="../../../static/weixin-logo.png">
+                    <img src="../../../static/images/weixin-logo.png">
                     <span class="order-detail_copyWxText" @click="onCopyWxCode">复制微信</span>
                 </view>
             </view>

@@ -283,20 +283,20 @@
 		"list": [{
 				"pagePath": "pages/home/index",
 				"text": "推荐",
-				"iconPath": "static/home.png",
-				"selectedIconPath": "static/home-f.png"
+				"iconPath": "static/images/home.png",
+				"selectedIconPath": "static/images/home-f.png"
 			},
 			{
 				"pagePath": "pages/matchmaker/index",
 				"text": "红娘",
-				"iconPath": "static/pinglun.png",
-				"selectedIconPath": "static/pinglun-f.png"
+				"iconPath": "static/images/pinglun.png",
+				"selectedIconPath": "static/images/pinglun-f.png"
 			},
 			{
 				"pagePath": "pages/my/index",
 				"text": " 我的",
-				"iconPath": "static/people.png",
-				"selectedIconPath": "static/people-f.png"
+				"iconPath": "static/images/people.png",
+				"selectedIconPath": "static/images/people-f.png"
 			}
 		]
 	}

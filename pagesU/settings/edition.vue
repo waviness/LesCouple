@@ -1,11 +1,11 @@
 <template>
 	<!-- <view class="container">
-		<image class="develope" src="../../static/icon-404.png" mode="aspectFit"></image>
+		<image class="develope" src="../../static/images/icon-404.png" mode="aspectFit"></image>
 		<view class="develope-text">正在努力开发中…</view>
 	</view> -->
 	<view class="edition">
 		<view class="editionImage text-center">
-			<image class="login__logo" src="../../static/logo.png" mode="aspectFit"></image>
+			<image class="login__logo" src="../../static/images/logo.png" mode="aspectFit"></image>
 			<view class="logo_font font-bold">LCP</view>
 			<view class="logo_edition">版本:1.0.0</view>
 		</view>

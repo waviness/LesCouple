@@ -1,6 +1,6 @@
 <template>
 	<view class="container">
-		<image class="develope" src="../../static/icon-404.png" mode="aspectFit"></image>
+		<image class="develope" src="../../static/images/icon-404.png" mode="aspectFit"></image>
 		<view class="develope-text">正在努力开发中…</view>
 		<!-- <view class="bg-white">
 			<u-cell-group>

@@ -1,7 +1,7 @@
 <template>
 	<view class="order-item bg-white mt-2 p-3" @click="onClick">
 		<view class="d-flex align-center">
-			<image class="order-item__icon" src="../../../static/saler.png"></image>
+			<image class="order-item__icon" src="../../../static/images/saler.png"></image>
 			<view class="font-14 clamp-2 ml-2">{{ data.name }}</view>
 		</view>
 		<view class="d-flex mt-2">

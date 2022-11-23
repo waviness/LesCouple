@@ -3,7 +3,7 @@
         <view class="evaluate_info evaluate_bottom">
             <view class="evaluate_userInfo">
                 <view class="evaluate_userInfo_user">
-                    <image class="evaluate_house" src="../../static/house.png" mode="aspectFill"></image>
+                    <image class="evaluate_house" src="../../static/images/house.png" mode="aspectFill"></image>
                     <view>{{ data.name }}</view>
                 </view>
                 <view class="evaluate_evaluateText">待评价</view>

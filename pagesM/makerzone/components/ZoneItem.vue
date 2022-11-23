@@ -1,6 +1,6 @@
 <template>
 	<view class="d-flex u-flex-column align-center p-5 zone-item" @click="onClick">
-		<image class="zone-img" :src="`../../../static/${icon}.png`" />
+		<view :class="'zone-img iconfont icon-' + icon"></view>
 		<view class="font-14 mt-1">{{ label }}</view>
 	</view>
 </template>
@@ -28,7 +28,7 @@
 	}
 
 	.zone-img {
-		width: 80rpx;
-		height: 80rpx;
+		font-size: 80rpx;
+		color: #515151;
 	}
 </style>
