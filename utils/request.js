@@ -16,7 +16,7 @@ function http(url, params, type, header) {
 				} else if (res[1].statusCode == 200 && res[1].data.code == 401) {
 					uni.showToast({
 						icon: 'none',
-						title: res[1].data.errMsg || '登录已过期，请重新登录',
+						title: res[1].data.msg || '登录已过期，请重新登录',
 						duration: 2000,
 					});
 					setTimeout(() => {
@@ -28,7 +28,7 @@ function http(url, params, type, header) {
 				} else if (res[1].statusCode == 200 && res[1].data.code == 400) {
 					uni.showToast({
 						icon: 'none',
-						title: res[1].data.errMsg,
+						title: res[1].data.msg,
 						duration: 2000,
 					});
 				} else if (

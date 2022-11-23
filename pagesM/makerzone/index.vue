@@ -11,6 +11,7 @@
 		<zone-item icon="sousuokehu" label="客户匹配" @click="toSearch" />
 		<zone-item icon="shangjia" label="店铺管理" @click="toDetail('/pagesM/makerzone/manage')" />
 		<zone-item icon="zhucedianpu" label="注册店铺" @click="toDetail('/pagesM/registerStore/store')" />
+		<zone-item icon="customer" label="客户管理" @click="toDetail('/pagesM/customer/index')" />
 	</view>
 </template>
 

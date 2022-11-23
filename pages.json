@@ -258,6 +258,13 @@
 					"navigationBarTitleText": "商品发布",
 					"enablePullDownRefresh": false
 				}
+			},
+			{
+				"path": "customer/index",
+				"style": {
+					"navigationBarTitleText": "客户管理",
+					"enablePullDownRefresh": false
+				}
 			}
 		]
 	}],

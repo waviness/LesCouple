@@ -79,27 +79,27 @@
 					// rawData,
 					// sigcharactersl
 				}
-				this.$api.userLogin(obj).then(res => {
+				// this.$api.userLogin(obj).then(res => {
 					this.$toast('登录成功')
-					// uni.setStorageSync('userInfo', {
-					// 	name: '土方十四郎',
-					// 	userId: 232,
-					// 	headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-					// 	isAuth: 1,
-					// 	hasMaker: 0,
-					// 	isMaker: 1,
-					// })
-					if (res.data.registFlag) { // 已注册
-						uni.setStorageSync('userInfo', res.data.userInfo)
+					uni.setStorageSync('userInfo', {
+						name: '土方十四郎',
+						userId: 232,
+						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+						isAuth: 1,
+						hasMaker: 0,
+						isMaker: 1,
+					})
+					// if (res.data.registFlag) { // 已注册
+						// uni.setStorageSync('userInfo', res.data.userInfo)
 						uni.switchTab({
 							url: '/pages/home/index'
 						})
-					} else {
-						this.registerShow = true
-					}
-				}).catch(err => {
-					this.wxLogin()
-				})
+				// 	} else {
+				// 		this.registerShow = true
+				// 	}
+				// }).catch(err => {
+				// 	this.wxLogin()
+				// })
 			},
 			async onRegister(info) {
 				info.openId = 't23232322131111'

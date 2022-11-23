@@ -56,7 +56,6 @@
 						url: '/pagesU/reply/index'
 					})
 				}
-
 			}
 		}
 	}

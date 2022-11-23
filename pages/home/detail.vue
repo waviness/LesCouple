@@ -153,15 +153,9 @@
 		entertainmentOptions,
 		sameCityOptions,
 	} from '@/constants/common.js'
-	import {
-		LesUser
-	} from './components/User.vue'
-	import {
-		Poster
-	} from './components/Poster.vue'
-	import {
-		AppTitle
-	} from '@/components/AppTitle.vue'
+	import LesUser from './components/User.vue'
+	import Poster from './components/Poster.vue'
+	import AppTitle from '@/components/AppTitle.vue'
 	import {
 		findNameInList
 	} from '@/utils/common.js'

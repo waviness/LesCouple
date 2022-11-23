@@ -70,9 +70,19 @@
 			</u-cell-group>
 		</view>
 		<view class="mt-2 bg-white">
-			<u-cell title="愿意上主页推荐">
+			<u-cell title="愿意上主页推荐" label="开启后，个人信息会被推荐上主页">
 				<view slot="value">
 					<u-switch v-model="userShowObj.showOnIndex"></u-switch>
+				</view>
+			</u-cell>
+			<u-cell title="公开自己的基本资料" label="微信不公开">
+				<view slot="value">
+					<u-switch v-model="userShowObj.showInfo"></u-switch>
+				</view>
+			</u-cell>
+			<u-cell title="隐藏个人信息" label="开启后，任何人无法查看您的主页，红娘将无法为您服务">
+				<view slot="value">
+					<u-switch v-model="userShowObj.hideInfo"></u-switch>
 				</view>
 			</u-cell>
 		</view>
@@ -106,6 +116,8 @@
 					showEntertainment: true,
 					showPhoto: true,
 					showOnIndex: true,
+					showInfo: true,
+					hideInfo: false,
 				},
 			}
 		},
@@ -129,6 +141,8 @@
 					showEntertainment: true,
 					showPhoto: true,
 					showOnIndex: true,
+					showInfo: true,
+					hideInfo: false,
 				}
 			},
 			// 提交按钮
