@@ -65,160 +65,18 @@
 			},
 			async getList() {
 				console.log(this.current)
-				const res = this.current === 1 ? await this.$api.getConcernUser(232) : await this.$api.getConcernedUser(232)
-				setTimeout(() => {
-					this.userList = this.userList.concat([{
-						id: '12342356',
-						name: '小公子',
-						isAuth: 1,
-						height: 186,
-						year: 98,
-						level: 13,
-						headerImg: 'https://i.keaimeitu.com/uploads/allimg/200504/110822693.jpg',
-						type: 1,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子22',
-						isAuth: 1,
-						height: 186,
-						year: 98,
-						level: 15,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 4,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子33',
-						height: 186,
-						year: 98,
-						level: 14,
-						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 4,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子22',
-						height: 186,
-						year: 98,
-						level: 15,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 2,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子22',
-						height: 186,
-						year: 98,
-						level: 15,
-						headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 2,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子33',
-						height: 186,
-						year: 98,
-						level: 14,
-						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 3,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子33',
-						height: 186,
-						year: 98,
-						level: 14,
-						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 3,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子33',
-						height: 186,
-						year: 98,
-						level: 14,
-						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 3,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}, {
-						id: '12342356',
-						name: '小公子33',
-						height: 186,
-						year: 98,
-						level: 14,
-						headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						type: 3,
-						education: '本科',
-						work: '程序员',
-						city: '北京市',
-						imgList: [
-							'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-							'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						],
-					}])
-					this.totalPage = 3
-					if (this.page > 3) {
-						this.status = 'nomore'
-					}
-				}, 500)
+				const params = {
+					pageNo: this.page,
+					pageSize: this.pageSize,
+					userId: uni.getStorageSync('userInfo').userId,
+				}
+				const res = this.current === 1 ? await this.$api.getConcernUser(params) : await this.$api
+					.getConcernedUser(params)
+				this.userList = res.records
+				this.totalPage = res.pages
+				if (this.page >= this.totalPage) {
+					this.status = 'nomore'
+				}
 			},
 			toUserDetail(data) {
 				uni.setStorageSync('userDetail', data)

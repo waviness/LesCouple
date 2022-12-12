@@ -2,25 +2,31 @@
 	<view class="user-card">
 		<image class="user-card__bg" src="../../../static/images/background.png" />
 		<view class="user-card__header">
-			<image class="user-card__img" :src="data.headerImg" />
+			<image class="user-card__img" :src="data.imgId || headerImgUrl" />
 			<view
-				:class="['font-11 color-white user-card__tag', data.isAuth ? 'bg-rank-1' : 'bg-gray']">
-				{{ data.isAuth ? '已认证' : '未认证' }}
+				:class="['font-11 color-white user-card__tag', data.authFlag ? 'bg-rank-1' : 'bg-gray']">
+				{{ data.authFlag ? '已认证' : '未认证' }}
 			</view>
 		</view>
 		<view class="user-card__info">
-			<view class="font-14 font-bold">{{ data.name }}</view>
-			<view class="font-12 color-gray-2 mt-1">ID：{{ data.id }}</view>
+			<view class="font-14 font-bold">{{ data.userName }}</view>
+			<view class="font-12 color-gray-2 mt-1">ID：{{ data.userId }}</view>
 		</view>
 	</view>
 </template>
 
 <script>
+	import { headerImgUrl } from '@/constants/common.js'
 	export default {
 		name: "UserCard",
 		props: {
 			data: Object
 		},
+		data () {
+			return {
+				headerImgUrl
+			}
+		}
 	}
 </script>
 

@@ -54,10 +54,12 @@ export default {
         this.showMatch = option.showMatch;
     },
     methods: {
-        onButClick() {
-            uni.navigateTo({
-                url: '/pagesU/match/index'
-            })
+        async onButClick() {
+			// const params = {
+			// 	productId,
+			// 	purchaserId
+			// }
+            const res = await this.$api.insertOrderInfor({})
         }
     }
 }

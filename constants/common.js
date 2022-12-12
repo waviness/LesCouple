@@ -342,3 +342,6 @@ export const situationOptions = [{
 
 // 红娘微信号
 export const lesWechatCode = 'wyl8888love'
+
+// 用户头像
+export const headerImgUrl = 'https://www.lescouple.top:9090/images/defult'

@@ -159,9 +159,9 @@
 			toResultList() {
 				if (this.current === 0) {
 					console.log(this.searchParams)
-				} else [
+				} else {
 					console.log(this.userId)
-				]
+				}
 				uni.navigateTo({
 					url: '/pages/home/result'
 				})

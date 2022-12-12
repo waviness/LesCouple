@@ -68,54 +68,18 @@
 				this.getMakerList()
 			},
 			async getMakerList() {
+				const queryTypeList = ['TIME', 'GRADE', 'AMOUNT', 'TIME']
 				const res = await this.$api.getMatchmakerList({
 					pageNo: this.page,
 					pageSize: this.pageSize,
-					data: {
-						userId: uni.getStorageSync('userInfo').userId,
-						queryType: 'TIME'
-					}
+					userId: uni.getStorageSync('userInfo').userId,
+					queryType: queryTypeList[this.current]
 				})
-				this.makerList = res.matchmakerInfo
-				this.totalPage = 1
-				this.status = 'nomore'
-				// setTimeout(() => {
-				// 	this.makerList = this.makerList.concat([{
-				// 		name: '红娘小公子',
-				// 		successNum: 123,
-				// 		averageDay: 22,
-				// 		rate: 3.0,
-				// 		headerImg: 'https://i.keaimeitu.com/uploads/allimg/200504/110822693.jpg'
-				// 	}, {
-				// 		name: '红娘小公子22',
-				// 		successNum: 123,
-				// 		averageDay: 22,
-				// 		rate: 5.0,
-				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		name: '红娘小公子33',
-				// 		successNum: 123,
-				// 		averageDay: 22,
-				// 		rate: 4.0,
-				// 		headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		name: '红娘小公子22',
-				// 		successNum: 123,
-				// 		averageDay: 22,
-				// 		rate: 5.0,
-				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		name: '红娘小公子33',
-				// 		successNum: 123,
-				// 		averageDay: 22,
-				// 		rate: 4.0,
-				// 		headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}])
-				// 	this.totalPage = 2
-				// 	if (this.page > 2) {
-				// 		this.status = 'nomore'
-				// 	}
-				// }, 500)
+				this.makerList = res.records
+				this.totalPage = res.pages
+				if (this.page >= this.totalPage) {
+					this.status = 'nomore'
+				}
 			},
 			toMakerDetail(data) {
 				uni.navigateTo({

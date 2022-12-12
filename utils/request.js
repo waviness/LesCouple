@@ -1,11 +1,22 @@
 const baseUrl = 'https://www.lescouple.top:9090';
 
-function http(url, params, type, header) {
+function setHeader() {
+	let header = {
+		"Content-Type": "application/json"
+	}
+	const token = uni.getStorageSync('token')
+	if (token) {
+		header['X-Token'] = token
+	}
+	return header
+}
+
+function http(url, params, type, header, isParams) {
 	return new Promise((resolve, reject) => {
 		uni
 			.request({
-				url: baseUrl + url,
-				header,
+				url: isParams ? baseUrl + url + params : baseUrl + url,
+				header: header || setHeader(),
 				method: type,
 				data: params,
 				timeout: 30000,
@@ -64,6 +75,24 @@ const request = {
 	},
 	post: function(url, params) {
 		return http(url, params, 'POST');
+	},
+	postParam: function(url, data) {
+		const keys = Object.keys(data)
+		let params = '?'
+		for (let i = 0; i < keys.length; i++) {
+			const key = keys[i]
+			let value = data[key]
+			if (value != null && value != '') {
+				if (i != 0) {
+					params += '&'
+				}
+				//对特殊字符进行转义
+				value = encodeURIComponent(value)
+				params += key + '=' + value
+			}
+
+		}
+		return http(url, params, 'POST', {}, true);
 	},
 };
 

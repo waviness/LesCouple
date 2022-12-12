@@ -5,7 +5,7 @@
 			<view class="font-14 clamp-2 ml-2">{{ data.name }}</view>
 		</view>
 		<view class="d-flex mt-2">
-			<image class="order-item__img" :src="data.headerImg"></image>
+			<image class="order-item__img" :src="data.imgId"></image>
 			<view class="flex-1 ml-2">
 				<view class="font-14 clamp-2 slh">{{ data.title }}</view>
 				<view class="font-12 color-gray mt-2">下单时间：{{ data.date }}</view>

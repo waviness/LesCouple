@@ -35,9 +35,9 @@
     //                 }
 				}, {
 					name: '待匹配',
-                    badge: {
-                        value: 5,
-                    }
+                    // badge: {
+                    //     value: 5,
+                    // }
 				}, {
 					name: '已完成'
 				}],
@@ -73,63 +73,18 @@
 			},
 			async getList() {
 				console.log(this.current)
-				const res = await this.$api.getProductList({
+				const res = await this.$api.getOrderList({
 					pageNo: this.page,
 					pageSize: this.pageSize,
 					data: {
 						userId: uni.getStorageSync('userInfo').userId,
 					}
 				})
-				this.list = res.productInfo
-				this.totalPage = 1
-				this.status = 'nomore'
-				// setTimeout(() => {
-				// 	this.list = this.list.concat([{
-				// 		name: '红娘小公子',
-				// 		title: '一对一匹配【标准版】',
-				// 		date: '2022-09-27 09:49',
-				// 		price: 22,
-				// 		rate: 3.0,
-				// 		status: 2, // 1待付款 2待匹配 3待评价 4已完成
-				// 		headerImg: 'https://i.keaimeitu.com/uploads/allimg/200504/110822693.jpg'
-				// 	}, {
-				// 		name: '红娘小公子22',
-				// 		title: '一对一匹配【标准版】',
-				// 		date: '2022-09-27 09:49',
-				// 		price: 22,
-				// 		rate: 5.0,
-				// 		status: 3,
-				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		name: '红娘小公子33',
-				// 		title: '一对一匹配【标准版】',
-				// 		date: '2022-09-27 09:49',
-				// 		price: 22,
-				// 		rate: 4.0,
-				// 		status: 2,
-				// 		headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		name: '红娘小公子22',
-				// 		title: '一对一匹配【标准版】',
-				// 		date: '2022-09-27 09:49',
-				// 		price: 22,
-				// 		rate: 5.0,
-				// 		status: 4,
-				// 		headerImg: 'https://img2.baidu.com/it/u=3895119537,2684520677&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		name: '红娘小公子33',
-				// 		title: '一对一匹配【标准版】',
-				// 		date: '2022-09-27 09:49',
-				// 		price: 22,
-				// 		rate: 4.0,
-				// 		status: 3,
-				// 		headerImg: 'https://img1.baidu.com/it/u=346755217,1159990253&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}])
-				// 	this.totalPage = 2
-				// 	if (this.page > 2) {
-				// 		this.status = 'nomore'
-				// 	}
-				// }, 500)
+				this.list = res.orderInfo
+				this.totalPage = 1 // res.pages
+				if (this.page >= this.totalPage) {
+					this.status = 'nomore'
+				}
 			},
 			toDetail(data) {
 				uni.setStorageSync('orderDetail', data)

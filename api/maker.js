@@ -2,12 +2,12 @@ import request from '@/utils/request.js'
 
 // 查询红娘列表及店铺
 export function getMatchmakerList(params) {
-	return request.get('/getMatchmakerList', params).then(res => res.data)
+	return request.get(`/getMatchmakerList/${params.queryType}/${params.userId}`, params).then(res => res.data)
 }
 
 // 查询该红娘商品信息
 export function getProductList(params) {
-	return request.get('/getProductList', params).then(res => res.data)
+	return request.get(`/getProductList/${params.userId}`, params).then(res => res.data)
 }
 
 // 查询最优评价及总评价数
@@ -17,7 +17,7 @@ export function getPettyEvaluation(params) {
 
 // 查询红娘的所有评价
 export function getEvaluationList(params) {
-	return request.get('/getEvaluationList', params).then(res => res.data)
+	return request.get(`/getEvaluationList/${params.userId}`, params).then(res => res.data)
 }
 
 // 提交订单信息

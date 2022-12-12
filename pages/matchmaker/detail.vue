@@ -12,7 +12,7 @@
 			</view>
 		</view>
 		<app-empty v-else :marginTop="40" />
-		<view class="judge">
+		<view v-if="judgeTotal" class="judge">
 			<view class="d-flex justify-space-between p-3">
 				<view>用户评价</view>
 				<view @click="toMoreJudge">更多评价（{{ judgeTotal }}）</view>
@@ -71,42 +71,13 @@
 				const res = await this.$api.getProductList({
 					pageNo: this.page,
 					pageSize: this.pageSize,
-					data: {
-						userId: uni.getStorageSync('userInfo').userId,
-					}
+					userId: uni.getStorageSync('userInfo').userId,
 				})
-				this.makerList = res.productInfo
-				this.totalPage = 1
-				this.status = 'nomore'
-				// setTimeout(() => {
-				// 	this.list = this.list.concat([{
-				// 		title: '一对一匹配【标准版】',
-				// 		saleNum: 123,
-				// 		price: 22,
-				// 		headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		title: '一对一匹配【标准版】',
-				// 		saleNum: 123,
-				// 		price: 22,
-				// 		headerImg: 'https://img2.baidu.com/it/u=390829681,3002818272&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		title: '一对一匹配【高级版】',
-				// 		saleNum: 123,
-				// 		price: 22,
-				// 		headerImg: 'https://img2.baidu.com/it/u=390829681,3002818272&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		title: '一对一匹配【标准版】',
-				// 		saleNum: 123,
-				// 		price: 22,
-				// 		headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}, {
-				// 		title: '一对一匹配【标准版】',
-				// 		saleNum: 123,
-				// 		price: 22,
-				// 		headerImg: 'https://img2.baidu.com/it/u=2060204670,276341810&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-				// 	}])
-				// }, 500)
-				// this.loading = false
+				this.makerList = res.records
+				this.totalPage = res.pages
+				if (this.page >= this.totalPage) {
+					this.status = 'nomore'
+				}
 			},
 			async getJudgeInfo() {
 				this.loading = true

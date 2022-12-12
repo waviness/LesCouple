@@ -37,7 +37,12 @@
 			}
 		},
 		methods: {
-			getList() {
+			async getList() {
+				const params = {
+					pageNo: this.page,
+					pageSize: this.pageSize
+				}
+				const res = await this.$api.getHomeList(params)
 				setTimeout(() => {
 					this.userList = this.userList.concat([{
 						id: '12342356',

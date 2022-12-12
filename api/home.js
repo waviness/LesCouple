@@ -1,13 +1,13 @@
 import request from '@/utils/request.js'
 
-// 查询当前用户列表
-export function getUserList(params) {
-	return request.get('/getUserList', params).then(res => res.data)
+// 首页推荐用户
+export function getHomeList(params) {
+	return request.get('/index/page', params).then(res => res.data)
 }
 
 // 查询某用户的具体信息
 export function getUserInfo(params) {
-	return request.get('/getUserInfo', params).then(res => res.data)
+	return request.get('/getUserInfo/' + params).then(res => res.data)
 }
 
 // 查询红娘的信息
@@ -27,22 +27,22 @@ export function getMyUserInfo(params) {
 
 // 获取关注的人信息
 export function getConcernedUser(params) {
-	return request.get('/getConcernedUser/' + params).then(res => res.data)
+	return request.get(`/getConcernedUser/${params.userId}`, params).then(res => res.data)
 }
 
 // 获取被关注的人信息
 export function getConcernUser(params) {
-	return request.get('/getConcernUser/' + params).then(res => res.data)
+	return request.get(`/getConcernUser/${params.userId}`, params).then(res => res.data)
 }
 
 // 查询“谁看过我”
-export function getBrowsedUser(params) {
-	return request.get('/getBrowsedUser/' + params).then(res => res.data)
+export function getBrowseUser(params) {
+	return request.get(`/getBrowseUser/${params.userId}/${params.pageSize}`, params).then(res => res.data)
 }
 
 // 查询“我看过谁
-export function getBrowseUser(params) {
-	return request.get('/getBrowseUser/' + params).then(res => res.data)
+export function getBrowsedUser(params) {
+	return request.get(`/getBrowsedUser/${params.userId}`, params).then(res => res.data)
 }
 
 // 查询用户需求信息
@@ -58,4 +58,9 @@ export function updateUserIntention(params) {
 // 保存用户信息
 export function updateUserInfo(params) {
 	return request.post('/updateUserInfo', params).then(res => res.data)
+}
+
+// 上传图片
+export function uploadImages(params) {
+	return request.post('/images/upload', params).then(res => res.data)
 }

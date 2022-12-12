@@ -1,8 +1,8 @@
 <template>
 	<view class="bg-white mb-2 p-3" @click="onClick">
 		<user-item :data="data" :avatarAuth="avatarAuth" :showId="showId" />
-		<view v-if="(isMaker || data.showPhoto) && data.imgList.length" class="mt-3">
-			<u-swiper :list="data.imgList" :radius="0" :height="200" :autoplay="autoplay" indicator indicatorMode="dot"
+		<view v-if="(isMaker || data.showPhoto) && data.files.length" class="mt-3">
+			<u-swiper :list="data.files" :radius="0" :height="200" :autoplay="autoplay" indicator indicatorMode="dot"
 				circular></u-swiper>
 		</view>
 	</view>

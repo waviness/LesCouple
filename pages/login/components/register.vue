@@ -46,8 +46,11 @@
 						</view>
 					</u-form>
 					<view class="mt-5">
-						<u-button type="primary" @click="nextStep">
-							{{ stepNum < 3 ? `继续（${stepNum}/3）` : '立即体验' }}
+						<u-button v-if="stepNum < 3" type="primary" @click="nextStep">
+							{{ `继续（${stepNum}/3）` }}
+						</u-button>
+						<u-button v-else type="primary" open-type="getPhoneNumber"
+							@getphonenumber="getPhoneNumber">立即体验
 						</u-button>
 					</view>
 				</view>
@@ -144,8 +147,17 @@
 				this.userInfo.bornTime = formatDate(params.value)
 				this.dateShow = false
 			},
+			getPhoneNumber(e) {
+				console.log(e)
+				if (!e.detail.code) {
+					return
+				}
+				this.userInfo.code = e.detail.code
+				this.userInfo.attribution = this.userInfo.type ? this.userInfo.type[0] : ''
+				delete this.userInfo.type
+				this.$emit('submit', this.userInfo)
+			},
 			nextStep() {
-				console.log(this.userInfo)
 				if (this.stepNum === 1) {
 					if (!this.userInfo.userName) {
 						this.$toast('请输入昵称')
@@ -186,10 +198,6 @@
 				}
 				if (this.stepNum < 3) {
 					this.stepNum++
-				} else {
-					this.userInfo.attribution = this.userInfo.type ? this.userInfo.type[0]: ''
-					delete this.userInfo.type
-					this.$emit('submit', this.userInfo)
 				}
 			}
 		}
