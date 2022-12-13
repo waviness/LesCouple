@@ -2,11 +2,11 @@
 	<view class="bg-white p-5">
 		<view class="d-flex justify-center m-8">
 			<view class="upload_avatar">
-				<u-upload :fileList="imgList" @afterRead="afterRead" @delete="deletePic" uploadIcon="plus"
-					:previewFullImage="true"></u-upload>
+				<u-upload @afterRead="afterRead" uploadIcon="plus" :previewFullImage="true"></u-upload>
 			</view>
 			<view class="ml-5">
-				<u-image :src="userInfo.imgId || headerImgUrl" width="80px" height="80px" radius="2px" :lazy-load="true">
+				<u-image :src="userInfo.imgId || headerImgUrl" width="80px" height="80px" radius="2px" :lazy-load="true"
+					@click="preview">
 					<view slot="error" style="font-size: 48rpx;">
 						<u-icon name="photo"></u-icon>
 					</view>
@@ -29,16 +29,20 @@
 			return {
 				userInfo: uni.getStorageSync('userInfo'),
 				headerImgUrl,
-				action: 'https://www.lescouple.top:9090/images/upload'
 			}
 		},
 		methods: {
-			async afterRead(file) {
-				console.log(file)
-				this.headerImgUrl = file.file.url
-				const res = await this.$api.uploadImages(file)
+			async afterRead(file, lists, name) {
+				const res = await this.$api.uploadImage(file.file.thumb)
+				this.headerImgUrl = res[0]
+			},
+			preview() {
+				uni.previewImage({
+					urls: [this.headerImgUrl]
+				})
 			},
 			saveImg() {
+				console.log(this.headerImgUrl)
 				this.$toast('保存成功')
 			}
 		}

@@ -93,19 +93,19 @@
 				typeOptions,
 				sameCityOptions,
 				educationOptions: [{
-					value: 0,
+					value: -1,
 					label: '不限'
 				}, ...educationOptions],
 				charactersOptions,
 				hobbyOptions,
 				entertainmentOptions,
 				hairOptions: [{
-					value: 0,
+					value: -1,
 					label: '不限'
 				}, ...hairOptions],
 				provinceOptions: [provinceOptions[0]],
 				authOptions: [{
-					value: 0,
+					value: -1,
 					label: '不限'
 				}, {
 					value: 1,

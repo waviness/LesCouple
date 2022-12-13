@@ -61,6 +61,6 @@ export function updateUserInfo(params) {
 }
 
 // 上传图片
-export function uploadImages(params) {
-	return request.post('/images/upload', params).then(res => res.data)
+export function uploadImage(params) {
+	return request.uploadImg('/images/upload', params).then(res => res.data)
 }

@@ -182,7 +182,7 @@ export const cityOptions = [
 ]
 // 城市
 export const sameCityOptions = [{
-		value: 0,
+		value: -1,
 		label: '不限'
 	},
 	{

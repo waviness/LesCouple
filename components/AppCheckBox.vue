@@ -29,14 +29,14 @@
 			onClick(name) {
 				console.log('click')
 				if (this.appType === 'checkbox') {
-					if (this.tempOptions[name].value === 0) {
+					if (this.tempOptions[name].value === -1) {
 						this.tempOptions.forEach(item => {
 							item.checked = false
 						})
 						this.tempOptions[name].checked = true
 					} else {
 						const target = this.tempOptions.find(item => {
-							return item.value === 0
+							return item.value === -1
 						})
 						if (target) {
 							this.tempOptions[0].checked = false

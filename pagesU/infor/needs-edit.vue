@@ -71,7 +71,7 @@
 				typeOptions,
 				sameCityOptions,
 				educationOptions: [{
-					value: 0,
+					value: -1,
 					label: '不限'
 				}, ...educationOptions],
 				charactersOptions,

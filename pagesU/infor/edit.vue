@@ -2,8 +2,8 @@
 	<view class="eidt-user-info pb-100">
 		<view class="edit-user-info-form bg-white">
 			<u-form ref="form1" labelWidth="90">
-				<u-form-item prop="userInfo.type" label="属性" borderBottom required @click="showType = true">
-					<u-input v-model="userInfo.typeName" disabled placeholder="请选择" disabledColor="transparent"
+				<u-form-item prop="userInfo.attribution" label="属性" borderBottom required @click="showType = true">
+					<u-input v-model="userInfo.attributionName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
@@ -21,11 +21,12 @@
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-datetime-picker :show="showDate" @cancel="showDate = false" @confirm="confirmBirth" v-model="value1"
-					:minDate="-2209017943000" :maxDate="Number(new Date())" mode="date"></u-datetime-picker>
-				<u-form-item prop="userInfo.job" label="职业" borderBottom @click="showJob = true">
-					<u-input v-model="userInfo.job" disabled placeholder="请选择" disabledColor="transparent" border="none"
-						color="#333"></u-input>
+				<u-datetime-picker :show="showDate" @cancel="showDate = false" @confirm="confirmBirth"
+					v-model="defaultDate" :minDate="-2209017943000" :maxDate="Number(new Date())" mode="date">
+				</u-datetime-picker>
+				<u-form-item prop="userInfo.occupation" label="职业" borderBottom @click="showJob = true">
+					<u-input v-model="userInfo.occupation" disabled placeholder="请选择" disabledColor="transparent"
+						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
 				<u-picker :show="showJob" @cancel="showJob = false" :columns="jobColumns" keyName="label"
@@ -45,7 +46,7 @@
 				</u-form-item>
 				<u-picker :show="showHeight" @cancel="showHeight = false" :columns="heightColumns" keyName="label"
 					@confirm="confirmHeight"></u-picker>
-				<u-form-item prop="userInfo.state" label="感情状态" borderBottom @click="showState = true">
+				<u-form-item prop="userInfo.affectiveState" label="感情状态" borderBottom @click="showState = true">
 					<u-input v-model="userInfo.stateName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
@@ -73,14 +74,15 @@
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showHouse" @cancel="showHouse = false" :columns="housingColumns" @confirm="confirmHouse">
+				<u-picker :show="showHouse" @cancel="showHouse = false" :columns="housingColumns"
+					@confirm="confirmHouse">
 				</u-picker>
 				<u-form-item prop="userInfo.income" label="收入" borderBottom @click="showIncome = true">
 					<u-input v-model="userInfo.incomeName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
-				<u-picker :show="showIncome" @cancel="showIncome = false" :columns="incomeColumns"
+				<u-picker :show="showIncome" @cancel="showIncome = false" :columns="incomeColumns" keyName="label"
 					@confirm="confirmIncome"></u-picker>
 				<u-form-item prop="userInfo.constellation" label="星座" borderBottom @click="showConstellation = true">
 					<u-input v-model="userInfo.constellation" disabled placeholder="请选择" disabledColor="transparent"
@@ -89,23 +91,25 @@
 				</u-form-item>
 				<u-picker :show="showConstellation" @cancel="showConstellation = false" :columns="constellationColumns"
 					@confirm="confirmConstellation"></u-picker>
-				<u-form-item prop="userInfo.situation" label="出柜情况" borderBottom @click="showSituation = true">
+				<u-form-item prop="userInfo.comeoutStatus" label="出柜情况" borderBottom @click="showSituation = true">
 					<u-input v-model="userInfo.situationName" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
 				<u-picker :show="showSituation" @cancel="showSituation = false" :columns="situationColumns"
-					@confirm="confirmSituation"></u-picker>
-				<u-form-item prop="userInfo.child" label="育儿计划" borderBottom @click="showChild = true">
-					<u-input v-model="userInfo.child" disabled placeholder="请选择" disabledColor="transparent"
+					keyName="label" @confirm="confirmSituation"></u-picker>
+				<u-form-item prop="userInfo.bornUp" label="育儿计划" borderBottom @click="showChild = true">
+					<u-input v-model="userInfo.bornUp" disabled placeholder="请选择" disabledColor="transparent"
 						border="none" color="#333"></u-input>
 					<u-icon slot="right" name="arrow-right"></u-icon>
 				</u-form-item>
 				<u-picker :show="showChild" @cancel="showChild = false" :columns="childColumns" @confirm="confirmChild">
 				</u-picker>
+				<view class="my-3">自我描述(性格/爱好/优点等多方面)</view>
+				<u-textarea v-model="userInfo.desc" placeholder="请输入内容" height="120"></u-textarea>
 				<view class="my-3">主页照片</view>
-				<u-upload :fileList="userInfo.imgList" @afterRead="afterRead" @delete="deletePic" name="3" multiple
-					:maxCount="4" uploadIcon="plus" :previewFullImage="true"></u-upload>
+				<u-upload :fileList="imgList" @afterRead="afterRead" @delete="deletePic" multiple :maxCount="4"
+					uploadIcon="plus" :previewFullImage="true"></u-upload>
 			</u-form>
 		</view>
 		<view class="m-8">
@@ -117,6 +121,7 @@
 				<u-input placeholder="请输入您的职业" border="surround" v-model="jobValue" />
 			</view>
 		</u-modal>
+		<u-loading-page :loading="loading"></u-loading-page>
 	</view>
 </template>
 
@@ -142,6 +147,7 @@
 		name: 'PersonalInfoEdit',
 		data() {
 			return {
+				loading: false,
 				showDate: false,
 				showSituation: false,
 				showChild: false,
@@ -177,11 +183,12 @@
 				childColumns: [
 					['有', '无']
 				],
-				value1: Number(new Date()),
+				defaultDate: Number(new Date()),
 				userInfo: {
 					imgList: [],
 				},
 				jobValue: '',
+				imgList: []
 			}
 		},
 		onLoad() {
@@ -189,42 +196,46 @@
 		},
 		methods: {
 			async getDetail() {
+				this.loading = true
 				const res = await this.$api.getMyUserInfo({
 					userId: uni.getStorageSync('userInfo').userId,
 				})
 				this.userInfo = res
-				this.userInfo = {
-					type: 1,
-					job: '其他|XXX',
-					education: 3,
-					state: 1,
-					hair: 1,
-					pet: 1,
-					constellation: '摩羯座',
-					situation: 2,
-					child: 0,
-					imgList: [{
-							url: 'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
-						},
-						{
-							url: 'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-						},
-						{
-							url: 'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
-						}
-					],
-				}
-				this.value1 = Number(new Date(this.userInfo.bornTime))
-				this.userInfo.pet = this.userInfo.pet === 1 ? '有' : this.userInfo.pet === 0 ? '无' : ''
-				this.userInfo.housing = this.userInfo.housing === 1 ? '有' : this.userInfo.housing === 0 ? '无' : ''
-				this.userInfo.child = this.userInfo.child === 1 ? '有' : this.userInfo.child === 0 ? '无' : ''
-				this.userInfo.typeName = findNameInList(this.userInfo.type, typeOptions)
-				this.userInfo.educationName = findNameInList(this.userInfo.education, educationOptions)
-				this.userInfo.heightName = findNameInList(this.userInfo.height, heightOptions)
-				this.userInfo.stateName = findNameInList(this.userInfo.state, stateOptions)
-				this.userInfo.hairName = findNameInList(this.userInfo.hair, hairOptions)
-				this.userInfo.incomeName = findNameInList(this.userInfo.income, incomeOptions)
-				this.userInfo.situationName = findNameInList(this.userInfo.situation, situationOptions)
+				// this.userInfo = {
+				// 	type: 1,
+				// 	job: '其他|XXX',
+				// 	education: 3,
+				// 	state: 1,
+				// 	hair: 1,
+				// 	pet: 1,
+				// 	constellation: '摩羯座',
+				// 	situation: 2,
+				// 	child: 0,
+				// 	imgList: [{
+				// 			url: 'https://img2.baidu.com/it/u=351231172,1476228708&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500',
+				// 		},
+				// 		{
+				// 			url: 'https://img2.baidu.com/it/u=873374196,739480524&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 		},
+				// 		{
+				// 			url: 'https://img1.baidu.com/it/u=1767030698,911172892&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+				// 		}
+				// 	],
+				// }
+				this.defaultDate = Number(new Date(this.userInfo.bornTime))
+				this.userInfo.pet = +this.userInfo.pet === 1 ? '有' : this.userInfo.pet == 0 ? '无' : ''
+				this.userInfo.housing = +this.userInfo.housing === 1 ? '有' : this.userInfo.housing == 0 ? '无' : ''
+				this.userInfo.bornUp = +this.userInfo.bornUp === 1 ? '有' : this.userInfo.bornUp == 0 ? '无' : ''
+				this.userInfo.attributionName = findNameInList(+this.userInfo.attribution, typeOptions)
+				this.userInfo.educationName = findNameInList(+this.userInfo.education, educationOptions)
+				this.userInfo.heightName = findNameInList(+this.userInfo.height, heightOptions)
+				this.userInfo.stateName = findNameInList(+this.userInfo.affectiveState, stateOptions)
+				this.userInfo.hairName = findNameInList(+this.userInfo.hair, hairOptions)
+				this.userInfo.incomeName = findNameInList(+this.userInfo.income, incomeOptions)
+				this.userInfo.situationName = findNameInList(+this.userInfo.comeoutStatus, situationOptions)
+				this.imgList = this.userInfo.imgList || []
+				console.log(this.userInfo)
+				this.loading = false
 			},
 			// 改变省市联动
 			changeHandler(e) {
@@ -250,8 +261,8 @@
 			// 属性确认
 			confirmType(e) {
 				this.showType = false
-				this.userInfo.type = e.value[0].value
-				this.userInfo.typeName = e.value[0].label
+				this.userInfo.attribution = e.value[0].value
+				this.userInfo.attributionName = e.value[0].label
 			},
 			// 出生日期确认
 			confirmBirth({
@@ -272,12 +283,12 @@
 					this.showOtherInput = true
 				} else {
 					this.showJob = false
-					this.userInfo.job = e.value[0].label
+					this.userInfo.occupation = e.value[0].label
 				}
 			},
 			onJobConfirm() {
 				this.showOtherInput = false
-				this.userInfo.job = `其他|${this.jobValue}`
+				this.userInfo.occupation = `其他|${this.jobValue}`
 				this.showJob = false
 			},
 			// 学历确认
@@ -295,7 +306,7 @@
 			// 感情状态确认
 			confirmState(e) {
 				this.showState = false
-				this.userInfo.state = e.value[0].value
+				this.userInfo.affectiveState = e.value[0].value
 				this.userInfo.stateName = e.value[0].label
 			},
 			// 发长确认
@@ -328,65 +339,48 @@
 			// 出柜情况确认
 			confirmSituation(e) {
 				this.showSituation = false
-				this.userInfo.situation = e.value[0].value
+				this.userInfo.comeoutStatus = e.value[0].value
 				this.userInfo.situationName = e.value[0].label
 			},
 			// 育儿计划确认
 			confirmChild(e) {
 				this.showChild = false
-				this.userInfo.child = e.value[0]
+				this.userInfo.bornUp = e.value[0]
 			},
 			// 删除照片
 			deletePic(event) {
-				this.userInfo.imgList.splice(event.index, 1)
+				this.imgList.splice(event.index, 1)
 			},
 			// 新增图片
 			async afterRead(event) {
 				// 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
 				let lists = [].concat(event.file)
-				let fileListLen = this.userInfo.imgList.length
+				let fileListLen = this.imgList.length
 				lists.map((item) => {
-					this.userInfo.imgList.push({
+					this.imgList.push({
 						...item,
 						status: 'uploading',
 						message: '上传中'
 					})
 				})
 				for (let i = 0; i < lists.length; i++) {
-					const result = await this.uploadFilePromise(lists[i].url)
-					let item = this.userInfo.imgList[fileListLen]
-					this.userInfo.imgList.splice(fileListLen, 1, Object.assign(item, {
+					const result = await this.$api.uploadImage(lists[i].url)
+					let item = this.imgList[fileListLen]
+					this.imgList.splice(fileListLen, 1, Object.assign(item, {
 						status: 'success',
 						message: '',
-						url: result
+						url: result[0]
 					}))
 					fileListLen++
 				}
-			},
-			uploadFilePromise(url) {
-				return new Promise((resolve, reject) => {
-					let a = uni.uploadFile({
-						url: 'http://192.168.2.21:7001/upload', // 仅为示例，非真实的接口地址
-						filePath: url,
-						name: 'file',
-						formData: {
-							user: 'test'
-						},
-						success: (res) => {
-							setTimeout(() => {
-								resolve(res.data.data)
-							}, 1000)
-						}
-					})
-				})
 			},
 			// 星座换算
 			getAstro(m, d) {
 				return "魔羯水瓶双鱼白羊金牛双子巨蟹狮子处女天秤天蝎射手魔羯".substr(m * 2 - (d < "102223444433".charAt(m - 1) - -19) * 2, 2) + '座';
 			},
 			// 提交按钮
-			saveInfor() {
-				if (!this.userInfo.type) {
+			async saveInfor() {
+				if (!this.userInfo.attribution) {
 					this.$toast('请选择属性')
 					return
 				}
@@ -398,43 +392,46 @@
 					this.$toast('请选择出生年月日')
 					return
 				}
-				console.log(this.userInfo)
 				const {
-					type,
+					attribution,
 					city,
 					bornTime,
-					job,
+					occupation,
 					education,
 					height,
-					state,
+					affectiveState,
 					hair,
 					income,
 					constellation,
-					situation,
-					imgList,
+					comeoutStatus,
+					desc
 				} = this.userInfo
 				const pet = this.userInfo.pet === '有' ? 1 : this.userInfo.pet === '无' ? 0 : ''
 				const housing = this.userInfo.housing === '有' ? 1 : this.userInfo.housing === '无' ? 0 : ''
-				const child = this.userInfo.child === '有' ? 1 : this.userInfo.child === '无' ? 0 : ''
+				const bornUp = this.userInfo.bornUp === '有' ? 1 : this.userInfo.bornUp === '无' ? 0 : ''
+				const files = this.imgList.map(item => item.url)
 				const params = {
-					type,
+					userId: uni.getStorageSync('userInfo').userId,
+					attribution,
 					city,
 					bornTime,
-					job,
+					occupation,
 					education,
 					height,
-					state,
+					affectiveState,
 					hair,
 					income,
 					constellation,
-					situation,
-					imgList,
+					comeoutStatus,
+					files,
 					pet,
 					housing,
-					child,
+					bornUp,
+					desc
 				}
-				console.log(params)
+				const res = await this.$api.updateUserInfo(params)
 				this.$toast('保存成功')
+				this.getDetail()
 			}
 		},
 	}

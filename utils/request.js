@@ -94,6 +94,30 @@ const request = {
 		}
 		return http(url, params, 'POST', {}, true);
 	},
+	// uploadPost: function(url, params) {
+	// 	return http(url, params, 'POST', {
+	// 		'Content-Type': 'multipart/form-data;boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'
+	// 	});
+	// },
+	uploadImg: function(url, params) {
+		return new Promise((resolve, reject) => {
+			uni.uploadFile({
+				url: baseUrl + url,
+				filePath: params,
+				name: 'file',
+				success: (uploadFileRes) => {
+					if (uploadFileRes.statusCode == 200) {
+						resolve(JSON.parse(uploadFileRes.data))
+					} else {
+						reject(JSON.parse(uploadFileRes.data))
+					}
+				},
+				fail: (err) => {
+					reject(err)
+				}
+			})
+		});
+	},
 };
 
 export default request;
